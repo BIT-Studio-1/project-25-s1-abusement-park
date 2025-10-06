@@ -66,7 +66,7 @@ namespace Battleship_V1
             int krakenCount = 4;
             int BSshipHits = 4;
 
-            while (krakenCount != 0)
+            while (krakenCount != 0 && BSshipHits != 0)
             {
                 //Grid Layout
                 Console.WriteLine(@"                                                  1   2   3   4   5   6   7                                         ");
@@ -90,17 +90,29 @@ namespace Battleship_V1
                 
                 for (int i = 0; i < 4; i++)
                 {
-                    Console.Write(battleshipPos[i] + " ");
+                    Console.Write(battleshipPos[i] + " ");                    
                 }
                 Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Type EXIT to quit at any time");
+                Console.WriteLine();
                 Console.WriteLine($"Your Battleship has {BSshipHits} hits left until it sinks!");
-                Console.WriteLine($"The kraken needs {krakenCount} hits to be deafeated!");
+                Console.WriteLine($"The kraken needs {krakenCount} hits to be defeated!");
                 Console.WriteLine("Current Moves:");
                 Console.WriteLine($"{string.Join(", ", BSuserInputs)}");
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.Write("XY:    ");
                 string playerHitKraken = Console.ReadLine().ToUpper();
+               
+                if (playerHitKraken == "EXIT")
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Game Ended! Press ENTER to continue");
+                    Console.WriteLine();
+                    Console.ReadLine();
+                    break;
+                }
                 Console.WriteLine("Firing cannons");
                 Thread.Sleep(500); 
                 Console.Write(".");
@@ -110,11 +122,13 @@ namespace Battleship_V1
                 Console.Write(".");
                 Thread.Sleep(500);
                 Console.WriteLine();
-                
+                              
                 if (BSuserInputs.Contains(playerHitKraken))
                 {
                     Console.WriteLine();
                     Console.WriteLine("You've already hit that space! Try a different coordinate.");
+                    Console.ReadLine();
+                    Console.Clear();
                     continue;
                 }               
 
@@ -176,7 +190,7 @@ namespace Battleship_V1
                 Console.ReadLine();
                 Console.Clear();
             }
-
+                   
             if (krakenCount == 0)
             {
                 Console.WriteLine("Game over. You've defeated the Kraken!");
