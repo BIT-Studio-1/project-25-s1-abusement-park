@@ -64,7 +64,7 @@
             int[] currentBet = new int[2];
 
             Console.WriteLine("The current bet is: [Number of dice] [Value of dice]");
-            Console.WriteLine($"{currentBet[0]}{currentBet[0]}");
+            Console.WriteLine($"{currentBet[0]}, {currentBet[1]}");
 
             while (bullshit != true)
             {
@@ -76,12 +76,44 @@
                         Console.WriteLine("What is your bet? [Number of dice] [Value of dice]");
                         Console.Write("> ");
                         string playerInput = Console.ReadLine();
+                        playerInput = playerInput.Replace(" ", string.Empty).Replace(",", string.Empty);
 
+                        // Check if input is valid
+                        if (int.TryParse(playerInput, out int result) && (playerInput.Length == 2))
+                        {
+                            int numberOf = Int32.Parse(playerInput[0].ToString()), valueOf = Int32.Parse(playerInput[1].ToString());
+                            if (numberOf > currentBet[0] && numberOf <= 7)
+                            {
+                                if (valueOf > 0 && valueOf <= 6)
+                                {
+                                    newBet[0] = numberOf;
+                                    newBet[1] = valueOf;
+                                }
+                            }
+                            else if (numberOf == currentBet[0] && numberOf > 0)
+                            {
+                                if (valueOf > currentBet[1] && valueOf <= 6)
+                                {
+                                    newBet[0] = numberOf;
+                                    newBet[1] = valueOf;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{playerInput[0]}, {playerInput[1]} is not within the valid betting range. A valid input looks like:\n3 6 or 36 (Three 6's)");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{playerInput[0]}, {playerInput[1]} is not a valid input. A valid input looks like:\n3 6 or 36 (Three 6's");
+                        }
                     }
+                    Console.WriteLine($"{newBet[0]}, {newBet[1]}");
+                    Console.ReadLine();
                 }
                 else
                 {
-
+                    return;
                 }
             }
         }
