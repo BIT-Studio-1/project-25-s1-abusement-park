@@ -130,13 +130,16 @@
                     }
 
                     // Set the bet
-                    currentBet[0] = newBet[0];
-                    currentBet[1] = newBet[1];
-                    playerTurn = false;
+                    if (bullshit == false)
+                    {
+                        currentBet[0] = newBet[0];
+                        currentBet[1] = newBet[1];
+                        playerTurn = false;
+                    }
                 }
                 else
                 {
-                    return;
+                    playerTurn = true;
                 }
             }
         }
