@@ -6,7 +6,7 @@
         {
             Random rand = new Random();
             //user hand, delear hand, card, betting amount
-            int card, chip, total = 0, dTotal = 0;
+            int card, chip, total = 0, dTotal = 0, l = 2;
             string turn = "";
             //probably will never go over 21, however as this 
             int[] hand = new int[21];
@@ -32,8 +32,14 @@
             //the idea here is that it will loop until the user busts (over 21) or stands (ends turn)
             while (turn != "s" && turn != "S")
             {
-                Console.WriteLine("S for Stand");
+                Console.WriteLine("S for Stand\nH for Hit");
                 turn = Console.ReadLine();
+                if (turn == "H")
+                {
+                    card = rand.Next(1,14);
+                    Console.WriteLine(card);
+                    hand[l + 2] = card;
+                }
             }
 
             Console.ReadLine();
