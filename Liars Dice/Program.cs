@@ -58,7 +58,7 @@
                 if (playerTurn)
                 {
                     int[] newBet = new int[2];
-                    while (newBet[0] == 0 || newBet[1] == 0)
+                    while ((newBet[0] == 0 || newBet[1] == 0) && bullshit == false)
                     {
                         // Show The Players Dice
                         Console.Clear();
@@ -70,7 +70,7 @@
                         Console.WriteLine("\n");
                         Console.WriteLine("The current bet is: [Number of dice] [Value of dice]");
                         Console.WriteLine($"{currentBet[0]}, {currentBet[1]}");
-                        Console.WriteLine("What is your bet? [Number of dice] [Value of dice]");
+                        Console.WriteLine("What is your bet? [Number of dice] [Value of dice] or call 'bullshit'");
                         Console.Write("> ");
                         string playerInput = Console.ReadLine();
                         playerInput = playerInput.Replace(" ", string.Empty).Replace(",", string.Empty);
@@ -116,13 +116,23 @@
                         }
                         else
                         {
-                            Console.WriteLine($"{playerInput[0]}, {playerInput[1]} is not a valid input. A valid input looks like:\n3 6 or 36 (Three 6's");
-                            Console.Write("Press ENTER to Continue...");
-                            Console.ReadLine();
+                            if (playerInput.ToLower() == "bullshit")
+                            {
+                                bullshit = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{playerInput[0]}, {playerInput[1]} is not a valid input. A valid input looks like:\n3 6 or 36 (Three 6's");
+                                Console.Write("Press ENTER to Continue...");
+                                Console.ReadLine();
+                            }
                         }
                     }
+
+                    // Set the bet
                     currentBet[0] = newBet[0];
                     currentBet[1] = newBet[1];
+                    playerTurn = false;
                 }
                 else
                 {
