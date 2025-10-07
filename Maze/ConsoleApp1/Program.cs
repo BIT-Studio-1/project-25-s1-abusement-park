@@ -72,15 +72,6 @@ namespace Maze
                 }
             }
             */
-            if (startPoint.HasValue && endPoint.HasValue)
-            {
-                Console.WriteLine($"Start: ({startPoint.Value.x}, {startPoint.Value.y})");
-                Console.WriteLine($"End: ({endPoint.Value.x}, {endPoint.Value.y})");
-            }
-            else
-            {
-                Console.WriteLine("Could not find entry/exit points on edges.");
-            }
 
             if (startPoint != null)
             {
@@ -91,7 +82,8 @@ namespace Maze
 
             // Find a starting point (any open space)
             int playerX = 1, playerY = 1;
-            Console.SetCursorPosition(playerX+1, (playerY+2));
+            Console.SetCursorPosition(playerX*2, (playerY));
+            Console.Write("@@");
 
             do
             {
@@ -111,17 +103,17 @@ namespace Maze
                 if (mazeGrid[newY, newX] == 0)
                 {
                     // Erase old position
-                    Console.SetCursorPosition(playerX, playerY + 2);
-                    Console.Write(" ");
+                    Console.SetCursorPosition((playerX * 2), playerY);
+                    Console.Write("  ");
 
                     // Draw new position
                     playerX = newX;
                     playerY = newY;
-                    Console.SetCursorPosition(playerX, playerY + 2);
-                    Console.Write("@");
+                    Console.SetCursorPosition((playerX*2), playerY);
+                    Console.Write("@@");
                 }
             }
-            while (!(user.x == endPoint.Value.x && user.y == endPoint.Value.y));
+            while (!(user.y == endPoint.Value.y));
 
                 Console.WriteLine("you win!");
         }
@@ -255,11 +247,11 @@ namespace Maze
                 {
                     if (x == user.x && y == user.y)
                     {
-                        Console.Write("#");
+                        Console.Write("##");
                     }
                     else
                     {
-                        Console.Write(mazeGrid[y, x] == 1 ? "█" : " ");
+                        Console.Write(mazeGrid[y, x] == 1 ? "██" : "  ");
                     }
                 }
                 Console.WriteLine();
