@@ -14,8 +14,11 @@ namespace Maze
 
     public class MazeGame
     {
+        private static readonly Random rand = new Random();
         private int size = 20;
-        private int[,] mazeGrid = {
+        private int[,] mazeGrid;
+
+        /*{
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1},
             {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1},
             {1,0,1,1,1,1,1,0,1,1,0,1,1,0,1,0,1,0,1,1},
@@ -37,59 +40,97 @@ namespace Maze
             {1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,1,1},
             {1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
         };
+        */
 
-        private int[]? startPoint;
-        private int[]? endPoint;
-        private Player? user;
+        (int x, int y)? startPoint = null;
+        (int x, int y)? endPoint = null;
+        private Player user;
 
         public void SetupMaze()
         {
-            for (int i = 0; i < size; i++)
+            mazeGrid = GenerateMaze(size,size);
+            //MakeMaze();
+
+            for (int y = 0; y < size; y++)
             {
-                for (int j = 0; j < size; j++)
+                for (int x = 0; x < size; x++)
                 {
-                    int activePoint = mazeGrid[j, i];
+                    int activePoint = mazeGrid[y, x];
 
-                    if (startPoint == null && activePoint == 0 && (i == 0 || j == 0))
+                    // Check if it's a path and on an edge
+                    if (activePoint == 0 && (x == 0 || y == 0 || x == size-1 || y == size-1))
                     {
-                        startPoint = [i, j];
+                        if (startPoint == null)
+                        {
+                            startPoint = (x, y);
+                        }
+                        else if (endPoint == null)
+                        {
+                            endPoint = (x, y);
+                        }
                     }
-                    else if (endPoint == null && activePoint == 0 && (i == size - 1 || j == size - 1))
-                    {
-                        endPoint = [i, j];
-                    }
-
                 }
+            }
+
+            if (startPoint.HasValue && endPoint.HasValue)
+            {
+                Console.WriteLine($"Start: ({startPoint.Value.x}, {startPoint.Value.y})");
+                Console.WriteLine($"End: ({endPoint.Value.x}, {endPoint.Value.y})");
+            }
+            else
+            {
+                Console.WriteLine("Could not find entry/exit points on edges.");
             }
 
             if (startPoint != null)
             {
-                user = new Player(startPoint);
+                user = new Player(startPoint.Value.x, startPoint.Value.y);
             }
 
             DrawMaze();
 
             do
             {
+                //Console.Clear();
                 Console.WriteLine("you can use 'W A S D' to move");
 
-                char input = GetInput(['w', 'a', 's', 'd']);
+                char input = MazeGetInput(['w', 'a', 's', 'd']);
                 Navigate(input);
                 
                 DrawMaze();
             }
-            while (!(user.x == endPoint[0] && user.y == endPoint[1]));
+            while (!(user.x == endPoint.Value.x && user.y == endPoint.Value.y));
 
             Console.WriteLine("you win!");
+        }
+
+        public void MakeMaze(){
+            mazeGrid = new int[size,size];
+            for (int x = 0; x < size; x++)
+            {
+                for (int y = 0; y < size; y++)
+                {
+                    mazeGrid[y,x] = 1;
+                }
+            }
+            
         }
 
         public void Navigate(char input)
         {
             switch (input)
             {
-                case 'w':
-                    //up
-                    if (mazeGrid[user.y-1,user.x] == 0)
+                case 'w':    //Up
+
+                    int upSquare;
+                    try{
+                        upSquare = mazeGrid[user.y - 1, user.x];
+                    }
+                    catch(Exception e){
+                        upSquare = 1;
+                    }
+
+                    if (upSquare == 0)
                     {
                         user.y--;
                     }
@@ -100,9 +141,18 @@ namespace Maze
                         Console.WriteLine();
                     }
                     break;
-                case 's':
-                    //down
-                    if (mazeGrid[user.y+1, user.x] == 0)
+                case 's':   //Down
+                    int downSquare;
+                    try
+                    {
+                        downSquare = mazeGrid[user.y + 1, user.x];
+                    }
+                    catch (Exception e)
+                    {
+                        downSquare = 1;
+                    }
+
+                    if (downSquare == 0)
                     {
                         user.y++;
                     }
@@ -113,9 +163,18 @@ namespace Maze
                         Console.WriteLine();
                     }
                     break;
-                case 'a':
-                    //left
-                    if (mazeGrid[user.y, user.x-1] == 0)  
+                case 'a':   //Left
+                    int leftSquare;
+                    try
+                    {
+                        leftSquare = mazeGrid[user.y, user.x - 1];
+                    }
+                    catch (Exception e)
+                    {
+                        leftSquare = 1;
+                    }
+
+                    if (leftSquare == 0)
                     {
                         user.x--;
                     }
@@ -128,7 +187,17 @@ namespace Maze
                     break;
                 case 'd':
                     //right
-                    if (mazeGrid[user.y, user.x+1] == 0)
+                    int rightSquare;
+                    try
+                    {
+                        rightSquare = mazeGrid[user.y, user.x + 1];
+                    }
+                    catch (Exception e)
+                    {
+                        rightSquare = 1;
+                    }
+
+                    if (rightSquare == 0)
                     {
                         user.x++;
                     }
@@ -138,15 +207,12 @@ namespace Maze
                         Console.WriteLine("that way is blocked");
                         Console.WriteLine();
                     }
-                        break;
-                default:
-                    
                     break;
             }
             Console.WriteLine();
         }
 
-        public static char GetInput(char[] usableChars)
+        public static char MazeGetInput(char[] usableChars)
         {
 
 
@@ -154,27 +220,93 @@ namespace Maze
             if (!usableChars.Contains(input))
             {
                 Console.WriteLine($"Please input a direction using '{string.Join(" ", usableChars)}'");
-                input = GetInput(usableChars);
+                input = MazeGetInput(usableChars);
             }
 
             return input;
         }
 
         public void DrawMaze(){
-            for (int y = 0; y < size; y++)
+            for (int y = 0; y < mazeGrid.GetLength(0); y++)
             {
-                for (int x = 0; x < size; x++)
+                for (int x = 0; x < mazeGrid.GetLength(1); x++)
                 {
-                    if (user.x == x && user.y == y)
+                    if (x == user.x && y == user.y)
                     {
-                        Console.Write("X");
+                        Console.Write("##");
                     }
                     else
                     {
-                        Console.Write(mazeGrid[y, x]);
+                        Console.Write(mazeGrid[y, x] == 1 ? "██" : "  ");
                     }
                 }
                 Console.WriteLine();
+            }
+        }
+
+        public static int[,] GenerateMaze(int width, int height)
+        {
+            // Ensure odd dimensions
+            if (width % 2 == 0) width++;
+            if (height % 2 == 0) height++;
+
+            int[,] maze = new int[height, width];
+
+            // Fill with walls (1)
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                    maze[y, x] = 1;
+
+            // Starting point
+            int startX = 1;
+            int startY = 1;
+            maze[startY, startX] = 0;
+
+            CarvePath(startX, startY, maze);
+
+            // Create entry and exit
+            maze[0, 1] = 0;                 // entry at top
+            maze[height - 1, width - 2] = 0; // exit at bottom
+
+            return maze;
+        }
+
+        private static void CarvePath(int x, int y, int[,] maze)
+        {
+            // Directions: up, right, down, left
+            int[][] dirs = {
+            new[] { 0, -2 },
+            new[] { 2, 0 },
+            new[] { 0, 2 },
+            new[] { -2, 0 }
+        };
+
+            // Shuffle directions
+            Shuffle(dirs);
+
+            foreach (var d in dirs)
+            {
+                int nx = x + d[0];
+                int ny = y + d[1];
+
+                if (ny > 0 && ny < maze.GetLength(0) - 1 &&
+                    nx > 0 && nx < maze.GetLength(1) - 1 &&
+                    maze[ny, nx] == 1)
+                {
+                    // Knock down wall between (x,y) and (nx,ny)
+                    maze[y + d[1] / 2, x + d[0] / 2] = 0;
+                    maze[ny, nx] = 0;
+                    CarvePath(nx, ny, maze);
+                }
+            }
+        }
+
+        private static void Shuffle<T>(T[] array)
+        {
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                int j = rand.Next(i + 1);
+                (array[i], array[j]) = (array[j], array[i]);
             }
         }
     }
