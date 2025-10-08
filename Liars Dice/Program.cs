@@ -170,6 +170,7 @@
                         currentBet[1] = newBet[1];
                         playerTurn = false;
                     }
+                    firstTurn = false;
                 }
                 else
                 {
