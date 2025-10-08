@@ -22,19 +22,20 @@ namespace Battleship_V1
             Console.WriteLine(@"                // (      (  (      (   (      (                                 |______  /(____  /__|  |__| |____/\___  >____  >___|  /__|   __/                ");
             Console.WriteLine(@"              / /   \______\  \______\   \______\                                       \/      \/                     \/     \/     \/   |__|                   ");
             Console.WriteLine(@"            /  /   ____!_____ ___!______ ____!_____                      ");
-            Console.WriteLine(@"          /   /   /         //         //         /                                                    Press ENTER to continue...   ");
-            Console.WriteLine(@"       /    /   |         ||         ||         |                        ");
-            Console.WriteLine(@"      /_____/     \         \\         \\         \                      ");
-            Console.WriteLine(@"            \      \_________\\_________\\_________\                     ");
+            Console.WriteLine(@"          /   /   /         //         //         /                          This a Battleship style game. Enter the 4 XY coordinates to place your ship on the grid.                   ");
+            Console.WriteLine(@"       /    /   |         ||         ||         |                             Your opponent, the Kraken, is also 4 coordinates long, Type the coordinates, then press ENTER to fire. ");
+            Console.WriteLine(@"      /_____/     \         \\         \\         \                          Your job is to defeat the Kraken before it defeats you! You can type EXIT at any time to end the game   ");
+            Console.WriteLine(@"            \      \_________\\_________\\_________\                                     (Enter coordinates as a letter and number e.g. A3)                                          ");
             Console.WriteLine(@"             \         |          |         |                            ");
-            Console.WriteLine(@"              \________!__________!_________!________/                   ");
-            Console.WriteLine(@"               \|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_/|                   ");
+            Console.WriteLine(@"              \________!__________!_________!________/                                            Press ENTER to continue...");
+            Console.WriteLine(@"               \|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_/|                   ");  
             Console.WriteLine(@"                \    _______________                /                    ");
             Console.WriteLine(@" ^^^%%%^%^^^%^%%^\_'/_)/_)_/_)__)/_)/)/)_)_'_'_'_/)/)/)/)%%%^^^%^^%%%%^  ");
             Console.WriteLine(@" ^!!^^'!%%!^^^!^^^!!^^^%%%%%!!!!^^^%%^^^!!%%%%^^^!!!!!!%%%^^^^%^^%%%^^^! ");
             Console.ReadLine();
             Console.Clear();
-            
+
+
             //Grid Layout
             Console.WriteLine(@"                                                  1   2   3   4   5   6   7        ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
