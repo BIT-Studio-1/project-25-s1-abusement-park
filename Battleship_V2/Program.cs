@@ -12,26 +12,26 @@ namespace Battleship_V1
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             //Game Intro                                                                                        
-            Console.WriteLine(@"                                                     _  _                                                                                                   ");
-            Console.WriteLine(@"                                                    ' \/ '                                                                                                  ");
-            Console.WriteLine(@"    _  _                        <|                                                                                                                          ");
-            Console.WriteLine(@"     \/              __'__     __'__      __'__                                 __________         __    __  .__                .__    .__                  ");
-            Console.WriteLine(@"                    /    /    /    /     /    /                                 \______   \_____ _/  |__/  |_|  |   ____   _____|  |__ |__|_____            ");
-            Console.WriteLine(@"                   /\____\    \____\     \____\               _  _               |    |  _/\__  \\   __\   __\  | _/ __ \ /  ___/  |  \|  \____ \           ");
-            Console.WriteLine(@"                  / ___!___   ___!___    ___!___               \/                |    |   \ / __ \|  |  |  | |  |_\  ___/ \___ \|   Y  \  |  |_> >          ");
-            Console.WriteLine(@"                // (      (  (      (   (      (                                 |______  /(____  /__|  |__| |____/\___  >____  >___|  /__|   __/           ");
-            Console.WriteLine(@"              / /   \______\  \______\   \______\                                       \/      \/                     \/     \/     \/   |__|              ");
-            Console.WriteLine(@"            /  /   ____!_____ ___!______ ____!_____                                                                                                         ");
-            Console.WriteLine(@"          /   /   /         //         //         /                                                Press Enter to continue...                               ");
-            Console.WriteLine(@"       /    /   |         ||         ||         |                                                                                                           ");
-            Console.WriteLine(@"      /_____/     \         \\         \\         \                                                                                                         ");
-            Console.WriteLine(@"            \      \_________\\_________\\_________\                                                                                                        ");
-            Console.WriteLine(@"             \         |          |         |                                                                                                               ");
-            Console.WriteLine(@"              \________!__________!_________!________/                                                                                                      ");
-            Console.WriteLine(@"               \|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_/|                                                                                                      ");
-            Console.WriteLine(@"                \    _______________                /                                                                                                       ");
-            Console.WriteLine(@" ^^^%%%^%^^^%^%%^\_'/_)/_)_/_)__)/_)/)/)_)_'_'_'_/)/)/)/)%%%^^^%^^%%%%^                                                                                     ");
-            Console.WriteLine(@" ^!!^^'!%%!^^^!^^^!!^^^%%%%%!!!!^^^%%^^^!!%%%%^^^!!!!!!%%%^^^^%^^%%%^^^!                                                                                    ");
+            Console.WriteLine(@"                                                     _  _              ");
+            Console.WriteLine(@"                                                    ' \/ '             ");
+            Console.WriteLine(@"    _  _                        <|                                     ");
+            Console.WriteLine(@"     \/              __'__     __'__      __'__                                 __________         __    __  .__                .__    .__                       ");
+            Console.WriteLine(@"                    /    /    /    /     /    /                                 \______   \_____ _/  |__/  |_|  |   ____   _____|  |__ |__|_____                 ");
+            Console.WriteLine(@"                   /\____\    \____\     \____\               _  _               |    |  _/\__  \\   __\   __\  | _/ __ \ /  ___/  |  \|  \____ \                ");
+            Console.WriteLine(@"                  / ___!___   ___!___    ___!___               \/                |    |   \ / __ \|  |  |  | |  |_\  ___/ \___ \|   Y  \  |  |_> >               ");
+            Console.WriteLine(@"                // (      (  (      (   (      (                                 |______  /(____  /__|  |__| |____/\___  >____  >___|  /__|   __/                ");
+            Console.WriteLine(@"              / /   \______\  \______\   \______\                                       \/      \/                     \/     \/     \/   |__|                   ");
+            Console.WriteLine(@"            /  /   ____!_____ ___!______ ____!_____                      ");
+            Console.WriteLine(@"          /   /   /         //         //         /                                                    Press ENTER to continue...   ");
+            Console.WriteLine(@"       /    /   |         ||         ||         |                        ");
+            Console.WriteLine(@"      /_____/     \         \\         \\         \                      ");
+            Console.WriteLine(@"            \      \_________\\_________\\_________\                     ");
+            Console.WriteLine(@"             \         |          |         |                            ");
+            Console.WriteLine(@"              \________!__________!_________!________/                   ");
+            Console.WriteLine(@"               \|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_/|                   ");
+            Console.WriteLine(@"                \    _______________                /                    ");
+            Console.WriteLine(@" ^^^%%%^%^^^%^%%^\_'/_)/_)_/_)__)/_)/)/)_)_'_'_'_/)/)/)/)%%%^^^%^^%%%%^  ");
+            Console.WriteLine(@" ^!!^^'!%%!^^^!^^^!!^^^%%%%%!!!!^^^%%^^^!!%%%%^^^!!!!!!%%%^^^^%^^%%%^^^! ");
             Console.ReadLine();
             Console.Clear();
             
