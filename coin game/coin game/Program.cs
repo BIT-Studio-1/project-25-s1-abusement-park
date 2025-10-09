@@ -17,6 +17,7 @@ namespace CoinGameASCII
 
             Console.WriteLine("Welcome to the Coin Flip Game!");
             Console.WriteLine("Guess 'Heads' or 'Tails' and try your luck!\n");
+            Console.WriteLine("made by RA"); 
 
             bool keepPlaying = true;
             Random rand = new Random();
