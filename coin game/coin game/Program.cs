@@ -42,7 +42,13 @@ namespace CoinGameASCII
 
                 string coinFlip = rand.Next(0, 2) == 0 ? "heads" : "tails";
 
-                Console.WriteLine("\nFlipping the coin...");
+                Console.WriteLine("\nFlipping the coin in...");
+                for (int i = 3; i > 0; i--)
+                {
+                    Console.Write(i + "... ");
+                    System.Threading.Thread.Sleep(500); // Pause for half a second
+                }
+                Console.WriteLine("\n");
                 Console.WriteLine(@"
       _______
      /       \
