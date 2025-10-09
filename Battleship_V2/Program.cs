@@ -1,8 +1,11 @@
 ﻿using System.Data;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.Arm;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Battleship_V1
 {
@@ -11,6 +14,39 @@ namespace Battleship_V1
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            //Game Intro                                                                                        
+            Console.WriteLine(@"                                                     _  _              ");
+            Console.WriteLine(@"                                                    ' \/ '             ");
+            Console.WriteLine(@"    _  _                        <|                                     ");
+            Console.WriteLine(@"     \/              __'__     __'__      __'__                                 __________         __    __  .__                .__    .__                       ");
+            Console.WriteLine(@"                    /    /    /    /     /    /                                 \______   \_____ _/  |__/  |_|  |   ____   _____|  |__ |__|_____                 ");
+            Console.WriteLine(@"                   /\____\    \____\     \____\               _  _               |    |  _/\__  \\   __\   __\  | _/ __ \ /  ___/  |  \|  \____ \                ");
+            Console.WriteLine(@"                  / ___!___   ___!___    ___!___               \/                |    |   \ / __ \|  |  |  | |  |_\  ___/ \___ \|   Y  \  |  |_> >               ");
+            Console.WriteLine(@"                // (      (  (      (   (      (                                 |______  /(____  /__|  |__| |____/\___  >____  >___|  /__|   __/                ");
+            Console.WriteLine(@"              / /   \______\  \______\   \______\                                       \/      \/                     \/     \/     \/   |__|                   ");
+            Console.WriteLine(@"            /  /   ____!_____ ___!______ ____!_____                                                                       Pirate style!");
+            Console.WriteLine(@"          /   /   /         //         //         /                      ");
+            Console.WriteLine(@"       /    /   |         ||         ||         |                        ");
+            Console.WriteLine(@"      /_____/     \         \\         \\         \                                               Press ENTER to continue... ");
+            Console.WriteLine(@"            \      \_________\\_________\\_________\                     ");
+            Console.WriteLine(@"             \         |          |         |                            ");
+            Console.WriteLine(@"              \________!__________!_________!________/                   ");
+            Console.WriteLine(@"               \|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_/|                   ");  
+            Console.WriteLine(@"                \    _______________                /                    ");
+            Console.WriteLine(@" ^^^%%%^%^^^%^%%^\_'/_)/_)_/_)__)/_)/)/)_)_'_'_'_/)/)/)/)%%%^^^%^^%%%%^  ");
+            Console.WriteLine(@" ^!!^^'!%%!^^^!^^^!!^^^%%%%%!!!!^^^%%^^^!!%%%%^^^!!!!!!%%%^^^^%^^%%%^^^! ");
+            Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("Instructions:  ");
+            Console.WriteLine();
+            Console.WriteLine("         This a Battleship style game.Enter the 4 XY coordinates to place your ship on the grid.                   ");
+            Console.WriteLine("   Your opponent, the Kraken, is also 4 coordinates long, Type the coordinates, then press ENTER to fire.          ");
+            Console.WriteLine("   Your job is to defeat the Kraken before it defeats you!You can type EXIT at any time to end the game            ");
+            Console.WriteLine("               (Enter coordinates as a letter and number e.g.A3)                                                   ");
+            Console.ReadLine();
+            Console.Clear();
+
             //Grid Layout
             Console.WriteLine(@"                                                  1   2   3   4   5   6   7        ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
@@ -202,6 +238,7 @@ namespace Battleship_V1
                 Console.WriteLine("Game over. You have been defeated by the Kraken!");
                 Console.WriteLine("Press ENTER to try again!");
             }
+         
             
         }
     }
