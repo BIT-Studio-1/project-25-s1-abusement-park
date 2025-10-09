@@ -44,7 +44,7 @@
                     total += 10;
                     break;
                 default:
-                    total += hand[1];
+                    total += hand[0];
                     break;
             }
 
@@ -57,7 +57,7 @@
                     total += 10;
                     break;
                 default:
-                    total += hand[2];
+                    total += hand[1];
                     break;
             }
 
@@ -74,6 +74,14 @@
             //the idea here is that it will loop until the user total goes over 21 or stands (ends turn)
             while (turn != "s" && turn != "S" && total !<= 21)
             {
+                Console.WriteLine();
+                Console.WriteLine(total);
+                if (total >= 21)
+                {
+                    //hopefully this aborts the while loop immediately!
+                    break;
+                }
+                    
                 for(int i = 0; i < l; i++)
                 {
                     Console.Write($"{hand[i]} ");
@@ -100,6 +108,8 @@
                             break;
                     }
                     
+                    
+
                     l++;
                 }
             }
@@ -134,8 +144,9 @@
 
             while (dTotal <= 17)
             {
-
+                
                 card = rand.Next(1, 14);
+                Console.WriteLine(card);
                 switch (card)
                 {
                     case 10:
@@ -149,6 +160,9 @@
                         break;
                 }
             }
+
+            //win = get money, lose = lose money, tie = you get that money back
+            
 
 
             Console.ReadLine();
