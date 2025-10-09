@@ -8,7 +8,7 @@ namespace CoinGameASCII
          // Shows ASCII banner and welcome text
         {
             Console.WriteLine(
-@" _____      _          _____                      
+@"   _____      _          _____                      
   / ____|    (_)        / ____|                     
  | |     ___  _ _ __   | |  __  __ _ _ __ ___   ___ 
  | |    / _ \| | '_ \  | | |_ |/ _` | '_ ` _ \ / _ \
@@ -18,13 +18,19 @@ namespace CoinGameASCII
 
             Console.WriteLine("Welcome to the Coin Flip Game!");
             Console.WriteLine("Guess 'Heads' or 'Tails' and try your luck!\n");
-            Console.WriteLine("made by RA"); 
+            Console.WriteLine("made by RA");
+
+            int gamesPlayed = 0;
+            int wins = 0;         
 
             bool keepPlaying = true;
             Random rand = new Random();
 
+
             while (keepPlaying)
             {
+                gamesPlayed++;  // increment games played every round
+
                 Console.Write("Enter your guess (Heads/Tails): ");
                 string userGuess = Console.ReadLine().Trim().ToLower();
 
@@ -40,7 +46,7 @@ namespace CoinGameASCII
                 Console.WriteLine(@"
       _______
      /       \
-    |  " + (coinFlip == "heads" ? "H" : "T") + @"    |
+    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |
      \_______/
 ");
                 Console.WriteLine($"The coin landed on: {coinFlip.ToUpper()}!\n");
@@ -50,7 +56,6 @@ namespace CoinGameASCII
                     Console.Beep(); //Add beep for correct guess
                     Console.WriteLine("Congrats! You guessed correctly. You win!\n");
                 }
-            }
                 else
                 {
                     Console.WriteLine("Sorry, you guessed wrong. Try again!\n");
@@ -70,6 +75,7 @@ namespace CoinGameASCII
                 {
                     keepPlaying = false;
                     Console.WriteLine("\nThanks for playing! Goodbye!");
+                    Console.ReadLine();
                 }
             }
         }
