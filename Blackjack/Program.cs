@@ -30,9 +30,21 @@ namespace BlackjackSimple
             dHand[1] = card;
 
             //this is the table, since it is small i can just do what i want
-            Console.WriteLine($"{dHand[0]} (this one is face down :/)");
+            Console.WriteLine($" _______    _______ ");
+            Console.WriteLine($"|       |  |       |");
+            Console.WriteLine($"|       |  |       |");
+            Console.WriteLine($"| {dHand[0]}     |  |       |");
+            Console.WriteLine($"|       |  |       |");
+            Console.WriteLine($"|_______|  |_______|");
+
+            //Console.WriteLine($"{dHand[0]} (this one is face down :/)");
             Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
-            Console.WriteLine($"{hand[0]} {hand[1]}");
+            Console.WriteLine($" _______    _______ ");
+            Console.WriteLine($"|       |  |       |");
+            Console.WriteLine($"|       |  |       |");
+            Console.WriteLine($"| {hand[0]}     |  |  {hand[1]}    |");
+            Console.WriteLine($"|       |  |       |");
+            Console.WriteLine($"|_______|  |_______|");
             //note: can make a place holder card and change the number inside to be whatever is the card in the hand
 
 
@@ -76,18 +88,32 @@ namespace BlackjackSimple
             //the idea here is that it will loop until the user total goes over 21 or stands (ends turn)
             while (turn != "s" && turn != "S" && total !<= 21)
             {
+                Console.Clear();
                 Console.WriteLine();
-                Console.WriteLine(total);
+                Console.WriteLine($"current card total: {total}");
                 if (total >= 21)
                 {
                     //hopefully this aborts the while loop immediately!
                     break;
                 }
-                    
-                for(int i = 0; i < l; i++)
+
+                Console.WriteLine($" _______    _______ ");
+                Console.WriteLine($"|       |  |       |");
+                Console.WriteLine($"|       |  |       |");
+                Console.WriteLine($"| {dHand[0]}     |  |       |");
+                Console.WriteLine($"|       |  |       |");
+                Console.WriteLine($"|_______|  |_______|");
+                Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
+
+                for (int i = 0; i < l; i++)
                 {
                     //visuals go here!
-                    Console.Write($"{hand[i]} ");
+                    Console.WriteLine($" _______   ");
+                    Console.WriteLine($"|       | ");
+                    Console.WriteLine($"|       |");
+                    Console.WriteLine($"| {hand[i]}     |");
+                    Console.WriteLine($"|       |");
+                    Console.WriteLine($"|_______|");
                 }
                 Console.WriteLine();
                 Console.WriteLine("S for Stand\nH for Hit");
