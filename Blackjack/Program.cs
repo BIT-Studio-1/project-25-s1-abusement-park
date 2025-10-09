@@ -101,7 +101,7 @@ namespace BlackjackSimple
                 Console.WriteLine($" _______    _______ ");
                 Console.WriteLine($"|       |  |       |");
                 Console.WriteLine($"|       |  |       |");
-                Console.WriteLine($"| {dHand[0]}     |  |       |");
+                Console.WriteLine($"| {dHand[0]}" + "|".PadLeft(5) + "   |       |");
                 Console.WriteLine($"|       |  |       |");
                 Console.WriteLine($"|_______|  |_______|");
                 Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
