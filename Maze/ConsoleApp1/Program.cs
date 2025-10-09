@@ -1,12 +1,26 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace Maze
 {
     internal class Program
     {
+        static int size = 40;
         public static void Main(string[] args)
-        {
-            MazeGame game = new MazeGame();
+        { 
+
+            // Make sure it fits (with some padding)
+            int consoleWidth = Math.Min(size*2 + 2, Console.LargestWindowWidth);
+            int consoleHeight = Math.Min(size + 2, Console.LargestWindowHeight);
+
+            //Console.SetWindowSize(consoleWidth, consoleHeight);
+            //Console.SetBufferSize(consoleWidth, consoleHeight);
+            Console.CursorVisible = false;
+            Console.WindowWidth = consoleWidth;
+            Console.WindowHeight = consoleHeight;
+
+            //Console.SetWindowSize(size, size);
+            MazeGame game = new MazeGame(size);
             game.SetupMaze();
             // later you can call game.Navigate();
         }
@@ -14,8 +28,9 @@ namespace Maze
 
     public class MazeGame
     {
+        
         private static readonly Random rand = new Random();
-        private int size = 20;
+        private int size;
         private int[,] mazeGrid;
 
         /*{
@@ -46,37 +61,22 @@ namespace Maze
         (int x, int y)? endPoint = (19,20);
         private Player user;
 
+        public MazeGame(int size)
+        {
+            this.size = size;
+        }
+
         public void SetupMaze()
         {
+            
             mazeGrid = GenerateMaze(size,size);
-            //MakeMaze();
-            /**
-            for (int y = 0; y < size; y++)
-            {
-                for (int x = 0; x < size; x++)
-                {
-                    int activePoint = mazeGrid[y, x];
-
-                    // Check if it's a path and on an edge
-                    if (activePoint == 0 && (x == 0 || y == 0 || x == size-1 || y == size-1))
-                    {
-                        if (startPoint == null)
-                        {
-                            startPoint = (x, y);
-                        }
-                        else if (endPoint == null)
-                        {
-                            endPoint = (x, y);
-                        }
-                    }
-                }
-            }
-            */
 
             if (startPoint != null)
             {
                 user = new Player(startPoint.Value.x, startPoint.Value.y);
             }
+
+            
 
             DrawMaze();
 
@@ -96,21 +96,22 @@ namespace Maze
                     case ConsoleKey.S: newY++; break;
                     case ConsoleKey.A: newX--; break;
                     case ConsoleKey.D: newX++; break;
-                    case ConsoleKey.Escape: return; // quit
                 }
 
                 // Only move if next spot is a path (0)
-                if (mazeGrid[newY, newX] == 0)
-                {
-                    // Erase old position
-                    Console.SetCursorPosition((playerX * 2), playerY);
-                    Console.Write("  ");
+                if ((newY > 0 && newY < size) && (newX > 0 && newX < size)) { 
+                    if (mazeGrid[newY, newX] == 0)
+                    {
+                        // Erase old position
+                        Console.SetCursorPosition((playerX * 2), playerY);
+                        Console.Write("  ");
 
-                    // Draw new position
-                    playerX = newX;
-                    playerY = newY;
-                    Console.SetCursorPosition((playerX*2), playerY);
-                    Console.Write("@@");
+                        // Draw new position
+                        playerX = newX;
+                        playerY = newY;
+                        Console.SetCursorPosition((playerX * 2), playerY);
+                        Console.Write("@@");
+                    }
                 }
             }
             while (!(user.y == endPoint.Value.y));
@@ -272,6 +273,11 @@ namespace Maze
                     maze[y, x] = 1;
 
             // Starting point
+
+            Dictionary<int[,], int> specials = new Dictionary<int[,], int>();
+
+            specials.Add(new int[5, 10], 2);
+
             int startX = 1;
             int startY = 1;
             maze[startY, startX] = 0;
@@ -293,7 +299,7 @@ namespace Maze
             new[] { 2, 0 },
             new[] { 0, 2 },
             new[] { -2, 0 }
-        };
+            };
 
             // Shuffle directions
             Shuffle(dirs);
@@ -302,7 +308,7 @@ namespace Maze
             {
                 int nx = x + d[0];
                 int ny = y + d[1];
-
+            
                 if (ny > 0 && ny < maze.GetLength(0) - 1 &&
                     nx > 0 && nx < maze.GetLength(1) - 1 &&
                     maze[ny, nx] == 1)
