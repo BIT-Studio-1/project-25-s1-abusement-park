@@ -33,12 +33,38 @@
             Console.WriteLine($"{hand[0]} {hand[1]}");
             //note: can make a place holder card and change the number inside to be whatever is the card in the hand
 
-      
-            //calculate total because if the user gets 21 right off the bat the payout is 3:2
-            //nothing fancy, we know these two cards regardless
-            total = hand[1] + hand[2];
 
-            if(total == 21)
+            //calculate total because if the user gets 21 right off the bat the payout is 3:2
+            switch (hand[0])
+            {
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                    total += 10;
+                    break;
+                default:
+                    total += hand[1];
+                    break;
+            }
+
+            switch (hand[1])
+            {
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                    total += 10;
+                    break;
+                default:
+                    total += hand[2];
+                    break;
+            }
+
+
+            //total = hand[1] + hand[2];
+
+            if (total == 21)
             {
                 Console.WriteLine("you would get money but i havent implemented it, so for now all you get is this:");
                 Thread.Sleep(1000);
@@ -46,16 +72,20 @@
             }
 
             //the idea here is that it will loop until the user total goes over 21 or stands (ends turn)
-            while (turn != "s" && turn != "S" && total !>= 21)
+            while (turn != "s" && turn != "S" && total !<= 21)
             {
-
+                for(int i = 0; i < l; i++)
+                {
+                    Console.Write($"{hand[i]} ");
+                }
+                Console.WriteLine();
                 Console.WriteLine("S for Stand\nH for Hit");
                 turn = Console.ReadLine();
                 if (turn == "H")
                 {
                     card = rand.Next(1,14);
                     Console.WriteLine(card);
-                    hand[l + 2] = card;
+                    hand[l] = card;
                     //have not considered ace here because of reasons i cannot say (im lazy)
                     switch (card)
                     {
@@ -75,7 +105,50 @@
             }
 
             //now it is the delears turn, they just flip until soft 17 (ace being an 11 if possible) or they go over 21
-            //while()
+
+            switch (dHand[0])
+            {
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                    dTotal += 10;
+                    break;
+                default:
+                    dTotal += dHand[0];
+                    break;
+            }
+
+            switch (dHand[1])
+            {
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                    dTotal += 10;
+                    break;
+                default:
+                    dTotal += dHand[1];
+                    break;
+            }
+
+            while (dTotal <= 17)
+            {
+
+                card = rand.Next(1, 14);
+                switch (card)
+                {
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                        dTotal += 10;
+                        break;
+                    default:
+                        dTotal += card;
+                        break;
+                }
+            }
 
 
             Console.ReadLine();
