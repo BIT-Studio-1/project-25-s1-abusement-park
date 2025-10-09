@@ -1,4 +1,6 @@
-﻿namespace BlackjackSimple
+﻿using System.Net.Security;
+
+namespace BlackjackSimple
 {
     internal class Program
     {
@@ -84,6 +86,7 @@
                     
                 for(int i = 0; i < l; i++)
                 {
+                    //visuals go here!
                     Console.Write($"{hand[i]} ");
                 }
                 Console.WriteLine();
@@ -142,9 +145,15 @@
                     break;
             }
 
+            Console.WriteLine("\ndealer turn");
+            l = 2;
             while (dTotal <= 17)
             {
-                
+                for (int i = 0; i < l; i++)
+                {
+                    //visuals go here!
+                    Console.Write($"{hand[i]} ");
+                }
                 card = rand.Next(1, 14);
                 Console.WriteLine(card);
                 switch (card)
@@ -159,13 +168,24 @@
                         dTotal += card;
                         break;
                 }
+                l++;
             }
 
             //win = get money, lose = lose money, tie = you get that money back
-            
+            if(total > 21 || total < dTotal)
+            {
+                Console.WriteLine("LOSE!!");
+            }else if(total > dTotal)
+            {
+                Console.WriteLine("win");
+            }
+            else
+            {
+                Console.WriteLine("tie");
+            }
 
 
-            Console.ReadLine();
+                Console.ReadLine();
 
         }
     }
