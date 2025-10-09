@@ -97,6 +97,7 @@ namespace BlackjackSimple
                     break;
                 }
 
+                //visuals go here!
                 Console.WriteLine($" _______    _______ ");
                 Console.WriteLine($"|       |  |       |");
                 Console.WriteLine($"|       |  |       |");
@@ -105,20 +106,32 @@ namespace BlackjackSimple
                 Console.WriteLine($"|_______|  |_______|");
                 Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
 
+                //i am doing this the evil way
+                //if you are wondering what the hell you are looking at basically for loops without the curly brackets only register the line below it, i am evil and exploit that >:)
                 for (int i = 0; i < l; i++)
-                {
-                    //visuals go here!
-                    Console.WriteLine($" _______   ");
-                    Console.WriteLine($"|       | ");
-                    Console.WriteLine($"|       |");
-                    Console.WriteLine($"| {hand[i]}     |");
-                    Console.WriteLine($"|       |");
-                    Console.WriteLine($"|_______|");
-                }
+                    Console.Write($" _______   ");
                 Console.WriteLine();
-                Console.WriteLine("S for Stand\nH for Hit");
+                for (int i = 0; i < l; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < l; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < l; i++)
+                    Console.Write($"| {hand[i]}     |  ");
+                Console.WriteLine();
+                for (int i = 0; i < l; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < l; i++)
+                    Console.Write($"|_______|  ");
+                Console.WriteLine();
+
+
+                Console.WriteLine("\nS for Stand\nH for Hit");
                 turn = Console.ReadLine();
-                if (turn == "H")
+
+                if (turn == "H" || turn == "h")
                 {
                     card = rand.Next(1,14);
                     Console.WriteLine(card);
