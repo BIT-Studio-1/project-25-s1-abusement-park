@@ -47,8 +47,10 @@ namespace CoinGameASCII
 
                 if (userGuess == coinFlip)
                 {
+                    Console.Beep(); //Add beep for correct guess
                     Console.WriteLine("Congrats! You guessed correctly. You win!\n");
                 }
+            }
                 else
                 {
                     Console.WriteLine("Sorry, you guessed wrong. Try again!\n");
