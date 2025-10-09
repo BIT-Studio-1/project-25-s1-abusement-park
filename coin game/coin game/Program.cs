@@ -55,12 +55,19 @@ namespace CoinGameASCII
 
                 Console.Write("Do you want to play again? (yes/no): ");
                 string playAgain = Console.ReadLine().Trim().ToLower();
+
+                // Keep asking until valid input is entered
+                while (playAgain != "yes" && playAgain != "no")
+                {
+                    Console.Write("Invalid input. Please type 'yes' or 'no': ");
+                    playAgain = Console.ReadLine().Trim().ToLower();
+                }
+
                 if (playAgain != "yes")
                 {
                     keepPlaying = false;
                     Console.WriteLine("\nThanks for playing! Goodbye!");
                 }
-                Console.ReadLine();
             }
         }
     }
