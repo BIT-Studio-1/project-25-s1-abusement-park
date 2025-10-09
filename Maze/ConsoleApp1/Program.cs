@@ -5,7 +5,7 @@ namespace Maze
 {
     internal class Program
     {
-        static int size = 25;
+        static int size = 40;
         public static void Main(string[] args)
         { 
 
