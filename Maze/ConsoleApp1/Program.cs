@@ -26,11 +26,11 @@ namespace Maze
         }
     }
 
-    public class MazeGame
+    public class MazeGame(int size)
     {
         
         private static readonly Random rand = new Random();
-        private int size;
+        private int size = size;
         private int[,] mazeGrid;
 
         /*{
@@ -58,13 +58,8 @@ namespace Maze
         */
 
         (int x, int y)? startPoint = (1,0);
-        (int x, int y)? endPoint = (19,20);
+        (int x, int y)? endPoint = (size-1,size);
         private Player user;
-
-        public MazeGame(int size)
-        {
-            this.size = size;
-        }
 
         public void SetupMaze()
         {
@@ -81,14 +76,13 @@ namespace Maze
             DrawMaze();
 
             // Find a starting point (any open space)
-            int playerX = 1, playerY = 1;
-            Console.SetCursorPosition(playerX*2, (playerY));
+            Console.SetCursorPosition(user.x*2, (user.y));
             Console.Write("@@");
 
             do
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
-                int newX = playerX, newY = playerY;
+                int newX = user.x, newY = user.y;
 
                 switch (key)
                 {
@@ -99,24 +93,24 @@ namespace Maze
                 }
 
                 // Only move if next spot is a path (0)
-                if ((newY > 0 && newY < size) && (newX > 0 && newX < size)) { 
+                if ((newY > 0 && newY <= size) && (newX > 0 && newX <= size)) { 
                     if (mazeGrid[newY, newX] == 0)
                     {
                         // Erase old position
-                        Console.SetCursorPosition((playerX * 2), playerY);
+                        Console.SetCursorPosition((user.x * 2), user.y);
                         Console.Write("  ");
 
                         // Draw new position
-                        playerX = newX;
-                        playerY = newY;
-                        Console.SetCursorPosition((playerX * 2), playerY);
+                        user.x = newX;
+                        user.y = newY;
+                        Console.SetCursorPosition((user.x * 2), user.y);
                         Console.Write("@@");
                     }
                 }
             }
             while (!(user.y == endPoint.Value.y));
-
-                Console.WriteLine("you win!");
+            Console.WriteLine();
+            Console.WriteLine("you win!");
         }
 
         public void MakeMaze(){
@@ -131,6 +125,7 @@ namespace Maze
             
         }
 
+        /**
         public void Navigate(char input)
         {
             switch (input)
@@ -226,6 +221,7 @@ namespace Maze
             }
             Console.WriteLine();
         }
+        */
 
         public static char MazeGetInput(char[] usableChars)
         {
