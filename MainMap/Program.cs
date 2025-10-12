@@ -43,7 +43,7 @@ namespace MainMap
             }
             while (!locations.ContainsKey((user.GetCoords())));
 
-            
+            //figure out location and load it, then run nav again once game has been finished playing
 
         }
     }
