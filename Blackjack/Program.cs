@@ -52,6 +52,16 @@ namespace BlackjackSimple
             //calculate total because if the user gets 21 right off the bat the payout is 3:2
             switch (hand[0])
             {
+                case 1:
+                    if (total < 11)
+                    {
+                        total += 11;
+                    }
+                    else
+                    {
+                        total += 1;
+                    }
+                    break;
                 case 10:
                 case 11:
                 case 12:
@@ -65,6 +75,16 @@ namespace BlackjackSimple
 
             switch (hand[1])
             {
+                case 1:
+                    if (total < 11)
+                    {
+                        total += 11;
+                    }
+                    else
+                    {
+                        total += 1;
+                    }
+                    break;
                 case 10:
                 case 11:
                 case 12:
@@ -87,7 +107,7 @@ namespace BlackjackSimple
             }
 
             //the idea here is that it will loop until the user total goes over 21 or stands (ends turn)
-            while (turn != "s" && turn != "S" && total !<= 21)
+            while (turn != "s" && turn != "S" && total! <= 21)
             {
                 Console.Clear();
                 Console.WriteLine();
@@ -136,12 +156,22 @@ namespace BlackjackSimple
 
                 if (turn == "H" || turn == "h")
                 {
-                    card = rand.Next(1,14);
+                    card = rand.Next(1, 14);
                     Console.WriteLine(card);
                     hand[loc] = card;
                     //have not considered ace here because of reasons i cannot say (im lazy)
                     switch (card)
                     {
+                        case 1:
+                            if (total < 11)
+                            {
+                                total += 11;
+                            }
+                            else
+                            {
+                                total += 1;
+                            }
+                            break;
                         case 10:
                         case 11:
                         case 12:
@@ -152,8 +182,8 @@ namespace BlackjackSimple
                             total += card;
                             break;
                     }
-                    
-                    
+
+
 
                     loc++;
                 }
@@ -163,6 +193,16 @@ namespace BlackjackSimple
 
             switch (dHand[0])
             {
+                case 1:
+                    if (total < 11)
+                    {
+                        total += 11;
+                    }
+                    else
+                    {
+                        total += 1;
+                    }
+                    break;
                 case 10:
                 case 11:
                 case 12:
@@ -176,6 +216,16 @@ namespace BlackjackSimple
 
             switch (dHand[1])
             {
+                case 1:
+                    if (total < 11)
+                    {
+                        total += 11;
+                    }
+                    else
+                    {
+                        total += 1;
+                    }
+                    break;
                 case 10:
                 case 11:
                 case 12:
@@ -187,9 +237,9 @@ namespace BlackjackSimple
                     break;
             }
 
-            
+
             //Console.WriteLine("\ndealer turn");
-            
+
             //we do not want this to run at 17!
             while (dTotal < 17)
             {
@@ -247,6 +297,16 @@ namespace BlackjackSimple
                 dHand[dLoc] = card;
                 switch (card)
                 {
+                    case 1:
+                        if (total < 11)
+                        {
+                            total += 11;
+                        }
+                        else
+                        {
+                            total += 1;
+                        }
+                        break;
                     case 10:
                     case 11:
                     case 12:
@@ -259,7 +319,7 @@ namespace BlackjackSimple
                 }
                 dLoc++;
                 Thread.Sleep(1000);
-                
+
             }
 
             //we need a last visual show BECAUSE the while loop won't do its thang that one last time unfortunately
@@ -315,16 +375,18 @@ namespace BlackjackSimple
 
             if (total <= 21)
             {
-                if(dTotal > 21)
+                if (dTotal > 21)
                 {
                     Console.WriteLine("dealer went over 21!");
                     Console.WriteLine("win :)");
 
-                }else if(total > dTotal)
+                }
+                else if (total > dTotal)
                 {
                     Console.WriteLine("you are higher than dealer!");
                     Console.WriteLine("win :)");
-                }else if(total < dTotal)
+                }
+                else if (total < dTotal)
                 {
                     Console.WriteLine("dealer is higher than you...");
                     Console.WriteLine("lose :(");
@@ -342,25 +404,11 @@ namespace BlackjackSimple
                 Console.WriteLine("lose :(");
             }
 
-
-                /*
-                if (total > 21)
-                {
-                    Console.WriteLine("LOSE!!");
-                }else if(total > dTotal)
-                {
-                    Console.WriteLine("win");
-                }else if(total < dTotal){
-                    Console.WriteLine("LOSE");
-                }
-                else
-                {
-                    Console.WriteLine("tie");
-                }
-                */
-
-                Console.ReadLine();
+            Console.ReadLine();
 
         }
+
+        
+    
     }
 }
