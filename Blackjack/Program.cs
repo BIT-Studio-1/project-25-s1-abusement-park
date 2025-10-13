@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Net.Security;
 
-namespace BlackjackSimple
+namespace Blackjack
 {
     internal class Program
     {
