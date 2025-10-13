@@ -1,11 +1,11 @@
 ﻿using System.Globalization;
 using System.Net.Security;
 
-namespace Blackjack
+namespace Game_Title
 {
-    internal class Program
+    public class Blackjack
     {
-        static void Main(string[] args)
+        public static void BlackJackMain()
         {
             Random rand = new Random();
             String input = "";
@@ -298,7 +298,7 @@ namespace Blackjack
          */
         public static int GetCard(int total, int card)
         {
-            
+
             switch (card)
             {
                 case 1:
@@ -324,13 +324,6 @@ namespace Blackjack
             }
             return total;
         }
-
-        
-        public static void BJVisuals()
-        {
-
-        }
-        
-    
     }
-}
+    }
+
