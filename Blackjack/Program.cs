@@ -1,4 +1,5 @@
-﻿using System.Net.Security;
+﻿using System.Globalization;
+using System.Net.Security;
 
 namespace BlackjackSimple
 {
@@ -7,8 +8,8 @@ namespace BlackjackSimple
         static void Main(string[] args)
         {
             Random rand = new Random();
-            //user hand, dealer hand, card, betting amount
-            int card, chip, total = 0, dTotal = 0, l = 2;
+            //user hand, dealer hand, card, betting amount, l is the location in the hand, starting at 2
+            int card, chip, total = 0, dTotal = 0, loc = 2, dLoc = 2;
             string turn = "";
             //probably will never go over 21, however as this 
             int[] hand = new int[21];
@@ -98,32 +99,34 @@ namespace BlackjackSimple
                 }
 
                 //visuals go here!
+                Console.WriteLine("\n\tDealer hand:");
                 Console.WriteLine($" _______    _______ ");
                 Console.WriteLine($"|       |  |       |");
                 Console.WriteLine($"|       |  |       |");
-                Console.WriteLine($"| {dHand[0]}" + "|".PadLeft(5) + "   |       |");
+                Console.WriteLine($"| {dHand[0]}" + "|".PadLeft(7 - dHand[0].ToString().Length) + "  |       |");
                 Console.WriteLine($"|       |  |       |");
                 Console.WriteLine($"|_______|  |_______|");
                 Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
 
+                Console.WriteLine("\n\tYour hand:");
                 //i am doing this the evil way
                 //if you are wondering what the hell you are looking at basically for loops without the curly brackets only register the line below it, i am evil and exploit that >:)
-                for (int i = 0; i < l; i++)
+                for (int i = 0; i < loc; i++)
                     Console.Write($" _______   ");
                 Console.WriteLine();
-                for (int i = 0; i < l; i++)
+                for (int i = 0; i < loc; i++)
                     Console.Write($"|       |  ");
                 Console.WriteLine();
-                for (int i = 0; i < l; i++)
+                for (int i = 0; i < loc; i++)
                     Console.Write($"|       |  ");
                 Console.WriteLine();
-                for (int i = 0; i < l; i++)
-                    Console.Write($"| {hand[i]}     |  ");
+                for (int i = 0; i < loc; i++)
+                    Console.Write($"| {hand[i]}" + "|".PadLeft(7 - hand[i].ToString().Length) + "  ");
                 Console.WriteLine();
-                for (int i = 0; i < l; i++)
+                for (int i = 0; i < loc; i++)
                     Console.Write($"|       |  ");
                 Console.WriteLine();
-                for (int i = 0; i < l; i++)
+                for (int i = 0; i < loc; i++)
                     Console.Write($"|_______|  ");
                 Console.WriteLine();
 
@@ -135,7 +138,7 @@ namespace BlackjackSimple
                 {
                     card = rand.Next(1,14);
                     Console.WriteLine(card);
-                    hand[l] = card;
+                    hand[loc] = card;
                     //have not considered ace here because of reasons i cannot say (im lazy)
                     switch (card)
                     {
@@ -152,7 +155,7 @@ namespace BlackjackSimple
                     
                     
 
-                    l++;
+                    loc++;
                 }
             }
 
@@ -184,17 +187,64 @@ namespace BlackjackSimple
                     break;
             }
 
-            Console.WriteLine("\ndealer turn");
-            l = 2;
-            while (dTotal <= 17)
+            
+            //Console.WriteLine("\ndealer turn");
+            
+            //we do not want this to run at 17!
+            while (dTotal < 17)
             {
-                for (int i = 0; i < l; i++)
-                {
-                    //visuals go here!
-                    Console.Write($"{hand[i]} ");
-                }
+                //these are the visuals
+                Console.Clear();
+                Console.WriteLine($"current card total: {total}");
+                Console.WriteLine($"current dealer card total: {dTotal}");
+                //dealer hand
+                Console.WriteLine("\n\tDealer hand:");
+                for (int i = 0; i < dLoc; i++)
+                    Console.Write($" _______   ");
+                Console.WriteLine();
+                for (int i = 0; i < dLoc; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < dLoc; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < dLoc; i++)
+                    Console.Write($"| {dHand[i]}" + "|".PadLeft(7 - dHand[i].ToString().Length) + "  ");
+                Console.WriteLine();
+                for (int i = 0; i < dLoc; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < dLoc; i++)
+                    Console.Write($"|_______|  ");
+                Console.WriteLine();
+
+                //user hand
+                Console.WriteLine("\n\tYour hand:");
+                for (int i = 0; i < loc; i++)
+                    Console.Write($" _______   ");
+                Console.WriteLine();
+                for (int i = 0; i < loc; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < loc; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < loc; i++)
+                    Console.Write($"| {hand[i]}" + "|".PadLeft(7 - hand[i].ToString().Length) + "  ");
+                Console.WriteLine();
+                for (int i = 0; i < loc; i++)
+                    Console.Write($"|       |  ");
+                Console.WriteLine();
+                for (int i = 0; i < loc; i++)
+                    Console.Write($"|_______|  ");
+                Console.WriteLine();
+                //visual end
+
+
+                //get card
                 card = rand.Next(1, 14);
-                Console.WriteLine(card);
+                //Console.WriteLine(card);
+                dHand[dLoc] = card;
                 switch (card)
                 {
                     case 10:
@@ -207,22 +257,107 @@ namespace BlackjackSimple
                         dTotal += card;
                         break;
                 }
-                l++;
+                dLoc++;
+                Thread.Sleep(1000);
+                
             }
 
+            //we need a last visual show BECAUSE the while loop won't do its thang that one last time unfortunately
+
+            //these are the visuals
+            Console.Clear();
+            Console.WriteLine($"current card total: {total}");
+            Console.WriteLine($"current dealer card total: {dTotal}");
+            //dealer hand
+            Console.WriteLine("\n\tDealer hand:");
+            for (int i = 0; i < dLoc; i++)
+                Console.Write($" _______   ");
+            Console.WriteLine();
+            for (int i = 0; i < dLoc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < dLoc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < dLoc; i++)
+                Console.Write($"| {dHand[i]}" + "|".PadLeft(7 - dHand[i].ToString().Length) + "  ");
+            Console.WriteLine();
+            for (int i = 0; i < dLoc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < dLoc; i++)
+                Console.Write($"|_______|  ");
+            Console.WriteLine();
+
+            //user hand
+            Console.WriteLine("\n\tYour hand:");
+            for (int i = 0; i < loc; i++)
+                Console.Write($" _______   ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"| {hand[i]}" + "|".PadLeft(7 - hand[i].ToString().Length) + "  ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|_______|  ");
+            Console.WriteLine();
+            //visual end
+
             //win = get money, lose = lose money, tie = you get that money back
-            if(total > 21 || total < dTotal)
+
+            if (total <= 21)
             {
-                Console.WriteLine("LOSE!!");
-            }else if(total > dTotal)
-            {
-                Console.WriteLine("win");
+                if(dTotal > 21)
+                {
+                    Console.WriteLine("dealer went over 21!");
+                    Console.WriteLine("win :)");
+
+                }else if(total > dTotal)
+                {
+                    Console.WriteLine("you are higher than dealer!");
+                    Console.WriteLine("win :)");
+                }else if(total < dTotal)
+                {
+                    Console.WriteLine("dealer is higher than you...");
+                    Console.WriteLine("lose :(");
+                }
+                else
+                {
+                    Console.WriteLine("same score.");
+                    Console.WriteLine("tie :|");
+                }
+
             }
             else
             {
-                Console.WriteLine("tie");
+                Console.WriteLine("you went over 21...");
+                Console.WriteLine("lose :(");
             }
 
+
+                /*
+                if (total > 21)
+                {
+                    Console.WriteLine("LOSE!!");
+                }else if(total > dTotal)
+                {
+                    Console.WriteLine("win");
+                }else if(total < dTotal){
+                    Console.WriteLine("LOSE");
+                }
+                else
+                {
+                    Console.WriteLine("tie");
+                }
+                */
 
                 Console.ReadLine();
 
