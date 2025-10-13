@@ -6,8 +6,12 @@ namespace MainMap
     internal class Program
     {
         Player? user;
-        int[,]? map;
+        char[,]? map;
         Dictionary<int[], String> locations;
+
+        private void SetupMap(){
+
+        }
 
         public void Nav(){
             user = new Player(0, 0);
