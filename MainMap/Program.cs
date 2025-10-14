@@ -14,7 +14,10 @@ namespace MainMap
 
         static void Main(string[] args)
         {
+            
             SetupMap();
+            DrawMap();
+            Nav();
         }
 
 
@@ -39,6 +42,17 @@ namespace MainMap
             {
                 Console.WriteLine(e);
                 throw;
+            }
+        }
+
+        public static void DrawMap(){
+            for (int i = 0; i < map.Length; i++)
+            {
+                for (int y = 0; y < map[0].Length; y++)
+                {
+                    Console.Write(map[i][y]);
+                }
+                Console.WriteLine();
             }
         }
 
@@ -75,6 +89,7 @@ namespace MainMap
                 }
             }
             while (!locations.ContainsKey((user.GetCoords())));
+
 
             //figure out location and load it, then run nav again once game has been finished playing
 
