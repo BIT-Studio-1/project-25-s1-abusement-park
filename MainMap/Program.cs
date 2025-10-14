@@ -14,7 +14,8 @@ namespace MainMap
 
         static void Main(string[] args)
         {
-            
+            Console.SetWindowSize(83,35);
+            locations = LoadLocations();
             SetupMap();
             DrawMap();
             Nav();
@@ -48,16 +49,29 @@ namespace MainMap
         public static void DrawMap(){
             for (int i = 0; i < map.Length; i++)
             {
-                for (int y = 0; y < map[0].Length; y++)
+                for (int y = 0; y < map[i].Length; y++)
                 {
+                    
                     Console.Write(map[i][y]);
                 }
                 Console.WriteLine();
             }
         }
 
+        public static Dictionary<int[], String> LoadLocations(){
+            Dictionary<int[], String> tempDic = new Dictionary<int[], String>();
+            tempDic.Add([12,63], "BattleShip");
+            tempDic.Add([12,23], "liarsDice");
+            tempDic.Add([27,23], "BlackJack");
+            tempDic.Add([27,63], "CoinGame");
+            tempDic.Add([2,42], "Maze");
+
+            return tempDic;
+
+        }
+
         public static void Nav(){
-            user = new Player(0, 0);
+            user = new Player(42, 33);
             do
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
@@ -71,10 +85,10 @@ namespace MainMap
                     case ConsoleKey.D: newX++; break;
                 }
 
-                // Only move if next spot is a path (0)
+                // Only move if next spot is a path (space)
                 if ((newY > 0 && newY <= map.Length) && (newX > 0 && newX <= map.GetLength(0)))
                 {
-                    if (map[newY][newX] == 0)
+                    if (map[newY][newX] == ' ')
                     {
                         // Erase old position
                         Console.SetCursorPosition((user.x * 2), user.y);
