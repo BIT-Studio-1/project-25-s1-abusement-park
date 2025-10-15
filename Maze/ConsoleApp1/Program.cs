@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Xml.XPath;
 
 namespace Maze
 {
@@ -71,12 +72,16 @@ namespace Maze
                 user = new Player(startPoint.Value.x, startPoint.Value.y);
             }
 
-            
+
 
             DrawMaze();
+            Nav();
 
-            // Find a starting point (any open space)
-            Console.SetCursorPosition(user.x*2, (user.y));
+            Console.WriteLine("you win!");
+        }
+
+        private void Nav(){
+            Console.SetCursorPosition(user.x * 2, (user.y));
             Console.Write("@@");
 
             do
@@ -93,7 +98,8 @@ namespace Maze
                 }
 
                 // Only move if next spot is a path (0)
-                if ((newY > 0 && newY <= size) && (newX > 0 && newX <= size)) { 
+                if ((newY > 0 && newY <= size) && (newX > 0 && newX <= size))
+                {
                     if (mazeGrid[newY, newX] == 0)
                     {
                         // Erase old position
@@ -110,7 +116,6 @@ namespace Maze
             }
             while (!(user.y == endPoint.Value.y));
             Console.WriteLine();
-            Console.WriteLine("you win!");
         }
 
         public void MakeMaze(){

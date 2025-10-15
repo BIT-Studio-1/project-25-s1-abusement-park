@@ -18,6 +18,7 @@ namespace MainMap
             locations = LoadLocations();
             SetupMap();
             DrawMap();
+            
             Nav();
         }
 
@@ -71,7 +72,11 @@ namespace MainMap
         }
 
         public static void Nav(){
-            user = new Player(42, 33);
+            user = new Player(42, 32);
+
+            Console.SetCursorPosition(user.x, (user.y));
+            Console.Write("@");
+
             do
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
@@ -88,17 +93,17 @@ namespace MainMap
                 // Only move if next spot is a path (space)
                 if ((newY > 0 && newY <= map.Length) && (newX > 0 && newX <= map.GetLength(0)))
                 {
-                    if (map[newY][newX] == ' ')
+                    if (map[newY][newX] == 32)
                     {
                         // Erase old position
                         Console.SetCursorPosition((user.x * 2), user.y);
-                        Console.Write("  ");
+                        Console.Write(" ");
 
                         // Draw new position
                         user.x = newX;
                         user.y = newY;
                         Console.SetCursorPosition((user.x * 2), user.y);
-                        Console.Write("@@");
+                        Console.Write("@");
                     }
                 }
             }
