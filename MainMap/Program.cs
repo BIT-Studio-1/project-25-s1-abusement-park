@@ -91,18 +91,18 @@ namespace MainMap
                 }
 
                 // Only move if next spot is a path (space)
-                if ((newY > 0 && newY <= map.Length) && (newX > 0 && newX <= map.GetLength(0)))
+                if ((newY > 0 && newY <= map.Length) && (newX > 0 && newX <= map[0].Length))
                 {
                     if (map[newY][newX] == 32)
                     {
                         // Erase old position
-                        Console.SetCursorPosition((user.x * 2), user.y);
+                        Console.SetCursorPosition((user.x), user.y);
                         Console.Write(" ");
 
                         // Draw new position
                         user.x = newX;
                         user.y = newY;
-                        Console.SetCursorPosition((user.x * 2), user.y);
+                        Console.SetCursorPosition((user.x), user.y);
                         Console.Write("@");
                     }
                 }
