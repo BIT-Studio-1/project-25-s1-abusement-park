@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection.Metadata.Ecma335;
+using System.Transactions;
 
 namespace BS_AnimatedGrids
 {
@@ -53,18 +54,28 @@ namespace BS_AnimatedGrids
                 string tempX = Console.ReadLine();
                 Console.Write("Y: ");
                 string tempY = Console.ReadLine();
-                int BSuserInputX = Convert.ToInt32(tempX);
-                int BSuserInputY = Convert.ToInt32(tempY);
+                int BSuserX = Convert.ToInt32(tempX);
+                int BSuserY = Convert.ToInt32(tempY);
 
-                if (BSuserInputX < 0 || BSuserInputX >= BSgridSize || BSuserInputY < 0 || BSuserInputY >= BSgridSize)
+                if (BSuserX < 0 || BSuserX >= BSgridSize || BSuserY < 0 || BSuserY >= BSgridSize)
                 {
                     Console.WriteLine("Invalid Coordinates. Please try again.");
                     continue;
+                } 
+              
+                if (BSkrakenGrid[BSuserY, BSuserX] == '#')
+                {
+                    Console.WriteLine("You've hit the kraken!");
+                    BSplayerGrid[BSuserY, BSuserX] = 'X';
+                    BSkrakenGrid[BSuserY, BSuserX] = 'X';
+                }
+                else
+                {
+                    Console.WriteLine("You missed!");
+                    BSplayerGrid[BSuserY, BSuserX] = '0';
                 }
 
-
-
-                Console.ReadLine();
+                    Console.ReadLine();
 
             }
         }
