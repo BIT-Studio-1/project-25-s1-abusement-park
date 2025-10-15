@@ -20,7 +20,7 @@ namespace CoinGameASCII
             Console.WriteLine("Guess 'Heads' or 'Tails' and try your luck!\n");
             Console.WriteLine("made by RA");
 
-            int gamesPlayed = 0;
+            int gamesPlayed = 0; // counts total rounds played
             int wins = 0;         
 
             bool keepPlaying = true;
