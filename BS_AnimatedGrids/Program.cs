@@ -13,25 +13,27 @@ namespace BS_AnimatedGrids
             char[,] BSkrakenGrid = new char [BSgridSize, BSgridSize];
 
             //Computer Ship         
+          
+
+            int KrakenHits = 0;
+
+            for (int y = 0; y < BSgridSize; y++)
+            {
+                for (int x = 0; x < BSgridSize; x++)
+                {
+                    BSplayerGrid[y, x] = '*';
+                    BSkrakenGrid[y, x] = '*';
+                }
+            }
             BSkrakenGrid[5, 3] = '#';
             BSkrakenGrid[5, 4] = '#';
             BSkrakenGrid[5, 5] = '#';
             BSkrakenGrid[5, 6] = '#';
-
-            int KrakenHits = 0;
-
             //launch game
             while (KrakenHits <= 4)
             {
-                for (int y = 0; y < BSgridSize; y++)
-                {
-                    for (int x = 0; x < BSgridSize; x++)
-                    {
-                        BSplayerGrid[y, x] = '*';
-                        BSkrakenGrid[y, x] = '*';
-                    }
-                }
-
+                Console.Clear();
+                
                 for (int y = 0; y < BSgridSize; y++)
                 {
                     Console.Write("  ");
@@ -60,6 +62,7 @@ namespace BS_AnimatedGrids
                 if (BSuserX < 0 || BSuserX >= BSgridSize || BSuserY < 0 || BSuserY >= BSgridSize)
                 {
                     Console.WriteLine("Invalid Coordinates. Please try again.");
+                    Console.ReadLine();
                     continue;
                 } 
               
