@@ -15,6 +15,7 @@ namespace MainMap
         static void Main(string[] args)
         {
             Console.SetWindowSize(83,35);
+            Console.CursorVisible = false;
             locations = LoadLocations();
             SetupMap();
             DrawMap();
