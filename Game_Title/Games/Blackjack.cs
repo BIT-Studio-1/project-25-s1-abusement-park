@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Net.Security;
 
 namespace Game_Title
@@ -12,13 +13,15 @@ namespace Game_Title
             do
             {
                 input = "";
-                //user hand, dealer hand, card, betting amount, l is the location in the hand, starting at 2
-                int card, chip, total = 0, dTotal = 0, loc = 2, dLoc = 2;
-                //this is for standing / hitting
+                //user hand, dealer hand, card, betting amount, l is the location in the hand, starting at 0
+                int card, chip, total = 0, dTotal = 0, loc = 0, dLoc = 0;
+                //turn is for standing / hitting
                 string turn = "";
-                //probably will never go over 21, however as this 
+                //probably will never go over 21, since this is based on random cards its possible for 21 ones to appear in a hand
                 int[] hand = new int[21];
                 int[] dHand = new int[21];
+
+
                 Console.WriteLine("Welcome to black jack\n");
 
                 //accept bet here will do later because
@@ -34,6 +37,8 @@ namespace Game_Title
                 //This is always face down until end of round
                 card = rand.Next(1, 14);
                 dHand[1] = card;
+
+
 
                 //this is the table, since it is small i can just do what i want
                 Console.WriteLine($" _______    _______ ");
@@ -55,9 +60,10 @@ namespace Game_Title
 
 
                 //calculate total because if the user gets 21 right off the bat the payout is 3:2
-                total = GetCard(total, hand[0]);
-                total = GetCard(total, hand[1]);
-
+                total = GetCard(total, hand[0], hand, loc, false);
+                loc++;
+                total = GetCard(total, hand[1], hand, loc, false);
+                loc++;
 
                 if (total == 21)
                 {
@@ -78,38 +84,41 @@ namespace Game_Title
                         break;
                     }
 
+                    //because this hand for the dealer is specical i gotta do it here i know its redundant but i just gotta. im sorry. jk. deal with it.
+                    String dCard = dHand[0].ToString();
+                    switch (dCard)
+                    {
+                        case "14":
+                        case "1":
+                            dCard = "A";
+                            break;
+                        case "11":
+                            dCard = "J";
+                            break;
+                        case "12":
+                            dCard = "Q";
+                            break;
+                        case "13":
+                            dCard = "K";
+                            break;
+                        default:
+                            break;
+                    }
+
                     //visuals go here!
+                    //this is the only special hand visual: one card must be face down! (being second card)
                     Console.WriteLine("\n\tDealer hand:");
                     Console.WriteLine($" _______    _______ ");
                     Console.WriteLine($"|       |  |       |");
                     Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"| {dHand[0]}" + "|".PadLeft(7 - dHand[0].ToString().Length) + "  |       |");
+                    Console.WriteLine($"| {dCard}" + "|".PadLeft(7 - dCard.Length) + "  |       |");
                     Console.WriteLine($"|       |  |       |");
                     Console.WriteLine($"|_______|  |_______|");
                     Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
 
                     Console.WriteLine("\n\tYour hand:");
-                    //i am doing this the evil way
-                    //if you are wondering what the hell you are looking at basically for loops without the curly brackets only register the line below it, i am evil and exploit that >:)
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($" _______   ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"| {hand[i]}" + "|".PadLeft(7 - hand[i].ToString().Length) + "  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|_______|  ");
-                    Console.WriteLine();
 
+                    BJVisuals(hand, loc);
 
                     Console.WriteLine("\nS for Stand\nH for Hit");
                     turn = Console.ReadLine();
@@ -120,7 +129,7 @@ namespace Game_Title
                         Console.WriteLine(card);
                         hand[loc] = card;
 
-                        total = GetCard(total, card);
+                        total = GetCard(total, card, hand, loc, false);
 
                         loc++;
                     }
@@ -128,9 +137,10 @@ namespace Game_Title
 
                 //now it is the delears turn, they just flip until soft 17 (ace being an 11 if possible) or they go over 21
 
-                dTotal = GetCard(dTotal, dHand[0]);
-                dTotal = GetCard(dTotal, dHand[1]);
-
+                dTotal = GetCard(dTotal, dHand[0], dHand, dLoc, true);
+                dLoc++;
+                dTotal = GetCard(dTotal, dHand[1], dHand, dLoc, true);
+                dLoc++;
 
                 //we do not want this to run at 17!
                 while (dTotal < 17)
@@ -141,46 +151,14 @@ namespace Game_Title
                     Console.WriteLine($"current dealer card total: {dTotal}");
                     //dealer hand
                     Console.WriteLine("\n\tDealer hand:");
-                    for (int i = 0; i < dLoc; i++)
-                        Console.Write($" _______   ");
-                    Console.WriteLine();
-                    for (int i = 0; i < dLoc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < dLoc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < dLoc; i++)
-                        Console.Write($"| {dHand[i]}" + "|".PadLeft(7 - dHand[i].ToString().Length) + "  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < dLoc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < dLoc; i++)
-                        Console.Write($"|_______|  ");
-                    Console.WriteLine();
+                    BJVisuals(dHand, dLoc);
 
                     Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
 
                     //user hand
                     Console.WriteLine("\n\tYour hand:");
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($" _______   ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"| {hand[i]}" + "|".PadLeft(7 - hand[i].ToString().Length) + "  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|       |  ");
-                    Console.WriteLine();
-                    for (int i = 0; i < loc; i++)
-                        Console.Write($"|_______|  ");
+                    BJVisuals(hand, loc);
+
                     Console.WriteLine();
                     //visual end
 
@@ -189,7 +167,7 @@ namespace Game_Title
                     card = rand.Next(1, 14);
                     //Console.WriteLine(card);
                     dHand[dLoc] = card;
-                    dTotal = GetCard(dTotal, card);
+                    dTotal = GetCard(dTotal, card, dHand, dLoc, true);
 
                     dLoc++;
                     Thread.Sleep(1000);
@@ -204,46 +182,14 @@ namespace Game_Title
                 Console.WriteLine($"current dealer card total: {dTotal}");
                 //dealer hand
                 Console.WriteLine("\n\tDealer hand:");
-                for (int i = 0; i < dLoc; i++)
-                    Console.Write($" _______   ");
-                Console.WriteLine();
-                for (int i = 0; i < dLoc; i++)
-                    Console.Write($"|       |  ");
-                Console.WriteLine();
-                for (int i = 0; i < dLoc; i++)
-                    Console.Write($"|       |  ");
-                Console.WriteLine();
-                for (int i = 0; i < dLoc; i++)
-                    Console.Write($"| {dHand[i]}" + "|".PadLeft(7 - dHand[i].ToString().Length) + "  ");
-                Console.WriteLine();
-                for (int i = 0; i < dLoc; i++)
-                    Console.Write($"|       |  ");
-                Console.WriteLine();
-                for (int i = 0; i < dLoc; i++)
-                    Console.Write($"|_______|  ");
-                Console.WriteLine();
+                BJVisuals(dHand, dLoc);
 
                 Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
 
                 //user hand
                 Console.WriteLine("\n\tYour hand:");
-                for (int i = 0; i < loc; i++)
-                    Console.Write($" _______   ");
-                Console.WriteLine();
-                for (int i = 0; i < loc; i++)
-                    Console.Write($"|       |  ");
-                Console.WriteLine();
-                for (int i = 0; i < loc; i++)
-                    Console.Write($"|       |  ");
-                Console.WriteLine();
-                for (int i = 0; i < loc; i++)
-                    Console.Write($"| {hand[i]}" + "|".PadLeft(7 - hand[i].ToString().Length) + "  ");
-                Console.WriteLine();
-                for (int i = 0; i < loc; i++)
-                    Console.Write($"|       |  ");
-                Console.WriteLine();
-                for (int i = 0; i < loc; i++)
-                    Console.Write($"|_______|  ");
+                BJVisuals(hand, loc);
+
                 Console.WriteLine();
                 //visual end
 
@@ -289,14 +235,66 @@ namespace Game_Title
 
         }
 
+        public static void BJVisuals(int[] hand, int loc)
+        {
+            //i am doing this the evil way
+            //if you are wondering what the hell you are looking at basically for loops without the curly brackets only register the line below it, i am evil and exploit that >:)
+            for (int i = 0; i < loc; i++)
+                Console.Write($" _______   ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+
+
+            for (int i = 0; i < loc; i++)
+            {
+                String card = hand[i].ToString();
+                switch (card)
+                {
+                    case "14":
+                    case "1":
+                        card = "A";
+                        break;
+                    case "11":
+                        card = "J";
+                        break;
+                    case "12":
+                        card = "Q";
+                        break;
+                    case "13":
+                        card = "K";
+                        break;
+                    default:
+                        break;
+                }
+                Console.Write($"| {card}" + "|".PadLeft(7 - card.Length) + "  ");
+            }
+            Console.WriteLine();
+
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|       |  ");
+            Console.WriteLine();
+            for (int i = 0; i < loc; i++)
+                Console.Write($"|_______|  ");
+            Console.WriteLine();
+        }
+
+
         /*
          * we get a card and add it onto the total depending on various cases
          * named this because i thought it would be different but its actually just calculating the total!
          * @param total - what we add to
          * @param card - switch case, ie the card with the conditions
+         * @param hand - we need this for the ace conditions, changing the ace to allows for some stuff
+         * @param loc - the location, helps find where the ace we are changing is
+         * @param dealer - we do not want the dealer to change their total if they have an ace
          * @return
          */
-        public static int GetCard(int total, int card)
+        public static int GetCard(int total, int card, int[] hand, int loc, bool dealer)
         {
 
             switch (card)
@@ -306,6 +304,7 @@ namespace Game_Title
                     if (total < 11)
                     {
                         total += 11;
+                        hand[loc] = 14;
                     }
                     else
                     {
@@ -317,13 +316,47 @@ namespace Game_Title
                 case 12:
                 case 13:
                     total += 10;
+                    //we will have an ace check here - this is in case you get a 10 and have two aces, you will have 12 instead of 22 (player only)
+                    if (dealer == false)
+                    {
+                        if (total > 21)
+                        {
+                            //check all values in the hand
+                            for (int i = 0; i < hand.Length; i++)
+                            {
+                                //if one is ace (value 11) it gets turned to ace (value 1)
+                                if (hand[i] == 14)
+                                {
+                                    hand[i] = 1;
+                                    total -= 10;
+                                }
+                            }
+                        }
+                    }
                     break;
                 default:
                     total += card;
+                    //we will have an ace check here - this is in case you get a 10 and have two aces, you will have 12 instead of 22 (player only)
+                    if (dealer == false)
+                    {
+                        if (total > 21)
+                        {
+                            //check all values in the hand
+                            for (int i = 0; i < hand.Length; i++)
+                            {
+                                //if one is ace (value 11) it gets turned to ace (value 1)
+                                if (hand[i] == 14)
+                                {
+                                    hand[i] = 1;
+                                    total -= 10;
+                                }
+                            }
+                        }
+                    }
                     break;
             }
             return total;
         }
     }
-    }
 }
+
