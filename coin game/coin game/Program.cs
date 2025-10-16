@@ -92,7 +92,9 @@ namespace CoinGameASCII
                 {
                     //Add goodbye message and pause before exiting the game
                     keepPlaying = false;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\nThanks for playing! Goodbye!");
+                    Console.ResetColor();
                     Console.ReadLine();
                 }
             }

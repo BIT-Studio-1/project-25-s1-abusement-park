@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Globalization;
@@ -86,14 +87,24 @@ namespace Battleship_V1
             //Place Ships                   
             Console.WriteLine("Enter the XY coordinates of your Battleship:");
             Console.WriteLine("(Battleship is 4-Squares Long e.g. C3 - F3)");
-            
-            
+            Console.WriteLine($"Enter coordinate:");
+            Console.Write("X:  ");
+            string tempShipInputX = Console.ReadLine();
+            Console.Write("Y:  ");
+            string tempShipInputY = Console.ReadLine();
+            int ShipInputX = Convert.ToInt32(tempShipInputX);
+            int ShipInputY = Convert.ToInt32(tempShipInputY);
+
+            if (ShipInputX < 0 || ShipInputX > 7 || ShipInputY < 0 || ShipInputY > 7)
+            {
+                Console.WriteLine("Invalid Coordinates. Please try again.");
+                Console.ReadLine();
+
+            }
+
             string[] battleshipPos = new string[4];
             for (int i = 0; i<4; i++)
-            {
-                Console.WriteLine($"Enter coordinate {i+1}:");
-                Console.Write("XY:   ");
-
+            {           
                 battleshipPos[i] = Console.ReadLine().ToUpper();
             }
             Console.WriteLine();
@@ -102,6 +113,7 @@ namespace Battleship_V1
             {
                 Console.Write(battleshipPos[i] + " ");                
             }
+           
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("The Kraken is preparing for battle...");
@@ -254,13 +266,13 @@ namespace Battleship_V1
 
                 BSkrakenAim.Add(krakenMove);
                 Console.WriteLine("Kraken moving");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.WriteLine();
                 Console.WriteLine($"The Kraken hits: {krakenMove.ToUpper()}");
 
