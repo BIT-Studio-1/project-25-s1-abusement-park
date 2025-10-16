@@ -217,13 +217,14 @@ namespace Battleship_V1
                 }
 
                 Console.WriteLine("Firing cannons");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
+                Console.WriteLine();
                 if (BSkrakenGrid[BSuserY, BSuserX] == '#')
                 {
                     Console.WriteLine("You've hit the kraken!");
