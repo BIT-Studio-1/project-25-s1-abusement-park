@@ -66,7 +66,7 @@ namespace CoinGameASCII
                 {
                     Console.Beep(); //Add beep for correct guess
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Congrats! You guessed correctly. You win!\n");
+                    Console.WriteLine("Congrats! You guessed correctly. You win!\n");                  //Highlights "Congrats! You guessed correctly. You win!" in green for positive feedback
                     Console.ResetColor();
                 }
                 else
