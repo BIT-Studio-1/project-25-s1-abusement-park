@@ -61,7 +61,7 @@ namespace CoinGameASCII
 ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"The coin landed on: {coinFlip.ToUpper()}!\n");
-
+                Console.ResetColor();
                 if (userGuess == coinFlip)
                 {
                     Console.Beep(); //Add beep for correct guess
