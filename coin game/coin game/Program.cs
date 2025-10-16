@@ -52,13 +52,14 @@ namespace CoinGameASCII
                     System.Threading.Thread.Sleep(500); // Pause for half a second
                 }
                 Console.WriteLine("\n");
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"
       _______       
      /       \
     |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |                                                                                                     
      \_______/
 ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"The coin landed on: {coinFlip.ToUpper()}!\n");
 
                 if (userGuess == coinFlip)
