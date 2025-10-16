@@ -36,7 +36,7 @@ namespace CoinGameASCII
 
                 if (userGuess != "heads" && userGuess != "tails")
                 {
-                    Console.WriteLine("\n!!! Invalid input. Please type 'Heads' or 'Tails'.\n");
+                    Console.WriteLine("\n!!! Invalid input. Please type 'Heads' or 'Tails'.\n");      //Add input validation to only accept 'Heads' or 'Tails
                     continue;
                 }
 
@@ -52,7 +52,7 @@ namespace CoinGameASCII
                 Console.WriteLine(@"
       _______
      /       \
-    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |
+    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |                                                            
      \_______/
 ");
                 Console.WriteLine($"The coin landed on: {coinFlip.ToUpper()}!\n");
