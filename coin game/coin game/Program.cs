@@ -79,8 +79,9 @@ namespace CoinGameASCII
 
                 if (playAgain != "yes")
                 {
+                    //Add goodbye message and pause before exiting the game
                     keepPlaying = false;
-                    Console.WriteLine("\nThanks for playing! Goodbye!");
+                    Console.WriteLine("\nThanks for playing! Goodbye!");                         
                     Console.ReadLine();
                 }
             }
