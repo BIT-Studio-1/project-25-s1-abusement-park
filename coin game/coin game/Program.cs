@@ -52,7 +52,7 @@ namespace CoinGameASCII
                 Console.WriteLine(@"
       _______
      /       \
-    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |                                                            
+    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |                                                 (Display coin face (H/T) using ASCII art)                                                      
      \_______/
 ");
                 Console.WriteLine($"The coin landed on: {coinFlip.ToUpper()}!\n");
