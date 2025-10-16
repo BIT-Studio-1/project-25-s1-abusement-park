@@ -5,7 +5,7 @@ namespace CoinGameASCII
     class Program
     {
         static void Main(string[] args)
-         // Shows ASCII banner and welcome text
+        // Shows ASCII banner and welcome text
         {
             Console.WriteLine(
 @"   _____      _          _____                      
@@ -14,14 +14,14 @@ namespace CoinGameASCII
  | |    / _ \| | '_ \  | | |_ |/ _` | '_ ` _ \ / _ \
  | |___| (_) | | | | | | |__| | (_| | | | | | |  __/
   \_____\___/|_|_| |_|  \_____|\__,_|_| |_| |_|\___|
-                                                    "); 
+                                                    ");
 
             Console.WriteLine("Welcome to the Coin Flip Game!");
             Console.WriteLine("Guess 'Heads' or 'Tails' and try your luck!\n");
             Console.WriteLine("made by RA");
 
             int gamesPlayed = 0; // counts total rounds played
-            int wins = 0;         
+            int wins = 0;
 
             bool keepPlaying = true;
             Random rand = new Random();
@@ -42,32 +42,43 @@ namespace CoinGameASCII
 
                 string coinFlip = rand.Next(0, 2) == 0 ? "heads" : "tails";
 
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("\nFlipping the coin in...");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Blue;
                 for (int i = 3; i > 0; i--)
                 {
                     Console.Write(i + "... ");
                     System.Threading.Thread.Sleep(500); // Pause for half a second
                 }
                 Console.WriteLine("\n");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine(@"
-      _______
+      _______       
      /       \
-    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |                                                 (Display coin face (H/T) using ASCII art)                                                      
+    |  " + (coinFlip == "heads" ? "  H" : "  T") + @"    |                                                                                                     
      \_______/
 ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"The coin landed on: {coinFlip.ToUpper()}!\n");
-
+                Console.ResetColor();
                 if (userGuess == coinFlip)
                 {
                     Console.Beep(); //Add beep for correct guess
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Congrats! You guessed correctly. You win!\n");
+                    Console.ResetColor();
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Sorry, you guessed wrong. Try again!\n");
+                    Console.ResetColor();
                 }
                 // (Added input validation for "play again" prompt)
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Do you want to play again? (yes/no): ");
+                Console.ResetColor();
                 string playAgain = Console.ReadLine().Trim().ToLower();
 
                 // Keep asking until valid input is entered
@@ -81,7 +92,7 @@ namespace CoinGameASCII
                 {
                     //Add goodbye message and pause before exiting the game
                     keepPlaying = false;
-                    Console.WriteLine("\nThanks for playing! Goodbye!");                         
+                    Console.WriteLine("\nThanks for playing! Goodbye!");
                     Console.ReadLine();
                 }
             }

@@ -34,24 +34,36 @@ namespace BS_AnimatedGrids
             while (krakenHits <= 4)
             {
                 Console.Clear();
-                
+
+
                 for (int y = 0; y < BSgridSize; y++)
                 {
                     Console.Write("  ");
                     Console.Write(y);
                 }
-                Console.WriteLine();
+                Console.WriteLine();              
                 for (int x = 0; x < BSgridSize; x++)
                 {
+
                     Console.Write(x + " ");
                     for (int y = 0; y < BSgridSize; y++)
                     {
+                        if (BSplayerGrid[x, y] == 'X')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        else if (BSplayerGrid[x, y] == '0') 
+                        { 
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
                         Console.Write(BSplayerGrid[x, y] + "  ");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
                     Console.WriteLine();
                 }
 
                 //userInput
+                Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.Write("X: ");
                 string tempY = Console.ReadLine();
@@ -75,8 +87,10 @@ namespace BS_AnimatedGrids
               
                 if (BSkrakenGrid[BSuserY, BSuserX] == '#')
                 {
-                    Console.WriteLine("You've hit the kraken!");              
+                    Console.WriteLine("You've hit the kraken!");
+                    Console.ForegroundColor = ConsoleColor.Red;
                     BSplayerGrid[BSuserY, BSuserX] = 'X';
+                    Console.ForegroundColor = ConsoleColor.White;
                     BSkrakenGrid[BSuserY, BSuserX] = 'X';
                     krakenHits = krakenHits + 1;
                 }
