@@ -15,7 +15,7 @@ namespace BS_AnimatedGrids
             //Computer Ship         
           
 
-            int KrakenHits = 0;
+            int krakenHits = 0;
 
             for (int y = 0; y < BSgridSize; y++)
             {
@@ -29,8 +29,9 @@ namespace BS_AnimatedGrids
             BSkrakenGrid[5, 4] = '#';
             BSkrakenGrid[5, 5] = '#';
             BSkrakenGrid[5, 6] = '#';
+            
             //launch game
-            while (KrakenHits <= 4)
+            while (krakenHits <= 4)
             {
                 Console.Clear();
                 
@@ -53,31 +54,37 @@ namespace BS_AnimatedGrids
                 //userInput
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.Write("X: ");
-                string tempX = Console.ReadLine();
-                Console.Write("Y: ");
                 string tempY = Console.ReadLine();
+                Console.Write("Y: ");
+                string tempX = Console.ReadLine();
                 int BSuserX = Convert.ToInt32(tempX);
                 int BSuserY = Convert.ToInt32(tempY);
 
-                if (BSuserX < 0 || BSuserX >= BSgridSize || BSuserY < 0 || BSuserY >= BSgridSize)
+                if (BSuserX < 0 || BSuserX > BSgridSize || BSuserY < 0 || BSuserY > BSgridSize)
                 {
                     Console.WriteLine("Invalid Coordinates. Please try again.");
                     Console.ReadLine();
                     continue;
                 } 
+
+                if (BSplayerGrid[BSuserY, BSuserX] == '0')
+                {
+                    Console.WriteLine("Coordinates already hit. Try a different area!");
+                    continue;
+                }
               
                 if (BSkrakenGrid[BSuserY, BSuserX] == '#')
                 {
-                    Console.WriteLine("You've hit the kraken!");
+                    Console.WriteLine("You've hit the kraken!");              
                     BSplayerGrid[BSuserY, BSuserX] = 'X';
                     BSkrakenGrid[BSuserY, BSuserX] = 'X';
+                    krakenHits = krakenHits + 1;
                 }
                 else
                 {
                     Console.WriteLine("You missed!");
                     BSplayerGrid[BSuserY, BSuserX] = '0';
                 }
-
                     Console.ReadLine();
 
             }
