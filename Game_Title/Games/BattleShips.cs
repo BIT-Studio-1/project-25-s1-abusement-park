@@ -18,9 +18,7 @@ namespace Game_Title
         public static void BattleShipMain()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            //Game Intro                                                                                        
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            //Game Intro                                                                                        
+            //Game Intro                                                                                                                                                                                            
             Console.WriteLine(@"                                                     _  _              ");
             Console.WriteLine(@"                                                    ' \/ '             ");
             Console.WriteLine(@"    _  _                        <|                                     ");
@@ -260,17 +258,17 @@ namespace Game_Title
 
                 BSkrakenAim.Add(krakenMove);
                 Console.WriteLine("Kraken moving");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.WriteLine();
-                Console.WriteLine($"The Kraken hits: {krakenMove.ToUpper()}");
+                Console.WriteLine($"The Kraken hits: {krakenMove}");
 
-                if (battleshipPos.Contains(krakenMove.ToUpper()))
+                if (battleshipPos.Contains(krakenMove))
                 {
                     Console.WriteLine("The Kraken has hit your ship!");
                     BSkrakenHits++;
