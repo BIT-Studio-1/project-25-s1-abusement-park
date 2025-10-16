@@ -71,7 +71,7 @@ namespace CoinGameASCII
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;                                         //Add red color to incorrect guess message
                     Console.WriteLine("Sorry, you guessed wrong. Try again!\n");
                     Console.ResetColor();
                 }
