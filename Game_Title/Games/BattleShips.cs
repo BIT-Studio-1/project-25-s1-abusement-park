@@ -70,26 +70,26 @@ namespace Game_Title
             Console.Clear();
 
             //Grid Layout
-            Console.WriteLine(@"                                                  1   2   3   4   5   6   7        ");
+            Console.WriteLine(@"                                                  0   1   2   3   4   5   6        ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"                                              0 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"              _==|   )__)  |                  1 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"               )___) )____))_)                2 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"           \---__|____/|___|___-\\---         3 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              4 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"            ~^~~        ~~~^^~                5 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"                                              6 | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
 
             //Place Ships                   
             Console.WriteLine("Enter the XY coordinates of your Battleship:");
-            Console.WriteLine("(Battleship is 4-Squares Long e.g. C3 - F3)");
+            Console.WriteLine("(Battleship is 4-Squares Long e.g. 1,3 - 1,6)");            
 
 
             string[] battleshipPos = new string[4];
@@ -124,30 +124,6 @@ namespace Game_Title
             char[,] BSkrakenGrid = new char[BSgridSize, BSgridSize];
             List<string> BSkrakenAim = new List<string>();
 
-            Console.WriteLine(@"                                                  1   2   3   4   5   6   7                                         ");
-            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+               ⠀⠀ ⣀⣤⣴⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀      ");
-            Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⣠⡤⣤⣄⣾⣿⣿⣿⣿⣿⣿⣷⣠⣀⣄⡀⠀⠀⠀⠀      ");
-            Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠙⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣬⡿⠀⠀⠀⠀      ");
-            Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⠀⢀⣼⠟⢿⣿⣿⣿⣿⣿⣿⡿⠘⣷⣄⠀⠀⠀⠀⠀      ");
-            Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+         ⣰⠛⠛⣿⢠⣿⠋⠀⠀⢹⠻⣿⣿⡿⢻⠁⠀⠈⢿⣦⠀⠀⠀⠀      ");
-            Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |         ⢈⣵⡾⠋⣿⣯⠀⠀⢀⣼⣷⣿⣿⣶⣷⡀⠀⠀⢸⣿⣀⣀⠀⠀      ");
-            Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+         ⢾⣿⣀⠀⠘⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠿⣿⡁⠀⠀⠀      ");
-            Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |         ⠈⠙⠛⠿⠿⠿⢿⣿⡿⣿⣿⡿⢿⣿⣿⣿⣷⣄⠀⠘⢷⣆⠀⠀      ");
-            Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⢠⣿⠏⠀⣿⡏⠀⣼⣿⠛⢿⣿⣿⣆⠀⠀⣿⡇⡀      ");
-            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⢀⣾⡟⠀⠀⣿⣇⠀⢿⣿⡀⠈⣿⡌⠻⠷⠾⠿⣻⠁      ");
-            Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+         ⠀⠀⣠⣶⠟⠫⣤⠀⠀⢸⣿⠀⣸⣿⢇⡤⢼⣧⠀⠀⠀⢀⣿⠀      ");
-            Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |         ⠀⣾⡏⠀⡀⣠⡟⠀⠀⢀⣿⣾⠟⠁⣿⡄⠀⠻⣷⣤⣤⡾⠋⠀      ");
-            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠙⠷⠾⠁⠻⣧⣀⣤⣾⣿⠋⠀⠀⢸⣧⠀⠀⠀⠉⠁⠀⠀⠀      ");
-            Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⠀⠀⠈⠉⠉⠹⣿⣄⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀      ");
-            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀        ");
-
-            Console.WriteLine("Your Battleship positions are:");
-
-            for (int i = 0; i < 4; i++)
-            {
-                Console.Write(battleshipPos[i] + " ");
-            }
-
             //grid icon 
             for (int y = 0; y < BSgridSize; y++)
             {
@@ -164,8 +140,8 @@ namespace Game_Title
             BSkrakenGrid[5, 6] = '#';
 
             int krakenHits = 0;
-            int BSshipHits = 0;
-            while (krakenHits <= 4 && BSshipHits <= 4)
+            int BSshipHits = 4;
+            while (krakenHits <= 4 && BSshipHits >= 0)
             {
                 //Grid Layout
                 Console.Clear();
@@ -196,6 +172,7 @@ namespace Game_Title
 
                 Console.WriteLine();
                 Console.WriteLine($"Your Battleship has {BSshipHits} hits left until it sinks!");
+                Console.WriteLine("(Please enter the coordinates one number at a time or you will break the game!)");
 
                 //userInput
                 Console.WriteLine();
@@ -204,6 +181,14 @@ namespace Game_Title
                 string tempY = Console.ReadLine();
                 Console.Write("Y: ");
                 string tempX = Console.ReadLine();
+                
+                if (tempY.Length == 0 || tempY.Length > 1 || tempX.Length == 0 || tempX.Length > 2)
+                {
+                    Console.WriteLine("Invalid Coordinates. Please try again.");
+                    Console.ReadLine();
+                    continue;
+                }
+
                 int BSuserX = Convert.ToInt32(tempX);
                 int BSuserY = Convert.ToInt32(tempY);
 
@@ -241,10 +226,27 @@ namespace Game_Title
                     Console.WriteLine("You missed!");
                     BSplayerGrid[BSuserY, BSuserX] = '0';
                 }
+                Console.WriteLine("Press ENTER to continue");
                 Console.ReadLine();
+                Console.Clear();
 
                 //Kraken Guess
-                Console.WriteLine("It's the Kraken's turn!");
+                Console.WriteLine(@"        ⠀⠀ ⣀⣤⣴⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⣠⡤⣤⣄⣾⣿⣿⣿⣿⣿⣿⣷⣠⣀⣄⡀⠀⠀⠀⠀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⠙⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣬⡿⠀⠀⠀⠀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⠀⢀⣼⠟⢿⣿⣿⣿⣿⣿⣿⡿⠘⣷⣄⠀⠀⠀⠀⠀  ");
+                Console.WriteLine(@"  ⣰⠛⠛⣿⢠⣿⠋⠀⠀⢹⠻⣿⣿⡿⢻⠁⠀⠈⢿⣦⠀⠀⠀⠀  ");
+                Console.WriteLine(@"  ⢈⣵⡾⠋⣿⣯⠀⠀⢀⣼⣷⣿⣿⣶⣷⡀⠀⠀⢸⣿⣀⣀⠀⠀  ");
+                Console.WriteLine(@"  ⢾⣿⣀⠀⠘⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠿⣿⡁⠀⠀⠀  ");
+                Console.WriteLine(@"  ⠈⠙⠛⠿⠿⠿⢿⣿⡿⣿⣿⡿⢿⣿⣿⣿⣷⣄⠀⠘⢷⣆⠀⠀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⠀⢠⣿⠏⠀⣿⡏⠀⣼⣿⠛⢿⣿⣿⣆⠀⠀⣿⡇⡀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⢀⣾⡟⠀⠀⣿⣇⠀⢿⣿⡀⠈⣿⡌⠻⠷⠾⠿⣻⠁  ");
+                Console.WriteLine(@"  ⠀⠀⣠⣶⠟⠫⣤⠀⠀⢸⣿⠀⣸⣿⢇⡤⢼⣧⠀⠀⠀⢀⣿⠀  ");
+                Console.WriteLine(@"  ⠀⣾⡏⠀⡀⣠⡟⠀⠀⢀⣿⣾⠟⠁⣿⡄⠀⠻⣷⣤⣤⡾⠋⠀  ");
+                Console.WriteLine(@"  ⠀⠙⠷⠾⠁⠻⣧⣀⣤⣾⣿⠋⠀⠀⢸⣧⠀⠀⠀⠉⠁⠀⠀⠀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⠀⠀⠈⠉⠉⠹⣿⣄⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀  ");
+                Console.WriteLine(@"  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀    ");
+                Console.WriteLine("   It's the Kraken's turn!");
                 Console.WriteLine();
                 string krakenMove;
                 Random rand = new Random();
