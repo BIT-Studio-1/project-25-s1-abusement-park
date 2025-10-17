@@ -89,7 +89,8 @@ namespace Game_Title
 
             //Place Ships                   
             Console.WriteLine("Enter the XY coordinates of your Battleship:");
-            Console.WriteLine("(Battleship is 4-Squares Long e.g. 1,3 - 1,6)");            
+            Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");
+            Console.WriteLine("(Enter as: A1 or you will break the game!)");
 
 
             string[] battleshipPos = new string[4];
@@ -115,9 +116,6 @@ namespace Game_Title
             Console.ReadLine();
             Console.Clear();
 
-
-
-
             //Game loop and grid set up
             int BSgridSize = 7;
             char[,] BSplayerGrid = new char[BSgridSize, BSgridSize];
@@ -141,10 +139,12 @@ namespace Game_Title
 
             int krakenHits = 0;
             int BSshipHits = 4;
-            while (krakenHits <= 4 && BSshipHits >= 0)
+            while (krakenHits < 4 && BSshipHits >= 0)
             {
                 //Grid Layout
                 Console.Clear();
+                Console.WriteLine("Your moves:");
+                Console.WriteLine("===========");
                 for (int y = 0; y < BSgridSize; y++)
                 {
                     Console.Write("  ");
@@ -170,13 +170,13 @@ namespace Game_Title
                     }
                     Console.WriteLine();
                 }
-
                 Console.WriteLine();
                 Console.WriteLine($"Your Battleship has {BSshipHits} hits left until it sinks!");
-
+                
                 //userInput
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
+                Console.WriteLine("(Remember to enter coordintates one digit at a time!)");
                 Console.Write("X: ");
                 string tempX = Console.ReadLine().ToUpper();
                 Console.Write("Y: ");
@@ -239,7 +239,12 @@ namespace Game_Title
                         Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
                         Console.ReadLine();
                         continue;
+                }
 
+                if (BSplayerGrid[BSuserX, BSuserY] == '0')
+                {
+                    Console.WriteLine("Coordinates already hit. Press ENTER to try again.");
+                    Console.ReadLine();
                 }
 
                 Console.WriteLine("Firing cannons");
@@ -290,9 +295,10 @@ namespace Game_Title
                 int BSkrakenHits = 0;
                 do
                 {
-                    int BSgridNum1 = rand.Next(0);
-                    int BSgridNum2 = rand.Next(1, 7);
-                    krakenMove = ($"{BSgridNum1}{BSgridNum2}");
+                    int BSgridNum = rand.Next(0,7);
+                    char BSgridLetter = ((char)('A' +  BSgridNum));
+                    int BSgridNum2 = rand.Next(0, 7);
+                    krakenMove = ($"{BSgridLetter}{BSgridNum2}");
                 } while (BSkrakenAim.Contains(krakenMove));
 
                 BSkrakenAim.Add(krakenMove);
@@ -312,11 +318,28 @@ namespace Game_Title
                     Console.WriteLine("The Kraken has hit your ship!");
                     BSkrakenHits++;
                     BSshipHits = BSshipHits - BSkrakenHits;
-                    Console.WriteLine($"Your Battleship has {BSshipHits} left!");
+                    Console.WriteLine($"Your Battleship has {BSshipHits} hits left!");
+
+                    Console.WriteLine(@"  ⠀⠀⠀⠀⠀⢀⣤⣶⣾⣿⣿⣿⣷⣶⣤⡀⠀⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⢰⡟⠛⠉⠙⢻⣿⡟⠋⠉⠙⢻⡇⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⢸⣷⣀⣀⣠⣾⠛⣷⣄⣀⣀⣼⡏⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⣀⠀⠀⠛⠋⢻⣿⣧⣤⣸⣿⡟⠙⠛⠀⠀⣀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⢀⣰⣿⣦⠀⠀⠀⠼⣿⣿⣿⣿⣿⡷⠀⠀⠀⣰⣿⣆⡀  ");
+                    Console.WriteLine(@"⠀ ⢻⣿⣿⣿⣧⣄⠀⠀⠁⠉⠉⠋⠈⠀⠀⣀⣴⣿⣿⣿⡿  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠈⠙⠻⣿⣶⣄⡀⠀⢀⣠⣴⣿⠿⠛⠉⠁⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⠀⠀⠀⠉⣻⣿⣷⣿⣟⠉⠀⠀⠀⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠀⠀⢀⣠⣴⣿⠿⠋⠉⠙⠿⣷⣦⣄⡀⠀⠀⠀⠀  ");
+                    Console.WriteLine(@"⠀ ⣴⣶⣶⣾⡿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣷⣶⣶⣦  ");
+                    Console.WriteLine(@"⠀ ⠙⢻⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⡿⠋  ");
+                    Console.WriteLine(@"⠀ ⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀  ");  
                 }
                 else
                 {
                     Console.WriteLine("The kraken missed!");
+                    Console.WriteLine();                   
                 }
 
                 Console.WriteLine("Press ENTER to fire again!");
@@ -324,11 +347,28 @@ namespace Game_Title
                 Console.Clear();
             }
 
-            if (krakenHits == 0)
+            if (krakenHits == 4)
             {
-                Console.WriteLine("Game over. You've defeated the Kraken!");
+                Console.WriteLine("Congratulations. You've defeated the Kraken!");
                 Console.WriteLine("Press ENTER to proceed");
+                Console.WriteLine();
+                Console.WriteLine(@"             ⢀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠿⠿⠿⠿⠿⠿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⣠⣤⣄⡀⠀⠰⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡖⠀⢀⣠⣤⣄⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠙⣿⣿⡟⢀⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⡀⢻⣿⣿⠋⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⣠⣿⠏⢠⣾⣿⡟⠙⣿⣿⣿⣿⣿⣿⠋⢻⣿⣷⡄⠹⣿⣄⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⢰⣾⣿⣿⡏⢠⣿⣿⠏⢠⣦⠈⢿⣿⣿⡿⠁⣴⡄⠹⣿⣿⡄⢹⣿⣿⣷⡆⠀");
+                Console.WriteLine(@"⠀⠀⠙⢿⣿⠁⣼⣿⡟⢀⣿⣿⣇⠘⣿⣿⠃⣸⣿⣿⡀⢻⣿⣧⠈⣿⡿⠋⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠸⠿⠀⣿⣿⠁⣸⡇⠀⣿⡀⢹⡏⢀⣿⠀⢸⣇⠈⣿⣿⠀⠿⠇⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⢿⣿⣤⡤⣤⣤⡄⢀⡤⠀⠀⢠⣤⣤⢤⣤⣿⡿⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠘⢁⣤⣤⣤⣄⡀⠏⠀⠀⠀⢀⣠⣤⣤⣤⡈⠃⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠀⢻⣿⡍⠹⣿⣷⣤⣀⣀⣤⣾⣿⠏⢩⣿⡟⠀⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⣈⠙⠿⠿⠿⠿⠋⣁⣴⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠿⣿⣶⣶⣶⣶⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                Console.WriteLine(@"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
                 Console.ReadLine();
+
             }
             else
             {
