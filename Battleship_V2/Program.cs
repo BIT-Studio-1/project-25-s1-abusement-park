@@ -160,8 +160,8 @@ namespace Battleship_V1
             {
                 for (int x = 0; x < BSgridSize; x++)
                 {
-                    BSplayerGrid[y, x] = '*';
-                    BSkrakenGrid[y, x] = '*';
+                    BSplayerGrid[x, y] = '*';
+                    BSkrakenGrid[x, y] = '*';
                 }
             }
             //Computer ship position
@@ -209,9 +209,9 @@ namespace Battleship_V1
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.Write("X: ");
-                string tempY = Console.ReadLine();
-                Console.Write("Y: ");
                 string tempX = Console.ReadLine();
+                Console.Write("Y: ");
+                string tempY = Console.ReadLine();
                 int BSuserX = Convert.ToInt32(tempX);
                 int BSuserY = Convert.ToInt32(tempY);
 
@@ -237,17 +237,17 @@ namespace Battleship_V1
                 Console.Write(".");
                 Thread.Sleep(300);
                 Console.WriteLine();
-                if (BSkrakenGrid[BSuserY, BSuserX] == '#')
+                if (BSkrakenGrid[BSuserX, BSuserY] == '#')
                 {
                     Console.WriteLine("You've hit the kraken!");
-                    BSplayerGrid[BSuserY, BSuserX] = 'X';
-                    BSkrakenGrid[BSuserY, BSuserX] = 'X';
+                    BSplayerGrid[BSuserX, BSuserY] = 'X';
+                    BSkrakenGrid[BSuserX, BSuserY] = 'X';
                     krakenHits = krakenHits + 1;
                 }
                 else
                 {
                     Console.WriteLine("You missed!");
-                    BSplayerGrid[BSuserY, BSuserX] = '0';
+                    BSplayerGrid[BSuserX, BSuserY] = '0';
                 }
                 Console.ReadLine();
                                            
