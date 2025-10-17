@@ -72,19 +72,19 @@ namespace Game_Title
             //Grid Layout
             Console.WriteLine(@"                                                  0   1   2   3   4   5   6        ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"                                              0 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"              _==|   )__)  |                  1 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"               )___) )____))_)                2 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"           \---__|____/|___|___-\\---         3 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              4 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"            ~^~~        ~~~^^~                5 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"                                              6 | * | * | * | * | * | * | * |      ");
+            Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |      ");
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
 
             //Place Ships                   
@@ -129,8 +129,8 @@ namespace Game_Title
             {
                 for (int x = 0; x < BSgridSize; x++)
                 {
-                    BSplayerGrid[y, x] = '*';
-                    BSkrakenGrid[y, x] = '*';
+                    BSplayerGrid[x, y] = '*';
+                    BSkrakenGrid[x, y] = '*';
                 }
             }
             //Computer ship position
@@ -153,7 +153,8 @@ namespace Game_Title
                 Console.WriteLine();
                 for (int x = 0; x < BSgridSize; x++)
                 {
-                    Console.Write(x + " ");
+                    Console.Write((char)('A' + x));
+                    Console.Write(" ");
                     for (int y = 0; y < BSgridSize; y++)
                     {
                         if (BSplayerGrid[x, y] == 'X')
@@ -172,37 +173,73 @@ namespace Game_Title
 
                 Console.WriteLine();
                 Console.WriteLine($"Your Battleship has {BSshipHits} hits left until it sinks!");
-                Console.WriteLine("(Please enter the coordinates one number at a time or you will break the game!)");
 
                 //userInput
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.Write("X: ");
-                string tempY = Console.ReadLine();
+                string tempX = Console.ReadLine().ToUpper();
                 Console.Write("Y: ");
-                string tempX = Console.ReadLine();
-                
-                if (tempY.Length == 0 || tempY.Length > 1 || tempX.Length == 0 || tempX.Length > 2)
+                string tempY = Console.ReadLine();               
+                int BSuserX = ' ';
+                switch (tempX)
                 {
-                    Console.WriteLine("Invalid Coordinates. Please try again.");
-                    Console.ReadLine();
-                    continue;
-                }
+                    case "A":
+                        BSuserX = 0;
+                        break;
+                    case "B":
+                        BSuserX = 1;
+                        break;
+                    case "C":
+                        BSuserX = 2;
+                        break;
+                    case "D":
+                        BSuserX = 3;
+                        break;
+                    case "E":
+                        BSuserX = 4;
+                        break;
+                    case "F":
+                        BSuserX = 5;
+                        break;
+                    case "G":
+                        BSuserX = 6;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
+                        Console.ReadLine();
+                        continue;
 
-                int BSuserX = Convert.ToInt32(tempX);
-                int BSuserY = Convert.ToInt32(tempY);
-
-                if (BSuserX < 0 || BSuserX > BSgridSize || BSuserY < 0 || BSuserY > BSgridSize)
+                }               
+                int BSuserY = ' ';
+                switch (tempY)
                 {
-                    Console.WriteLine("Invalid Coordinates. Please try again.");
-                    Console.ReadLine();
-                    continue;
-                }
+                    case "0":
+                        BSuserY = 0;
+                        break;
+                    case "1":
+                        BSuserY = 1;
+                        break;
+                    case "2":
+                        BSuserY = 2;
+                        break;
+                    case "3":
+                        BSuserY = 3;
+                        break;
+                    case "4":
+                        BSuserY = 4;
+                        break;
+                    case "5":
+                        BSuserY = 5;
+                        break;
+                    case "6":
+                        BSuserY = 6;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
+                        Console.ReadLine();
+                        continue;
 
-                if (BSplayerGrid[BSuserY, BSuserX] == '0')
-                {
-                    Console.WriteLine("Coordinates already hit. Try a different area!");
-                    continue;
                 }
 
                 Console.WriteLine("Firing cannons");
@@ -214,17 +251,17 @@ namespace Game_Title
                 Console.Write(".");
                 Thread.Sleep(300);
                 Console.WriteLine();
-                if (BSkrakenGrid[BSuserY, BSuserX] == '#')
+                if (BSkrakenGrid[BSuserX, BSuserY] == '#')
                 {
                     Console.WriteLine("You've hit the kraken!");
-                    BSplayerGrid[BSuserY, BSuserX] = 'X';
-                    BSkrakenGrid[BSuserY, BSuserX] = 'X';
+                    BSplayerGrid[BSuserX, BSuserY] = 'X';
+                    BSkrakenGrid[BSuserX, BSuserY] = 'X';
                     krakenHits = krakenHits + 1;
                 }
                 else
                 {
                     Console.WriteLine("You missed!");
-                    BSplayerGrid[BSuserY, BSuserX] = '0';
+                    BSplayerGrid[BSuserX, BSuserY] = '0';
                 }
                 Console.WriteLine("Press ENTER to continue");
                 Console.ReadLine();
