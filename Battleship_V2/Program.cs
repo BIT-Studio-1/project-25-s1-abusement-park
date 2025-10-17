@@ -85,8 +85,8 @@ namespace Battleship_V1
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
 
             //Place Ships                   
-            Console.WriteLine("Enter the XY coordinates of your Battleship:");
-            Console.WriteLine("(Battleship is 4-Squares Long e.g. C3 - F3)");
+            /* Console.WriteLine("Enter the XY coordinates of your Battleship:");
+            Console.WriteLine("(Battleship is 4-Squares Long e.g. 1,3 - 1,6)");
             Console.WriteLine($"Enter coordinate:");
             Console.Write("X:  ");
             string tempShipInputX = Console.ReadLine();
@@ -112,16 +112,15 @@ namespace Battleship_V1
             for (int i = 0; i <4; i++)
             {
                 Console.Write(battleshipPos[i] + " ");                
-            }
-           
-            Console.WriteLine();
+            } 
+                      
             Console.WriteLine();
             Console.WriteLine("The Kraken is preparing for battle...");
             Thread.Sleep(500);
             Console.WriteLine();
             Console.WriteLine("Press ENTER to ready the cannons!");
             Console.ReadLine();
-            Console.Clear();
+            Console.Clear(); */
 
 
 
@@ -150,11 +149,11 @@ namespace Battleship_V1
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀        ");
 
             Console.WriteLine("Your Battleship positions are:");
-
-            for (int i = 0; i < 4; i++)
+            Console.ReadLine(); 
+            /* for (int i = 0; i < 4; i++)
             {
                 Console.Write(battleshipPos[i] + " ");
-            }
+            } */
 
             //grid icon 
             for (int y = 0; y < BSgridSize; y++)
@@ -185,9 +184,10 @@ namespace Battleship_V1
                 Console.WriteLine();
                 for (int x = 0; x < BSgridSize; x++)
                 {
-                    Console.Write(x + " ");
+                    Console.Write((char) ('A' + x));
+                    Console.Write(" ");
                     for (int y = 0; y < BSgridSize; y++)
-                    {
+                    {                       
                         if (BSplayerGrid[x, y] == 'X')
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -252,7 +252,7 @@ namespace Battleship_V1
                 Console.ReadLine();
                                            
                 //Kraken Guess
-                Console.WriteLine("It's the Kraken's turn!");
+                /* Console.WriteLine("It's the Kraken's turn!");
                 Console.WriteLine();
                 string krakenMove;
                 Random rand = new Random();
@@ -286,7 +286,7 @@ namespace Battleship_V1
                 else
                 {
                     Console.WriteLine("The kraken missed!");
-                }
+                } */
 
                 Console.WriteLine("Press ENTER to fire again!");
                 Console.ReadLine();
