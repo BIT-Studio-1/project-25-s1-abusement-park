@@ -69,42 +69,45 @@ namespace Game_Title
             Console.ReadLine();
             Console.Clear();
 
-            //Grid Layout
-            Console.WriteLine(@"                                                  0   1   2   3   4   5   6        ");
-            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-            Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |      ");
-            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
-
-            //Place Ships                   
-            Console.WriteLine("Enter the XY coordinates of your Battleship:");
-            Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");           
-            string[] battleshipPos = new string[4];
+                    
+            //Place Ships                              
+            List<string> battleshipPos = new List<string>();          
+            string shipCords;
 
             for (int i = 0; i < 4; i++)
             {
+                Console.Clear();
+                Console.WriteLine(@"                                                  0   1   2   3   4   5   6        ");
+                Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
+                Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |      ");
+                Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
+                Console.WriteLine();
+                Console.WriteLine("Enter the XY coordinates of your Battleship:");
+                Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");
                 Console.WriteLine("(Remember to enter coordintates one digit at a time!)");
                 Console.WriteLine($"Coordinate {i + 1}");
                 Console.Write("X: ");
                 string shipTempX = Console.ReadLine().ToUpper();
                 Console.Write("Y: ");
                 string shipTempY = Console.ReadLine();
-                 //BSshipX = " ";
+                               
                 if (shipTempX.Length != 1 || shipTempX[0] < 'A' || shipTempX[0] > 'G')
                 {
                     Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
                     Console.ReadLine();
+                    i = i - 1;
                     continue;
                 }                                  
                 int BSshipY = ' ';
@@ -134,11 +137,21 @@ namespace Game_Title
                     default:
                         Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
                         Console.ReadLine();
+                        i = i - 1;
                         continue;
                 }
-                
-                battleshipPos[i] = string.Join("",shipTempX, BSshipY);                           
+                shipCords = string.Join("", shipTempX, BSshipY);
+
+                if (battleshipPos.Contains(shipCords))
+                {
+                    Console.WriteLine("Coordinates already used. Press ENTER to try again.");
+                    Console.ReadLine();
+                    i = i - 1;
+                    continue;
+                }
+                battleshipPos.Add(shipCords);                                    
             }
+
             Console.WriteLine();
             Console.WriteLine("Your Battleship positions are:");
             for (int i = 0; i < 4; i++)
@@ -337,7 +350,7 @@ namespace Game_Title
                 Console.WriteLine();
                 string krakenMove;
                 Random rand = new Random();
-                int BSkrakenHits = 0;
+                
                 do
                 {
                     int BSgridNum = rand.Next(0,7);
@@ -360,9 +373,8 @@ namespace Game_Title
 
                 if (battleshipPos.Contains(krakenMove))
                 {
-                    Console.WriteLine("The Kraken has hit your ship!");
-                    BSkrakenHits++;
-                    BSshipHits = BSshipHits - BSkrakenHits;
+                    Console.WriteLine("The Kraken has hit your ship!");                
+                    BSshipHits = BSshipHits - 1;
                     Console.WriteLine($"Your Battleship has {BSshipHits} hits left!");
 
                     Console.WriteLine(@"  ⠀⠀⠀⠀⠀⢀⣤⣶⣾⣿⣿⣿⣷⣶⣤⡀⠀⠀⠀⠀⠀  ");
@@ -415,7 +427,7 @@ namespace Game_Title
                 Console.ReadLine();
 
             }
-            else
+            if (BSshipHits == 0)
             {
                 Console.WriteLine("Game over. You have been defeated by the Kraken!");
                 Console.WriteLine("Press ENTER to try again!");
