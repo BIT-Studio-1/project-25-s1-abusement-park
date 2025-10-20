@@ -96,7 +96,7 @@ namespace Game_Title
                 Console.WriteLine();
                 Console.WriteLine("Enter the XY coordinates of your Battleship:");
                 Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");
-                Console.WriteLine("(Remember to enter coordintates one digit at a time!)");
+                Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
                 Console.WriteLine($"Coordinate {i + 1}");
                 Console.Write("X: ");
                 string shipTempX = Console.ReadLine().ToUpper();
@@ -233,7 +233,7 @@ namespace Game_Title
                 //userInput
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
-                Console.WriteLine("(Remember to enter coordintates one digit at a time!)");
+                Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
                 Console.Write("X: ");
                 string tempX = Console.ReadLine().ToUpper();
                 Console.Write("Y: ");
