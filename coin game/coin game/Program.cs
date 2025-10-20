@@ -64,6 +64,7 @@ namespace CoinGameASCII
                 Console.ResetColor();
                 if (userGuess == coinFlip)
                 {
+                    wins++; // Increment wins counter on correct guess
                     Console.Beep(); //Add beep for correct guess
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Congrats! You guessed correctly. You win!\n");                  //Highlights "Congrats! You guessed correctly. You win!" in green for positive feedback
@@ -90,12 +91,28 @@ namespace CoinGameASCII
 
                 if (playAgain != "yes")
                 {
-                    //Add goodbye message and pause before exiting the game
                     keepPlaying = false;
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nThanks for playing! Goodbye!");
-                    Console.ResetColor();
-                    Console.ReadLine();
+
+                    if (playAgain == "no")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\nThanks for playing! Goodbye!");
+                        Console.ResetColor();
+
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(@"
+                       _____          __  __ ______    ______      ________ _____  
+                      / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
+                     | |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) |
+                     | | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  / 
+                     | |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \ 
+                      \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_\
+                     ");
+                        Console.ResetColor();
+
+                        Console.WriteLine($"\nGames played: {gamesPlayed}, Wins: {wins}");
+                        Console.ReadLine(); // Pause before closing
+                    }
                 }
             }
         }
