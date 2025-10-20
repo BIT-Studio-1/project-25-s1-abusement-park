@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Globalization;
@@ -15,8 +16,25 @@ namespace Game_Title
 {
     internal class MainMenu
     {
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        private const int SW_MAXIMIZE = 3;
+
         static void Main(string[] args)
         {
+            IntPtr consoleWindow = GetConsoleWindow();
+            if (consoleWindow != IntPtr.Zero)
+            {
+                ShowWindow(consoleWindow, SW_MAXIMIZE); // Maximize the console window
+            }
+
+            Console.WriteLine("Console is now fullscreen (maximized). If this didn't work, change your terminal settings to windows terminal host.");
+            Console.ReadLine(); // Keep the console open
+
             Console.WriteLine(@"                                                                                                                      ");
             Console.WriteLine(@"                                                                   .*#                                                ");
             Console.WriteLine(@"                                                             .+% +*##@.                                               ");
