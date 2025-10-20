@@ -162,6 +162,7 @@
                                                       Press ENTER to begin...
                 """);
             Console.ReadLine();
+            Console.Clear();
 
             Console.WriteLine("Welcome to Liars Dice!");
             Console.WriteLine($"""
