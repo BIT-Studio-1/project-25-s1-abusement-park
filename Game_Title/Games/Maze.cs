@@ -8,7 +8,6 @@ namespace Maze
         static int size = 40;
         public static void MazingMain()
         { 
-
             // Make sure it fits (with some padding)
             int consoleWidth = Math.Min(size*2 + 2, Console.LargestWindowWidth);
             int consoleHeight = Math.Min(size + 2, Console.LargestWindowHeight);
@@ -23,6 +22,8 @@ namespace Maze
             MazeGame game = new MazeGame(size);
             game.SetupMaze();
             // later you can call game.Navigate();
+            Console.WindowHeight = Console.LargestWindowHeight;
+            Console.WindowWidth = Console.LargestWindowWidth;
         }
     }
 
@@ -123,22 +124,32 @@ namespace Maze
                         Console.WriteLine("                      ..:::::::::::::..\r\n                .:::::''              ``:::.\r\n              .:;'                        `::.\r\n           ..::'                            `::.\r\n          ::'                                  ::.:'\r\n      `::.::                                    ::.\r\n    .::::::::'                                `:.:::.    .:':'\r\n:::::::::::::.          .:.                .:. ` :::::::::':::\r\n:::.::::::::::::'       :::                :::    :::::::::':::'\r\n..::::::::::::'          ' `                ' `   .::::::' :::'\r\n::::::::::::'  `:.   .:::::::.          .:::::::.:: .:' :'.::'\r\n::::::::::::    `::.::'     `::.      .::'     `::.::':'.:::'\r\n::::::::::::      .::'        `:;  . .::'        `:;:'.::''\r\n:::::::::::'.     ::'    .    .:: :  ::'    .    .:::::''\r\n:`::::::::::::.:  `::.  :O: .::;' :  `::.  :O: .::;'::'\r\n   `::::::`::`:.    `:::::::::'   :.   `:::::::::':'''\r\n       `````:`::.     , .         `:.        , . `::.\r\n            :: `::.   :::      ..::::::::..  :::  `::\r\n      .::::'::. `::.  `:'     :::::::::::::; `:'   :;\r\n            ::'    ::.   .::'  ``:::::::;'' :.   .:'\r\n            `::    `::  ::'        ::       .::  :'\r\n             ::.    :'.::::::.    :  :   .::::. .:::.\r\n:.           `::.     :::'  ``::::. .::::'' `::::' `::.\r\n`::.          `::.    `:::. ::.  `::::' .:: ::::;    `::\r\n:.`:.          `::.     `::. `:::.    .::'  ::;'     .:;.\r\n ::`::.          `::.     `::.  `::. .::' .:;':'     :;':.\r\n::':``:::::.       `::.     `::. `::::'  .:;':'     .;':':\r\n: .:`:::':`:::::.   `::.      `:::.   .::;'.:'  .::;'' ';:\r\n..::': :. ::::. `::::::`::..      `:::::'  .:':::'::.:: :':\r\n:' :'.:::. `:: :: ::. .::`::.   .     . .:;':' ::'`:: :::'\r\n: ::.:. `:  `::'  `:: ::'::`::::::::::::;' :: .:' .::: ;:'\r\n::.::.:::: .:: :.  `:':'  ::.:'`::. .::':.::' :: .::''::'\r\n`:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;\r\n   `::::::.`:. .:. :: `::.:: ::  `::. .:: ::.`:::':.:;'\r\n         `::::::::::...:::'  `::.:'`:.::'.:.:;' .:;'\r\n                    `::::::::::::::::::::'.::;:;'");
                         Console.WriteLine("88888888ba                           \r\n88      \"8b                          \r\n88      ,8P                          \r\n88aaaaaa8P'  ,adPPYba,   ,adPPYba,   \r\n88\"\"\"\"\"\"8b, a8\"     \"8a a8\"     \"8a  \r\n88      `8b 8b       d8 8b       d8  \r\n88      a8P \"8a,   ,a8\" \"8a,   ,a8\"  \r\n88888888P\"   `\"YbbdP\"'   `\"YbbdP\"' ");
                         Console.ReadKey();
+                        DrawMaze();
                     }
                 }
             }
             while (!(user.y == endPoint.Value.y));
             Console.Clear();
             Console.WriteLine("                      ..:::::::::::::..\r\n                .:::::''              ``:::.\r\n              .:;'                        `::.\r\n           ..::'                            `::.\r\n          ::'                                  ::.:'\r\n      `::.::                                    ::.\r\n    .::::::::'                                `:.:::.    .:':'\r\n:::::::::::::.          .:.                .:. ` :::::::::':::\r\n:::.::::::::::::'       :::                :::    :::::::::':::'\r\n..::::::::::::'          ' `                ' `   .::::::' :::'\r\n::::::::::::'  `:.   .:::::::.          .:::::::.:: .:' :'.::'\r\n::::::::::::    `::.::'     `::.      .::'     `::.::':'.:::'\r\n::::::::::::      .::'        `:;  . .::'        `:;:'.::''\r\n:::::::::::'.     ::'    .    .:: :  ::'    .    .:::::''\r\n:`::::::::::::.:  `::.  :O: .::;' :  `::.  :O: .::;'::'\r\n   `::::::`::`:.    `:::::::::'   :.   `:::::::::':'''\r\n       `````:`::.     , .         `:.        , . `::.\r\n            :: `::.   :::      ..::::::::..  :::  `::\r\n      .::::'::. `::.  `:'     :::::::::::::; `:'   :;\r\n            ::'    ::.   .::'  ``:::::::;'' :.   .:'\r\n            `::    `::  ::'        ::       .::  :'\r\n             ::.    :'.::::::.    :  :   .::::. .:::.\r\n:.           `::.     :::'  ``::::. .::::'' `::::' `::.\r\n`::.          `::.    `:::. ::.  `::::' .:: ::::;    `::\r\n:.`:.          `::.     `::. `:::.    .::'  ::;'     .:;.\r\n ::`::.          `::.     `::.  `::. .::' .:;':'     :;':.\r\n::':``:::::.       `::.     `::. `::::'  .:;':'     .;':':\r\n: .:`:::':`:::::.   `::.      `:::.   .::;'.:'  .::;'' ';:\r\n..::': :. ::::. `::::::`::..      `:::::'  .:':::'::.:: :':\r\n:' :'.:::. `:: :: ::. .::`::.   .     . .:;':' ::'`:: :::'\r\n: ::.:. `:  `::'  `:: ::'::`::::::::::::;' :: .:' .::: ;:'\r\n::.::.:::: .:: :.  `:':'  ::.:'`::. .::':.::' :: .::''::'\r\n`:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;\r\n   `::::::.`:. .:. :: `::.:: ::  `::. .:: ::.`:::':.:;'\r\n         `::::::::::...:::'  `::.:'`:.::'.:.:;' .:;'\r\n                    `::::::::::::::::::::'.::;:;'");
-            int i = rand.Next(1,5);
+            int i = rand.Next(1,10);
             switch (i)
             {
                 case 1: Console.WriteLine("I can see you"); break;
                 case 2: Console.WriteLine("Are you ready to smile... FOREVER?!"); break;
                 case 3: Console.WriteLine("Don't run, we just want to play."); break;
                 case 4: Console.WriteLine("88888888ba                           \r\n88      \"8b                          \r\n88      ,8P                          \r\n88aaaaaa8P'  ,adPPYba,   ,adPPYba,   \r\n88\"\"\"\"\"\"8b, a8\"     \"8a a8\"     \"8a  \r\n88      `8b 8b       d8 8b       d8  \r\n88      a8P \"8a,   ,a8\" \"8a,   ,a8\"  \r\n88888888P\"   `\"YbbdP\"'   `\"YbbdP\"' "); break;
+                case 5: Console.WriteLine("I can smell you"); break;
+                case 6: Console.WriteLine("Hey kid, wanna buy some balloons"); break;
+                case 7: Console.WriteLine("We all float down here"); break;
+                case 8: Console.WriteLine("Nice eyes you have there, they look perfect to juggle"); break;
+                case 9: Console.WriteLine("Don’t be shy… the fun’s just beginning!"); break;
+                case 10: Console.WriteLine("Oops! I dropped my nose… guess I’ll have to borrow yours!"); break;
+                case 11: Console.WriteLine("The circus left town… but I stayed behind."); break;
+                case 12: Console.WriteLine("I used to make people laugh… now I make them disappear."); break;
                 default: Console.WriteLine("Hehehehe"); break;
             }
             Console.ReadKey();
+            Console.Clear();
         }
 
         public void MakeMaze(){
@@ -248,7 +259,7 @@ namespace Maze
                     else
                     {
                         int j = rand.Next(0, 200);
-                        if (j >= 0 && j <= 10)
+                        if (j >= 0 && j <= 6)
                         {
                             // Knock down wall between (x,y) and (nx,ny)
                             maze[y + d[1] / 2, x + d[0] / 2] = 0;
