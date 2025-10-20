@@ -125,104 +125,6 @@ namespace Maze
             
         }
 
-        /**
-        public void Navigate(char input)
-        {
-            switch (input)
-            {
-                case 'w':    //Up
-
-                    int upSquare;
-                    try{
-                        upSquare = mazeGrid[user.y - 1, user.x];
-                    }
-                    catch(Exception e){
-                        upSquare = 1;
-                    }
-
-                    if (upSquare == 0)
-                    {
-                        user.y--;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-                case 's':   //Down
-                    int downSquare;
-                    try
-                    {
-                        downSquare = mazeGrid[user.y + 1, user.x];
-                    }
-                    catch (Exception e)
-                    {
-                        downSquare = 1;
-                    }
-
-                    if (downSquare == 0)
-                    {
-                        user.y++;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-                case 'a':   //Left
-                    int leftSquare;
-                    try
-                    {
-                        leftSquare = mazeGrid[user.y, user.x - 1];
-                    }
-                    catch (Exception e)
-                    {
-                        leftSquare = 1;
-                    }
-
-                    if (leftSquare == 0)
-                    {
-                        user.x--;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-                case 'd':
-                    //right
-                    int rightSquare;
-                    try
-                    {
-                        rightSquare = mazeGrid[user.y, user.x + 1];
-                    }
-                    catch (Exception e)
-                    {
-                        rightSquare = 1;
-                    }
-
-                    if (rightSquare == 0)
-                    {
-                        user.x++;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-            }
-            Console.WriteLine();
-        }
-        */
-
         public static char MazeGetInput(char[] usableChars)
         {
 
@@ -306,17 +208,30 @@ namespace Maze
                 int ny = y + d[1];
             
                 if (ny > 0 && ny < maze.GetLength(0) - 1 &&
-                    nx > 0 && nx < maze.GetLength(1) - 1 &&
-                    maze[ny, nx] == 1)
+                    nx > 0 && nx < maze.GetLength(1) - 1)
                 {
-                    // Knock down wall between (x,y) and (nx,ny)
-                    maze[y + d[1] / 2, x + d[0] / 2] = 0;
-                    maze[ny, nx] = 0;
-                    CarvePath(nx, ny, maze);
+                    if (maze[ny, nx] == 1)
+                    {
+                        // Knock down wall between (x,y) and (nx,ny)
+                        maze[y + d[1] / 2, x + d[0] / 2] = 0;
+                        maze[ny, nx] = 0;
+                        CarvePath(nx, ny, maze);
+                    }
+                    else
+                    {
+                        int j = rand.Next(0, 82);
+                        if (j == 1)
+                        {
+                            // Knock down wall between (x,y) and (nx,ny)
+                            maze[y + d[1] / 2, x + d[0] / 2] = 0;
+                            maze[ny, nx] = 0;
+                            CarvePath(nx, ny, maze);
+                        }
+                    }
+
                 }
             }
         }
-
         private static void Shuffle<T>(T[] array)
         {
             for (int i = array.Length - 1; i > 0; i--)
