@@ -26,6 +26,8 @@ namespace Game_Title
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.White;
+
             IntPtr consoleWindow = GetConsoleWindow();
             if (consoleWindow != IntPtr.Zero)
             {
@@ -80,43 +82,57 @@ namespace Game_Title
 
             while (mainMenuChoice != 0)
             {
+
                 Console.Clear();
-                Console.WriteLine(@"                       ..:::::::::::::..                                               ");
-                Console.WriteLine(@"                 .:::::''              ``:::.                                          ");
-                Console.WriteLine(@"               .:;'                        `::.                                        ");
-                Console.WriteLine(@"            ..::'                            `::.                                      ");
-                Console.WriteLine(@"           ::'                                  ::.:'                                  ");
-                Console.WriteLine(@"       `::.::                                    ::.                    __________________________________________________________      ");
-                Console.WriteLine(@"     .::::::::'                                `:.:::.    .:':'        |                                                          |     ");
-                Console.WriteLine(@" :::::::::::::.          .:.                .:. ` :::::::::':::        |     Step right up, kiddies and creeps...                 |     ");
-                Console.WriteLine(@" :::.::::::::::::'       :::                :::    :::::::::':::'      |    to a place where screams are music and laughter hides |     ");
-                Console.WriteLine(@" ..::::::::::::'          ' `                ' `   .::::::' :::'       |     in the shadows. Welcome to the Abusement Park-a park |     ");
-                Console.WriteLine(@" ::::::::::::'  `:.   .:::::::.          .:::::::.:: .:' :'.::'        \        that never lets you leave smiling... alive.      /      ");
-                Console.WriteLine(@" ::::::::::::    `::.::'     `::.      .::'     `::.::':'.:::'          \                                                       /       ");
-                Console.WriteLine(@" ::::::::::::      .::'        `:;  . .::'        `:;:'.::''              ----      -- ----------------------------------------         ");
-                Console.WriteLine(@" :::::::::::'.     ::'    .    .:: :  ::'    .    .:::::''                    \   /                                                     ");
-                Console.WriteLine(@" :`::::::::::::.:  `::.  :O: .::;' :  `::.  :O: .::;'::'                       \_/                                                      ");
-                Console.WriteLine(@"    `::::::`::`:.    `:::::::::'   :.   `:::::::::':'''                                                                                 ");
-                Console.WriteLine(@"        `````:`::.     , .         `:.        , . `::.                                    What game do you want to play?                ");
-                Console.WriteLine(@"             :: `::.   :::      ..::::::::..  :::  `::                                    [1] Liars Dice                                ");
-                Console.WriteLine(@"       .::::'::. `::.  `:'     :::::::::::::; `:'   :;                                    [2] Battleships                               ");
-                Console.WriteLine(@"             ::'    ::.   .::'  ``:::::::;'' :.   .:'                                     [3] Blackjack                                 ");
-                Console.WriteLine(@"             `::    `::  ::'        ::       .::  :'                                      [4] Heads or Tails                            ");
-                Console.WriteLine(@"              ::.    :'.::::::.    :  :   .::::. .:::.                                    [5] Amazin' Maze                              ");
-                Console.WriteLine(@" :.           `::.     :::'  ``::::. .::::'' `::::' `::.                                  [0] Exit                                         ");
-                Console.WriteLine(@" `::.          `::.    `:::. ::.  `::::' .:: ::::;    `::                                                                               ");
-                Console.WriteLine(@" :.`:.          `::.     `::. `:::.    .::'  ::;'     .:;.                                                                              ");
-                Console.WriteLine(@"  ::`::.          `::.     `::.  `::. .::' .:;':'     :;':.                                                                             ");
-                Console.WriteLine(@" ::':``:::::.       `::.     `::. `::::'  .:;':'     .;':':                                                                             ");
-                Console.WriteLine(@" : .:`:::':`:::::.   `::.      `:::.   .::;'.:'  .::;'' ';:                                                                             ");
-                Console.WriteLine(@" ..::': :. ::::. `::::::`::..      `:::::'  .:':::'::.:: :':                                                                            ");
-                Console.WriteLine(@" :' :'.:::. `:: :: ::. .::`::.   .     . .:;':' ::'`:: :::'                                                                             ");
-                Console.WriteLine(@" : ::.:. `:  `::'  `:: ::'::`::::::::::::;' :: .:' .::: ;:'                                                                             ");
-                Console.WriteLine(@" ::.::.:::: .:: :.  `:':'  ::.:'`::. .::':.::' :: .::''::'                                                                              ");
-                Console.WriteLine(@" `:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;                                                                                ");
-                Console.WriteLine(@"    `::::::.`:. .:. :: `::.:: ::  `::. .:: ::.`:::':.:;'                                                                                ");
-                Console.WriteLine(@"          `::::::::::...:::'  `::.:'`:.::'.:.:;' .:;'                                                                                   ");
-                Console.WriteLine(@"                     `::::::::::::::::::::'.::;:;'                                                                                      ");
+                Console.WriteLine(@"                         ..:::::::::::::..                                               ");
+                Console.WriteLine(@"                   .:::::''              ``:::.                                          ");
+                Console.WriteLine(@"                 .:;'                        `::.                                        ");
+                Console.WriteLine(@"              ..::'                            `::.                                      ");
+                Console.WriteLine(@"             ::'                                  ::.:'                                  ");
+                Console.WriteLine(@"         `::.::                                    ::.                    __________________________________________________________      ");
+                Console.WriteLine(@"       .::::::::'                                `:.:::.    .:':'        |                                                          |     ");
+                Console.WriteLine(@"   :::::::::::::.          .:.                .:. ` :::::::::':::        |    Step right up, kiddies and creeps...                  |     ");
+                Console.WriteLine(@"   :::.::::::::::::'       :::                :::    :::::::::':::'      |    to a place where screams are music and laughter hides |     ");
+                Console.WriteLine(@"   ..::::::::::::'          ' `                ' `   .::::::' :::'       |    in the shadows. Welcome to the Abusement Park-a park  |     ");
+                Console.WriteLine(@"   ::::::::::::'  `:.   .:::::::.          .:::::::.:: .:' :'.::'        \        that never lets you leave smiling... alive.      /      ");
+                Console.WriteLine(@"   ::::::::::::    `::.::'     `::.      .::'     `::.::':'.:::'          \                                                       /       ");
+                Console.WriteLine(@"   ::::::::::::      .::'        `:;  . .::'        `:;:'.::''              ----      -- ----------------------------------------         ");
+                Console.WriteLine(@"   :::::::::::'.     ::'    .    .:: :  ::'    .    .:::::''                    \   /                                                     ");
+                string eyes = @"   :`::::::::::::.:  `::.  :O: .::;' :  `::.  :O: .::;'::'                       \_/ ";
+                foreach (char i in eyes)
+                {
+                    if (i == 'O')
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.Write(i);
+                }
+                Console.WriteLine();
+                Console.WriteLine(@"      `::::::`::`:.    `:::::::::'   :.   `:::::::::':'''                                                                                 ");
+                Console.WriteLine(@"          `````:`::.     , .         `:.        , . `::.                                    What game do you want to play?                ");
+                Console.WriteLine(@"               :: `::.   :::      ..::::::::..  :::  `::                                    [1] Liars Dice                                ");
+                Console.WriteLine(@"         .::::'::. `::.  `:'     :::::::::::::; `:'   :;                                    [2] Battleships                               ");
+                Console.WriteLine(@"               ::'    ::.   .::'  ``:::::::;'' :.   .:'                                     [3] Blackjack                                 ");
+                Console.WriteLine(@"               `::    `::  ::'        ::       .::  :'                                      [4] Heads or Tails                            ");
+                Console.WriteLine(@"                ::.    :'.::::::.    :  :   .::::. .:::.                                    [5] Amazin' Maze                              ");
+                Console.WriteLine(@"   :.           `::.     :::'  ``::::. .::::'' `::::' `::.                                  [0] Exit                                       ");
+                Console.WriteLine(@"   `::.          `::.    `:::. ::.  `::::' .:: ::::;    `::                                                                               ");
+                Console.WriteLine(@"   :.`:.          `::.     `::. `:::.    .::'  ::;'     .:;.                                                                              ");
+                Console.WriteLine(@"    ::`::.          `::.     `::.  `::. .::' .:;':'     :;':.                                                                             ");
+                Console.WriteLine(@"   ::':``:::::.       `::.     `::. `::::'  .:;':'     .;':':                                                                             ");
+                Console.WriteLine(@"   : .:`:::':`:::::.   `::.      `:::.   .::;'.:'  .::;'' ';:                                                                             ");
+                Console.WriteLine(@"   ..::': :. ::::. `::::::`::..      `:::::'  .:':::'::.:: :':                                                                            ");
+                Console.WriteLine(@"   :' :'.:::. `:: :: ::. .::`::.   .     . .:;':' ::'`:: :::'                                                                             ");
+                Console.WriteLine(@"   : ::.:. `:  `::'  `:: ::'::`::::::::::::;' :: .:' .::: ;:'                                                                             ");
+                Console.WriteLine(@"   ::.::.:::: .:: :.  `:':'  ::.:'`::. .::':.::' :: .::''::'                                                                              ");
+                Console.WriteLine(@"   `:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;                                                                                ");
+                Console.WriteLine(@"      `::::::.`:. .:. :: `::.:: ::  `::. .:: ::.`:::':.:;'                                                                                ");
+                Console.WriteLine(@"            `::::::::::...:::'  `::.:'`:.::'.:.:;' .:;'                                                                                   ");
+                Console.WriteLine(@"                       `::::::::::::::::::::'.::;:;'                                                                                      ");
                 Console.WriteLine();
                
                 Console.Write("\n> ");
@@ -126,7 +142,7 @@ namespace Game_Title
                 }
                 catch
                 {
-                    
+                    mainMenuChoice = -1;
                 }
 
                 Console.Clear();
