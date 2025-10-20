@@ -58,12 +58,49 @@ namespace Game_Title
             Console.WriteLine("                                                           Press ENTER to proceed                                      ");
             Console.ReadLine();
 
+            Console.Clear();
+            Console.WriteLine(@"                       ..:::::::::::::..                                               ");
+            Console.WriteLine(@"                 .:::::''              ``:::.                                          ");
+            Console.WriteLine(@"               .:;'                        `::.                                        ");
+            Console.WriteLine(@"            ..::'                            `::.                                      ");
+            Console.WriteLine(@"           ::'                                  ::.:'                                  ");
+            Console.WriteLine(@"       `::.::                                    ::.                    __________________________________________________________       ");
+            Console.WriteLine(@"     .::::::::'                                `:.:::.    .:':'        |                                                          |      ");
+            Console.WriteLine(@" :::::::::::::.          .:.                .:. ` :::::::::':::        |                                                          |      ");
+            Console.WriteLine(@" :::.::::::::::::'       :::                :::    :::::::::':::'      |                                                          |      ");
+            Console.WriteLine(@" ..::::::::::::'          ' `                ' `   .::::::' :::'       |                                                          |      ");
+            Console.WriteLine(@" ::::::::::::'  `:.   .:::::::.          .:::::::.:: .:' :'.::'        \                                                         /       ");
+            Console.WriteLine(@" ::::::::::::    `::.::'     `::.      .::'     `::.::':'.:::'          \                                                       /        ");
+            Console.WriteLine(@" ::::::::::::      .::'        `:;  . .::'        `:;:'.::''              ----       -- ---------------------------------------          ");
+            Console.WriteLine(@" :::::::::::'.     ::'    .    .:: :  ::'    .    .:::::''                    \    /                                                     ");
+            Console.WriteLine(@" :`::::::::::::.:  `::.  :O: .::;' :  `::.  :O: .::;'::'                       \  /                                                      ");
+            Console.WriteLine(@"    `::::::`::`:.    `:::::::::'   :.   `:::::::::':'''                                ");
+            Console.WriteLine(@"        `````:`::.     , .         `:.        , . `::.                                 ");
+            Console.WriteLine(@"             :: `::.   :::      ..::::::::..  :::  `::                                 ");
+            Console.WriteLine(@"       .::::'::. `::.  `:'     :::::::::::::; `:'   :;                                 ");
+            Console.WriteLine(@"             ::'    ::.   .::'  ``:::::::;'' :.   .:'                                  ");
+            Console.WriteLine(@"             `::    `::  ::'        ::       .::  :'                                   ");
+            Console.WriteLine(@"              ::.    :'.::::::.    :  :   .::::. .:::.                                 ");
+            Console.WriteLine(@" :.           `::.     :::'  ``::::. .::::'' `::::' `::.                               ");
+            Console.WriteLine(@" `::.          `::.    `:::. ::.  `::::' .:: ::::;    `::                              ");
+            Console.WriteLine(@" :.`:.          `::.     `::. `:::.    .::'  ::;'     .:;.                             ");
+            Console.WriteLine(@"  ::`::.          `::.     `::.  `::. .::' .:;':'     :;':.                            ");
+            Console.WriteLine(@" ::':``:::::.       `::.     `::. `::::'  .:;':'     .;':':                            ");
+            Console.WriteLine(@" : .:`:::':`:::::.   `::.      `:::.   .::;'.:'  .::;'' ';:                            ");
+            Console.WriteLine(@" ..::': :. ::::. `::::::`::..      `:::::'  .:':::'::.:: :':                           ");
+            Console.WriteLine(@" :' :'.:::. `:: :: ::. .::`::.   .     . .:;':' ::'`:: :::'                            ");
+            Console.WriteLine(@" : ::.:. `:  `::'  `:: ::'::`::::::::::::;' :: .:' .::: ;:'                            ");
+            Console.WriteLine(@" ::.::.:::: .:: :.  `:':'  ::.:'`::. .::':.::' :: .::''::'                             ");
+            Console.WriteLine(@" `:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;                               ");
+            Console.WriteLine(@"    `::::::.`:. .:. :: `::.:: ::  `::. .:: ::.`:::':.:;'                               ");
+            Console.WriteLine(@"          `::::::::::...:::'  `::.:'`:.::'.:.:;' .:;'                                  ");
+            Console.WriteLine(@"                     `::::::::::::::::::::'.::;:;'                                     ");
+                                        
             int mainMenuChoice = -1;
 
             while (mainMenuChoice != 0)
             {
-                Console.Clear();
-
+                Console.WriteLine();
                 Console.WriteLine("What game do you want to play?");
                 Console.WriteLine("[1] Liars Dice");
                 Console.WriteLine("[2] Battleships");
