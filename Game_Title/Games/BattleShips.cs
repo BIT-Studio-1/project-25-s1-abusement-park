@@ -89,17 +89,54 @@ namespace Game_Title
 
             //Place Ships                   
             Console.WriteLine("Enter the XY coordinates of your Battleship:");
-            Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");
-            Console.WriteLine("(Enter as: A1 or you will break the game!)");
-
-
+            Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");           
             string[] battleshipPos = new string[4];
+
             for (int i = 0; i < 4; i++)
             {
-                Console.WriteLine($"Enter coordinate {i + 1}:");
-                Console.Write("XY:   ");
-
-                battleshipPos[i] = Console.ReadLine().ToUpper();
+                Console.WriteLine("(Remember to enter coordintates one digit at a time!)");
+                Console.Write("X: ");
+                string shipTempX = Console.ReadLine().ToUpper();
+                Console.Write("Y: ");
+                string shipTempY = Console.ReadLine();
+                 //BSshipX = " ";
+                if (shipTempX.Length != 1 || shipTempX[0] < 'A' || shipTempX[0] > 'G')
+                {
+                    Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
+                    Console.ReadLine();
+                    continue;
+                }                                  
+                int BSshipY = ' ';
+                switch (shipTempY)
+                {
+                    case "0":
+                        BSshipY = 0;
+                        break;
+                    case "1":
+                        BSshipY = 1;
+                        break;
+                    case "2":
+                        BSshipY = 2;
+                        break;
+                    case "3":
+                        BSshipY = 3;
+                        break;
+                    case "4":
+                        BSshipY = 4;
+                        break;
+                    case "5":
+                        BSshipY = 5;
+                        break;
+                    case "6":
+                        BSshipY = 6;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
+                        Console.ReadLine();
+                        continue;
+                }
+                
+                battleshipPos[i] = string.Join("",shipTempX, BSshipY);                           
             }
             Console.WriteLine();
             Console.WriteLine("Your Battleship positions are:");
@@ -107,6 +144,7 @@ namespace Game_Title
             {
                 Console.Write(battleshipPos[i] + " ");
             }
+
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("The Kraken is preparing for battle...");
