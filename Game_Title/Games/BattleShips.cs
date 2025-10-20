@@ -95,6 +95,7 @@ namespace Game_Title
             for (int i = 0; i < 4; i++)
             {
                 Console.WriteLine("(Remember to enter coordintates one digit at a time!)");
+                Console.WriteLine($"Coordinate {i + 1}");
                 Console.Write("X: ");
                 string shipTempX = Console.ReadLine().ToUpper();
                 Console.Write("Y: ");
@@ -210,7 +211,12 @@ namespace Game_Title
                 }
                 Console.WriteLine();
                 Console.WriteLine($"Your Battleship has {BSshipHits} hits left until it sinks!");
-                
+                Console.WriteLine("Your Battleship positions are:");
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.Write(battleshipPos[i] + " ");
+                }
+
                 //userInput
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
@@ -279,10 +285,11 @@ namespace Game_Title
                         continue;
                 }
 
-                if (BSplayerGrid[BSuserX, BSuserY] == '0')
+                if (BSplayerGrid[BSuserX, BSuserY] == '0' || BSplayerGrid[BSuserX, BSuserY] == 'X')
                 {
                     Console.WriteLine("Coordinates already hit. Press ENTER to try again.");
                     Console.ReadLine();
+                    continue;
                 }
 
                 Console.WriteLine("Firing cannons");
