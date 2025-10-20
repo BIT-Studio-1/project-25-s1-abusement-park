@@ -184,6 +184,7 @@ namespace Game_Title
                 }
             }
             //Computer ship position
+            int krakenNum;
             BSkrakenGrid[5, 3] = '#';
             BSkrakenGrid[5, 4] = '#';
             BSkrakenGrid[5, 5] = '#';
