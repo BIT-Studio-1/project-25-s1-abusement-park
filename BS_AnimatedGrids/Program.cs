@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
+using System.Transactions;
 
 namespace BS_AnimatedGrids
 {
@@ -10,7 +12,11 @@ namespace BS_AnimatedGrids
             char [,] BSplayerGrid = new char [BSgridSize, BSgridSize];
             char[,] BSkrakenGrid = new char [BSgridSize, BSgridSize];
 
-            //launch grids
+            //Computer Ship         
+          
+
+            int krakenHits = 0;
+
             for (int y = 0; y < BSgridSize; y++)
             {
                 for (int x = 0; x < BSgridSize; x++)
@@ -19,33 +25,83 @@ namespace BS_AnimatedGrids
                     BSkrakenGrid[y, x] = '*';
                 }
             }
+            BSkrakenGrid[5, 3] = '#';
+            BSkrakenGrid[5, 4] = '#';
+            BSkrakenGrid[5, 5] = '#';
+            BSkrakenGrid[5, 6] = '#';
             
-            for (int y = 0; y < BSgridSize; y++)
+            //launch game
+            while (krakenHits <= 4)
             {
-                Console.Write("  ");
-                Console.Write(y);
-            }
-            Console.WriteLine();
-            for (int x = 0; x < BSgridSize; x++)
-            {
-                Console.Write(x + " ");
+                Console.Clear();
+
+
                 for (int y = 0; y < BSgridSize; y++)
                 {
-                    Console.Write(BSplayerGrid[x, y]+ "  ");
+                    Console.Write("  ");
+                    Console.Write(y);
                 }
+                Console.WriteLine();              
+                for (int x = 0; x < BSgridSize; x++)
+                {
+
+                    Console.Write(x + " ");
+                    for (int y = 0; y < BSgridSize; y++)
+                    {
+                        if (BSplayerGrid[x, y] == 'X')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        else if (BSplayerGrid[x, y] == '0') 
+                        { 
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+                        Console.Write(BSplayerGrid[x, y] + "  ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine();
+                }
+
+                //userInput
                 Console.WriteLine();
+                Console.WriteLine("Enter coordinates to strike:");
+                Console.Write("X: ");
+                string tempY = Console.ReadLine();
+                Console.Write("Y: ");
+                string tempX = Console.ReadLine();
+                int BSuserX = Convert.ToInt32(tempX);
+                int BSuserY = Convert.ToInt32(tempY);
+
+                if (BSuserX < 0 || BSuserX > BSgridSize || BSuserY < 0 || BSuserY > BSgridSize)
+                {
+                    Console.WriteLine("Invalid Coordinates. Please try again.");
+                    Console.ReadLine();
+                    continue;
+                } 
+
+                if (BSplayerGrid[BSuserY, BSuserX] == '0')
+                {
+                    Console.WriteLine("Coordinates already hit. Try a different area!");
+                    continue;
+                }
+              
+                if (BSkrakenGrid[BSuserY, BSuserX] == '#')
+                {
+                    Console.WriteLine("You've hit the kraken!");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    BSplayerGrid[BSuserY, BSuserX] = 'X';
+                    Console.ForegroundColor = ConsoleColor.White;
+                    BSkrakenGrid[BSuserY, BSuserX] = 'X';
+                    krakenHits = krakenHits + 1;
+                }
+                else
+                {
+                    Console.WriteLine("You missed!");
+                    BSplayerGrid[BSuserY, BSuserX] = '0';
+                }
+                    Console.ReadLine();
+
             }
-
-            //userInput
-            Console.WriteLine("Enter coordinates to strike:");
-            Console.Write("X: ");
-            string tempX = Console.ReadLine();
-            int BSuserInputX = Convert.ToInt32(tempX);
-            Console.Write("Y: ");
-            string tempY =  Console.ReadLine();
-            int BSuserInputY = Convert.ToInt32(tempY);
-
-            Console.ReadLine();
         }
     }
 }

@@ -1,12 +1,118 @@
-﻿namespace Liars_Dice
+﻿using System.Text.Unicode;
+using System;
+
+namespace Liars_Dice
 {
     internal class Program
     {
+        static void PrintDice(int[] playersDice)
+        {
+            string[] dice1 =  { "   ████████████████████      ", "   ████████████████████      ", "   █████████████████████      ", "  ██████████████████████     ", "  ██████████████████████     ", "  ███████████████████████     "};
+            string[] dice2 =  { " ██                    ██    ", " ██                    ██    ", " ██                     ██    ", " █                      █    ", " █                      █    ", " █     ██         ██    ██    "};
+            string[] dice3 =  { "█                        █   ", "█                        █   ", "█    ██                   █   ", "█  █████          █████  █   ", "█  █████          █████  █   ", "█    ██████     ██████    █   "};
+            string[] dice4 =  { "█                        █   ", "█    ████                █   ", "█  ██████                 █   ", "█ ██████          ██████ █   ", "█ ██████          ██████ █   ", "█    ██████     ██████    █   "};
+            string[] dice5 =  { "█                        █   ", "█   ██████               █   ", "█  ██████                 █   ", "█  ████            ████  █   ", "█  █████          █████  █   ", "█      ██         ██      █   "};
+            string[] dice6 =  { "█                        █   ", "█    ████                █   ", "█    ██                   █   ", "█                        █   ", "█                        █   ", "█                         █   "};
+            string[] dice7 =  { "█           ██           █   ", "█                        █   ", "█           ██            █   ", "█                        █   ", "█          ████          █   ", "█     ████       ████     █   "};
+            string[] dice8 =  { "█         ██████         █   ", "█                        █   ", "█         ██████          █   ", "█                        █   ", "█         ██████         █   ", "█    ██████     ██████    █   "};
+            string[] dice9 =  { "█         ██████         █   ", "█                        █   ", "█         ██████          █   ", "█                        █   ", "█         ██████         █   ", "█    ██████     ██████    █   "};
+            string[] dice10 = { "█           ██           █   ", "█                        █   ", "█           ██            █   ", "█                        █   ", "█          ████          █   ", "█     ████       ████     █   "};
+            string[] dice11 = { "█                        █   ", "█                 ████   █   ", "█                   ██    █   ", "█                        █   ", "█                        █   ", "█                         █   "};
+            string[] dice12 = { "█                        █   ", "█                ██████  █   ", "█                 ██████  █   ", "█  ████            ████  █   ", "█  █████          █████  █   ", "█      ██         ██      █   "};
+            string[] dice13 = { "█                        █   ", "█                 ████   █   ", "█                 ██████  █   ", "█ ██████          ██████ █   ", "█ ██████          ██████ █   ", "█    ██████     ██████    █   "};
+            string[] dice14 = { "█                        █   ", "█                        █   ", "█                   ██    █   ", "█  █████          █████  █   ", "█  █████          █████  █   ", "█    ██████     ██████    █   "};
+            string[] dice15 = { " ██                    ██    ", " ██                    ██    ", " ██                     ██    ", " █                      █    ", " █                      █    ", " █     ██         ██     █    "};
+            string[] dice16 = { "   ████████████████████      ", "   ████████████████████      ", "   █████████████████████      ", "  ██████████████████████     ", "  ██████████████████████     ", "  ███████████████████████     "};
+
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice1[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice2[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice3[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice4[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice5[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice6[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice7[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice8[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice9[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice10[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice11[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice12[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice13[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice14[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice15[dice - 1]);
+            }
+            Console.WriteLine();
+            foreach (int dice in playersDice)
+            {
+                Console.Write(dice16[dice - 1]);
+            }
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             // Sets the dice constants //
             const int DICECOUNT = 5, PLAYERS = 2, TOTALDICE = DICECOUNT * PLAYERS, DICEFACECOUNT = 6;
-           string calledBullshit = "";
+            string calledBullshit = "";
 
             // Welcome Message //
             Console.WriteLine("Welcome to Liars Dice!");
@@ -69,11 +175,7 @@
                     {
                         // Show The Players Dice
                         Console.Clear();
-                        Console.WriteLine("Your Dice:");
-                        foreach (int dice in playersDice)
-                        {
-                            Console.Write(dice + " ");
-                        }
+                        PrintDice(playersDice);
                         Console.WriteLine("\n");
                         Console.WriteLine("The current bet is: [Number of dice] [Value of dice]");
                         Console.WriteLine($"{currentBet[0]}, {currentBet[1]}");
@@ -156,7 +258,7 @@
                             // User feed back for not a valid option
                             else
                             {
-                                Console.WriteLine($"{playerInput[0]}, {playerInput[1]} is not a valid input. A valid input looks like:\n3 6 or 36 (Three 6's)\nThe highest bet is 10, 6!");
+                                Console.WriteLine($"That was not a valid input. A valid input looks like:\n3 6 or 36 (Three 6's)\nThe highest bet is 10, 6!");
                                 Console.Write("Press ENTER to Continue...");
                                 Console.ReadLine();
                             }

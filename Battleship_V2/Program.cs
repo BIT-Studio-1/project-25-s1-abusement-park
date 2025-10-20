@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Globalization;
@@ -40,10 +41,28 @@ namespace Battleship_V1
 
             Console.WriteLine("Instructions:  ");
             Console.WriteLine();
-            Console.WriteLine("         This a Battleship style game.Enter the 4 XY coordinates to place your ship on the grid.                   ");
+            Console.WriteLine("   This a Battleship style game.Enter the 4 XY coordinates to place your ship on the grid.                   ");
             Console.WriteLine("   Your opponent, the Kraken, is also 4 coordinates long, Type the coordinates, then press ENTER to fire.          ");
-            Console.WriteLine("   Your job is to defeat the Kraken before it defeats you!You can type EXIT at any time to end the game            ");
-            Console.WriteLine("               (Enter coordinates as a letter and number e.g.A3)                                                   ");
+            Console.WriteLine("   Your job is to defeat the Kraken before it defeats you! You can type EXIT at any time to end the game            ");
+            Console.WriteLine("               (Enter coordinates one at a time e.g. X:3,  Y:4)                                                   ");
+            Console.WriteLine();
+            Console.WriteLine("              Are you ready for battle? Press ENTER to continue");
+            Console.WriteLine();
+            Console.WriteLine(@"                                ⠀⠀ ⣀⣤⣴⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⣠⡤⣤⣄⣾⣿⣿⣿⣿⣿⣿⣷⣠⣀⣄⡀⠀⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⠙⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣬⡿⠀⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⠀⢀⣼⠟⢿⣿⣿⣿⣿⣿⣿⡿⠘⣷⣄⠀⠀⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⣰⠛⠛⣿⢠⣿⠋⠀⠀⢹⠻⣿⣿⡿⢻⠁⠀⠈⢿⣦⠀⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⢈⣵⡾⠋⣿⣯⠀⠀⢀⣼⣷⣿⣿⣶⣷⡀⠀⠀⢸⣿⣀⣀⠀⠀  ");
+            Console.WriteLine(@"                          ⢾⣿⣀⠀⠘⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠿⣿⡁⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⠈⠙⠛⠿⠿⠿⢿⣿⡿⣿⣿⡿⢿⣿⣿⣿⣷⣄⠀⠘⢷⣆⠀⠀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⠀⢠⣿⠏⠀⣿⡏⠀⣼⣿⠛⢿⣿⣿⣆⠀⠀⣿⡇⡀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⢀⣾⡟⠀⠀⣿⣇⠀⢿⣿⡀⠈⣿⡌⠻⠷⠾⠿⣻⠁  ");
+            Console.WriteLine(@"                          ⠀⠀⣠⣶⠟⠫⣤⠀⠀⢸⣿⠀⣸⣿⢇⡤⢼⣧⠀⠀⠀⢀⣿⠀  ");
+            Console.WriteLine(@"                          ⠀⣾⡏⠀⡀⣠⡟⠀⠀⢀⣿⣾⠟⠁⣿⡄⠀⠻⣷⣤⣤⡾⠋⠀  ");
+            Console.WriteLine(@"                          ⠀⠙⠷⠾⠁⠻⣧⣀⣤⣾⣿⠋⠀⠀⢸⣧⠀⠀⠀⠉⠁⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⠀⠀⠈⠉⠉⠹⣿⣄⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀  ");
+            Console.WriteLine(@"                          ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀    ");
             Console.ReadLine();
             Console.Clear();
 
@@ -66,15 +85,26 @@ namespace Battleship_V1
             Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
 
             //Place Ships                   
-            Console.WriteLine("Enter the XY coordinates of your Battleship:");
-            Console.WriteLine("(Battleship is 4-Squares Long e.g. C3 - F3)");
-            
-            
+            /* Console.WriteLine("Enter the XY coordinates of your Battleship:");
+            Console.WriteLine("(Battleship is 4-Squares Long e.g. 1,3 - 1,6)");
+            Console.WriteLine($"Enter coordinate:");
+            Console.Write("X:  ");
+            string tempShipInputX = Console.ReadLine();
+            Console.Write("Y:  ");
+            string tempShipInputY = Console.ReadLine();
+            int ShipInputX = Convert.ToInt32(tempShipInputX);
+            int ShipInputY = Convert.ToInt32(tempShipInputY);
+
+            if (ShipInputX < 0 || ShipInputX > 7 || ShipInputY < 0 || ShipInputY > 7)
+            {
+                Console.WriteLine("Invalid Coordinates. Please try again.");
+                Console.ReadLine();
+
+            }
+
             string[] battleshipPos = new string[4];
             for (int i = 0; i<4; i++)
-            {
-                Console.WriteLine($"Enter coordinate {i+1}:");
-                Console.Write("XY:   ");
+            {           
                 battleshipPos[i] = Console.ReadLine().ToUpper();
             }
             Console.WriteLine();
@@ -82,131 +112,167 @@ namespace Battleship_V1
             for (int i = 0; i <4; i++)
             {
                 Console.Write(battleshipPos[i] + " ");                
-            }
-            Console.WriteLine();
+            } 
+                      
             Console.WriteLine();
             Console.WriteLine("The Kraken is preparing for battle...");
             Thread.Sleep(500);
             Console.WriteLine();
             Console.WriteLine("Press ENTER to ready the cannons!");
             Console.ReadLine();
-            Console.Clear();
+            Console.Clear(); */
 
-            //Kraken Positions
-            List<string> krakenPositions = new List<string> {"F4", "F5", "F6", "F7"};
 
-          
-            //Game loop
-            List<string> BSuserInputs = new List<string>();
+
+
+            //Game loop and grid set up
+            int BSgridSize = 7;
+            char[,] BSplayerGrid = new char[BSgridSize, BSgridSize];
+            char[,] BSkrakenGrid = new char[BSgridSize, BSgridSize];
             List<string> BSkrakenAim = new List<string>();
-            int krakenCount = 4;
-            int BSshipHits = 4;
+            
+            Console.WriteLine(@"                                                  1   2   3   4   5   6   7                                         ");
+            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+               ⠀⠀ ⣀⣤⣴⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀      ");
+            Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⣠⡤⣤⣄⣾⣿⣿⣿⣿⣿⣿⣷⣠⣀⣄⡀⠀⠀⠀⠀      ");
+            Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠙⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣬⡿⠀⠀⠀⠀      ");
+            Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⠀⢀⣼⠟⢿⣿⣿⣿⣿⣿⣿⡿⠘⣷⣄⠀⠀⠀⠀⠀      ");
+            Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+         ⣰⠛⠛⣿⢠⣿⠋⠀⠀⢹⠻⣿⣿⡿⢻⠁⠀⠈⢿⣦⠀⠀⠀⠀      ");
+            Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |         ⢈⣵⡾⠋⣿⣯⠀⠀⢀⣼⣷⣿⣿⣶⣷⡀⠀⠀⢸⣿⣀⣀⠀⠀      ");
+            Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+         ⢾⣿⣀⠀⠘⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠿⣿⡁⠀⠀⠀      ");
+            Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |         ⠈⠙⠛⠿⠿⠿⢿⣿⡿⣿⣿⡿⢿⣿⣿⣿⣷⣄⠀⠘⢷⣆⠀⠀      ");
+            Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⢠⣿⠏⠀⣿⡏⠀⣼⣿⠛⢿⣿⣿⣆⠀⠀⣿⡇⡀      ");
+            Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⢀⣾⡟⠀⠀⣿⣇⠀⢿⣿⡀⠈⣿⡌⠻⠷⠾⠿⣻⠁      ");
+            Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+         ⠀⠀⣠⣶⠟⠫⣤⠀⠀⢸⣿⠀⣸⣿⢇⡤⢼⣧⠀⠀⠀⢀⣿⠀      ");
+            Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |         ⠀⣾⡏⠀⡀⣠⡟⠀⠀⢀⣿⣾⠟⠁⣿⡄⠀⠻⣷⣤⣤⡾⠋⠀      ");
+            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠙⠷⠾⠁⠻⣧⣀⣤⣾⣿⠋⠀⠀⢸⣧⠀⠀⠀⠉⠁⠀⠀⠀      ");
+            Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⠀⠀⠈⠉⠉⠹⣿⣄⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀      ");
+            Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀        ");
 
-            while (krakenCount != 0 && BSshipHits != 0)
+            Console.WriteLine("Your Battleship positions are:");
+            Console.ReadLine(); 
+            /* for (int i = 0; i < 4; i++)
+            {
+                Console.Write(battleshipPos[i] + " ");
+            } */
+
+            //grid icon 
+            for (int y = 0; y < BSgridSize; y++)
+            {
+                for (int x = 0; x < BSgridSize; x++)
+                {
+                    BSplayerGrid[x, y] = '*';
+                    BSkrakenGrid[x, y] = '*';
+                }
+            }
+            //Computer ship position
+            BSkrakenGrid[5, 3] = '#';
+            BSkrakenGrid[5, 4] = '#';
+            BSkrakenGrid[5, 5] = '#';
+            BSkrakenGrid[5, 6] = '#';
+
+            int krakenHits = 0;
+            int BSshipHits = 0;
+            while (krakenHits <= 4 && BSshipHits <= 4)
             {
                 //Grid Layout
-                Console.WriteLine(@"                                                  1   2   3   4   5   6   7                                         ");
-                Console.WriteLine(@"                                                +---+---+---+---+---+---+---+               ⠀⠀ ⣀⣤⣴⣶⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀      ");
-                Console.WriteLine(@"                                              A | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⣠⡤⣤⣄⣾⣿⣿⣿⣿⣿⣿⣷⣠⣀⣄⡀⠀⠀⠀⠀      ");
-                Console.WriteLine(@"                        _==|                    +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠙⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣬⡿⠀⠀⠀⠀      ");
-                Console.WriteLine(@"              _==|   )__)  |                  B | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⠀⢀⣼⠟⢿⣿⣿⣿⣿⣿⣿⡿⠘⣷⣄⠀⠀⠀⠀⠀      ");
-                Console.WriteLine(@"                )_)  )___) ))                   +---+---+---+---+---+---+---+         ⣰⠛⠛⣿⢠⣿⠋⠀⠀⢹⠻⣿⣿⡿⢻⠁⠀⠈⢿⣦⠀⠀⠀⠀      ");
-                Console.WriteLine(@"               )___) )____))_)                C | * | * | * | * | * | * | * |         ⢈⣵⡾⠋⣿⣯⠀⠀⢀⣼⣷⣿⣿⣶⣷⡀⠀⠀⢸⣿⣀⣀⠀⠀      ");
-                Console.WriteLine(@"          _    )____)_____))__)\                +---+---+---+---+---+---+---+         ⢾⣿⣀⠀⠘⠻⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠿⣿⡁⠀⠀⠀      ");
-                Console.WriteLine(@"           \---__|____/|___|___-\\---         D | * | * | * | * | * | * | * |         ⠈⠙⠛⠿⠿⠿⢿⣿⡿⣿⣿⡿⢿⣿⣿⣿⣷⣄⠀⠘⢷⣆⠀⠀      ");
-                Console.WriteLine(@"   ^^^^^^^^^\   oo oo oo oo     /~~^^^^^^^      +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⢠⣿⠏⠀⣿⡏⠀⣼⣿⠛⢿⣿⣿⣆⠀⠀⣿⡇⡀      ");
-                Console.WriteLine(@"     ~^^^^ ~~~~^^~~~~^^~~^^~~~~~              E | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⢀⣾⡟⠀⠀⣿⣇⠀⢿⣿⡀⠈⣿⡌⠻⠷⠾⠿⣻⠁      ");
-                Console.WriteLine(@"       ~~^^      ~^^~     ~^~ ~^ ~^             +---+---+---+---+---+---+---+         ⠀⠀⣠⣶⠟⠫⣤⠀⠀⢸⣿⠀⣸⣿⢇⡤⢼⣧⠀⠀⠀⢀⣿⠀      ");
-                Console.WriteLine(@"            ~^~~        ~~~^^~                F | * | * | * | * | * | * | * |         ⠀⣾⡏⠀⡀⣠⡟⠀⠀⢀⣿⣾⠟⠁⣿⡄⠀⠻⣷⣤⣤⡾⠋⠀      ");
-                Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠙⠷⠾⠁⠻⣧⣀⣤⣾⣿⠋⠀⠀⢸⣧⠀⠀⠀⠉⠁⠀⠀⠀      ");
-                Console.WriteLine(@"                                              G | * | * | * | * | * | * | * |         ⠀⠀⠀⠀⠀⠀⠈⠉⠉⠹⣿⣄⠀⠀⣸⡿⠀⠀⠀⠀⠀⠀⠀⠀      ");
-                Console.WriteLine(@"                                                +---+---+---+---+---+---+---+         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀        ");
-
-                Console.WriteLine("Your Battleship positions are:");
-                
-                for (int i = 0; i < 4; i++)
+                Console.Clear();
+                for (int y = 0; y < BSgridSize; y++)
                 {
-                    Console.Write(battleshipPos[i] + " ");                    
+                    Console.Write("  ");
+                    Console.Write(y);
                 }
                 Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine("Type EXIT to quit at any time");
+                for (int x = 0; x < BSgridSize; x++)
+                {
+                    Console.Write((char) ('A' + x));
+                    Console.Write(" ");
+                    for (int y = 0; y < BSgridSize; y++)
+                    {                       
+                        if (BSplayerGrid[x, y] == 'X')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        else if (BSplayerGrid[x, y] == '0')
+                        {
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+                        Console.Write(BSplayerGrid[x, y] + "  ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine();
+                }
+        
                 Console.WriteLine();
                 Console.WriteLine($"Your Battleship has {BSshipHits} hits left until it sinks!");
-                Console.WriteLine($"The kraken needs {krakenCount} hits to be defeated!");
-                Console.WriteLine("Current Moves:");
-                Console.WriteLine($"{string.Join(", ", BSuserInputs)}");
+               
+                //userInput
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
-                Console.Write("XY:    ");
-                string playerHitKraken = Console.ReadLine().ToUpper();
-               
-                if (playerHitKraken == "EXIT")
+                Console.Write("X: ");
+                string tempX = Console.ReadLine();
+                Console.Write("Y: ");
+                string tempY = Console.ReadLine();
+                int BSuserX = Convert.ToInt32(tempX);
+                int BSuserY = Convert.ToInt32(tempY);
+
+                if (BSuserX < 0 || BSuserX > BSgridSize || BSuserY < 0 || BSuserY > BSgridSize)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Game Ended! Press ENTER to continue");
-                    Console.WriteLine();
+                    Console.WriteLine("Invalid Coordinates. Please try again.");
                     Console.ReadLine();
-                    break;
-                }
-                Console.WriteLine("Firing cannons");
-                Thread.Sleep(500); 
-                Console.Write(".");
-                Thread.Sleep(500);
-                Console.Write(".");
-                Thread.Sleep(500);
-                Console.Write(".");
-                Thread.Sleep(500);
-                Console.WriteLine();
-                              
-                if (BSuserInputs.Contains(playerHitKraken))
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("You've already hit that space! Try a different coordinate.");
-                    Console.ReadLine();
-                    Console.Clear();
                     continue;
-                }               
+                }
 
-                if (krakenPositions.Contains(playerHitKraken))
+                if (BSplayerGrid[BSuserY, BSuserX] == '0')
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("You've hit the Kraken!");
-                    Console.WriteLine();
-                    krakenCount = krakenCount - 1;
+                    Console.WriteLine("Coordinates already hit. Try a different area!");
+                    continue;
+                }
 
+                Console.WriteLine("Firing cannons");
+                Thread.Sleep(300);
+                Console.Write(".");
+                Thread.Sleep(300);
+                Console.Write(".");
+                Thread.Sleep(300);
+                Console.Write(".");
+                Thread.Sleep(300);
+                Console.WriteLine();
+                if (BSkrakenGrid[BSuserX, BSuserY] == '#')
+                {
+                    Console.WriteLine("You've hit the kraken!");
+                    BSplayerGrid[BSuserX, BSuserY] = 'X';
+                    BSkrakenGrid[BSuserX, BSuserY] = 'X';
+                    krakenHits = krakenHits + 1;
                 }
                 else
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Miss!");
-                    Console.WriteLine();
+                    Console.WriteLine("You missed!");
+                    BSplayerGrid[BSuserX, BSuserY] = '0';
                 }
-                
-                BSuserInputs.Add(playerHitKraken);
-
+                Console.ReadLine();
+                                           
                 //Kraken Guess
-                Console.WriteLine("It's the Krakens turn!");
+                /* Console.WriteLine("It's the Kraken's turn!");
                 Console.WriteLine();
                 string krakenMove;
-                Random random = new Random();
+                Random rand = new Random();
                 int BSkrakenHits = 0;               
                 do
                 {
-                    char BSgridLetter = (char)('a' + random.Next(0, 7));
-                    int BSgridNum = random.Next(1, 7);
-                    krakenMove = ($"{BSgridLetter}{BSgridNum}");
+                    int BSgridNum1 = rand.Next(0);
+                    int BSgridNum2 = rand.Next(1, 7);
+                    krakenMove = ($"{BSgridNum1}{BSgridNum2}");
                 } while (BSkrakenAim.Contains(krakenMove));
 
                 BSkrakenAim.Add(krakenMove);
                 Console.WriteLine("Kraken moving");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.Write(".");
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 Console.WriteLine();
                 Console.WriteLine($"The Kraken hits: {krakenMove.ToUpper()}");
 
@@ -220,14 +286,14 @@ namespace Battleship_V1
                 else
                 {
                     Console.WriteLine("The kraken missed!");
-                }
+                } */
 
                 Console.WriteLine("Press ENTER to fire again!");
                 Console.ReadLine();
                 Console.Clear();
             }
                    
-            if (krakenCount == 0)
+            if (krakenHits == 0)
             {
                 Console.WriteLine("Game over. You've defeated the Kraken!");
                 Console.WriteLine("Press ENTER to proceed");
