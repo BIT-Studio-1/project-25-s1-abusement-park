@@ -184,11 +184,15 @@ namespace Game_Title
                 }
             }
             //Computer ship position
-            int krakenNum;
-            BSkrakenGrid[5, 3] = '#';
-            BSkrakenGrid[5, 4] = '#';
-            BSkrakenGrid[5, 5] = '#';
-            BSkrakenGrid[5, 6] = '#';
+            int krakenNum, krakenNum2;
+            Random rand = new Random();
+            krakenNum = rand.Next(0, 8);
+            krakenNum2 = rand.Next(0, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                krakenNum2 = krakenNum2 + 1;
+                BSkrakenGrid[krakenNum, krakenNum2] = '#';
+            }           
 
             int krakenHits = 0;
             int BSshipHits = 4;
