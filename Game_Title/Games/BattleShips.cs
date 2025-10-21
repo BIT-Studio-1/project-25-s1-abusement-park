@@ -184,7 +184,14 @@ namespace Game_Title
                 }
             }
             //Computer ship position
-            int krakenNum;
+            Random rand = new Random();
+            int krakenNum1, krakenNum2;
+            krakenNum1 = rand.Next(0, 8);
+            krakenNum2 = rand.Next(0, 4);
+            for (int i =0; i <4; i++)
+            {
+                krakenNum2 = krakenNum2 + 1;
+            }
             BSkrakenGrid[5, 3] = '#';
             BSkrakenGrid[5, 4] = '#';
             BSkrakenGrid[5, 5] = '#';
@@ -349,8 +356,7 @@ namespace Game_Title
                 Console.WriteLine(@"  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠟⠛⠁⠀⠀⠀⠀⠀⠀    ");
                 Console.WriteLine("   It's the Kraken's turn!");
                 Console.WriteLine();
-                string krakenMove;
-                Random rand = new Random();
+                string krakenMove;               
                 
                 do
                 {
