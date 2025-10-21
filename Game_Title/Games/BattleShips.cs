@@ -354,7 +354,7 @@ namespace Game_Title
                 Console.WriteLine("   It's the Kraken's turn!");
                 Console.WriteLine();
                 string krakenMove;
-                //Random rand = new Random();
+                Random rand = new Random();
                 
                 do
                 {
