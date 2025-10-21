@@ -113,6 +113,7 @@ namespace Game_Title
                         Console.WriteLine($"\nGames played: {gamesPlayed}, Wins: {wins}");
                         Console.ReadLine(); // Pause before closing
                     }
+                }
             }
         }
     }

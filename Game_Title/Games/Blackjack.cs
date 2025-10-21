@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Net.Security;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Game_Title
 {
@@ -8,11 +9,11 @@ namespace Game_Title
     {
         public static void BlackJackMain()
         {
-            Random rand = new Random();
+            Random randCard = new Random();
             //this is the play again input
-            String input = "";
+            string input = "";
             //temporary money holder - not linked up to global ticket count so for now this is just playing money given by your grandma
-            int wallet = 100;
+            double wallet = 100;
 
             string start = "";
             do
@@ -41,7 +42,8 @@ namespace Game_Title
                     input = "";
 
                     //user hand, dealer hand, card, betting amount, l is the location in the hand, starting at 0
-                    int card, chip = 0, total = 0, dTotal = 0, loc = 0, dLoc = 0;
+                    int card, total = 0, dTotal = 0, loc = 0, dLoc = 0;
+                    double chip = 0;
                     //turn is for standing / hitting
                     string turn = "";
                     //probably will never go over 21, since this is based on random cards its possible for 21 ones to appear in a hand
@@ -54,7 +56,7 @@ namespace Game_Title
                     {
                         Console.Clear();
                         Console.WriteLine($"How many chips are you betting? You have {wallet} tickets. Lowest bid is one ticket.");
-                        chip = Convert.ToInt32(Console.ReadLine());
+                        chip = Convert.ToDouble(Console.ReadLine());
                         if(chip > wallet)
                         {
                             Console.WriteLine("You're not that rich, buddy.");
@@ -66,35 +68,22 @@ namespace Game_Title
 
                     //setting up hands, user and dealer take turns getting cards
                     //ace to king
-                    card = rand.Next(1, 14);
+                    //card = randCard.Next(1, 14);
+                    card = 1;
                     hand[0] = card;
-                    card = rand.Next(1, 14);
+                    card = randCard.Next(1, 14);
                     dHand[0] = card;
-                    card = rand.Next(1, 14);
+                    //card = randCard.Next(1, 14);
+                    card = 10;
                     hand[1] = card;
                     //This is always face down until end of round
-                    card = rand.Next(1, 14);
+                    card = randCard.Next(1, 14);
                     dHand[1] = card;
 
 
 
-                    //this is the table, since it is small i can just do what i want
-                    Console.WriteLine($" _______    _______ ");
-                    Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"| {dHand[0]}     |  |       |");
-                    Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"|_______|  |_______|");
 
-                    //Console.WriteLine($"{dHand[0]} (this one is face down :/)");
-                    Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
-                    Console.WriteLine($" _______    _______ ");
-                    Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"| {hand[0]}     |  |  {hand[1]}    |");
-                    Console.WriteLine($"|       |  |       |");
-                    Console.WriteLine($"|_______|  |_______|");
-                    //note: can make a place holder card and change the number inside to be whatever is the card in the hand
+                    
 
 
                     //calculate total because if the user gets 21 right off the bat the payout is 3:2
@@ -103,87 +92,150 @@ namespace Game_Title
                     total = GetCard(total, hand[1], hand, loc, false);
                     loc++;
 
-                    if (total == 21)
-                    {
-                        Console.WriteLine("you would get money but i havent implemented it, so for now all you get is this:");
-                        Thread.Sleep(1000);
-                        Console.WriteLine(":)");
-                    }
 
-                    //the idea here is that it will loop until the user total goes over 21 or stands (ends turn)
-                    while (turn != "s" && turn != "S" && total! <= 21)
+                    string dCard = dHand[0].ToString();
+                    switch (dCard)
                     {
-                        Console.Clear();
-                        Console.WriteLine();
-                        Console.WriteLine($"Your bid amount: {chip}");
-                        Console.WriteLine($"Current card total: {total}");
-                        if (total >= 21)
-                        {
-                            //hopefully this aborts the while loop immediately!
+                        case "14":
+                        case "1":
+                            dCard = "A";
                             break;
-                        }
-
-                        //because this hand for the dealer is specical i gotta do it here i know its redundant but i just gotta. im sorry. jk. deal with it.
-                        String dCard = dHand[0].ToString();
-                        switch (dCard)
-                        {
-                            case "14":
-                            case "1":
-                                dCard = "A";
-                                break;
-                            case "11":
-                                dCard = "J";
-                                break;
-                            case "12":
-                                dCard = "Q";
-                                break;
-                            case "13":
-                                dCard = "K";
-                                break;
-                            default:
-                                break;
-                        }
-
-                        //visuals go here!
-                        //this is the only special hand visual: one card must be face down! (being second card)
-                        Console.WriteLine("\n\tDealer hand:");
-                        Console.WriteLine($" _______    _______ ");
-                        Console.WriteLine($"|       |  |       |");
-                        Console.WriteLine($"|       |  |       |");
-                        Console.WriteLine($"| {dCard}" + "|".PadLeft(7 - dCard.Length) + "  |       |");
-                        Console.WriteLine($"|       |  |       |");
-                        Console.WriteLine($"|_______|  |_______|");
-                        Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
-
-                        Console.WriteLine("\n\tYour hand:");
-
-                        BJVisuals(hand, loc);
-
-                        Console.WriteLine("\nS for Stand\nH for Hit");
-                        turn = Console.ReadLine();
-
-                        if (turn == "H" || turn == "h")
-                        {
-                            card = rand.Next(1, 14);
-                            Console.WriteLine(card);
-                            hand[loc] = card;
-
-                            total = GetCard(total, card, hand, loc, false);
-
-                            loc++;
-                        }
+                        case "11":
+                            dCard = "J";
+                            break;
+                        case "12":
+                            dCard = "Q";
+                            break;
+                        case "13":
+                            dCard = "K";
+                            break;
+                        default:
+                            break;
                     }
+                    //this is the table, since it is small i can just do what i want
+                    Console.WriteLine("\n\tDealer hand:");
+                    Console.WriteLine($" _______    _______ ");
+                    Console.WriteLine($"|       |  |       |");
+                    Console.WriteLine($"|       |  |       |");
+                    Console.WriteLine($"| {dCard}" + "|".PadLeft(7 - dCard.Length) + "  |       |");
+                    Console.WriteLine($"|       |  |       |");
+                    Console.WriteLine($"|_______|  |_______|");
+                    Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
 
-                    //now it is the delears turn, they just flip until soft 17 (ace being an 11 if possible) or they go over 21
+                    Console.WriteLine("\n\tYour hand:");
 
-                    dTotal = GetCard(dTotal, dHand[0], dHand, dLoc, true);
-                    dLoc++;
-                    dTotal = GetCard(dTotal, dHand[1], dHand, dLoc, true);
-                    dLoc++;
+                    BJVisuals(hand, loc);
 
-                    //we do not want this to run at 17!
-                    while (dTotal < 17)
+
+                    //should only run the game portion of things if the total is less than 21
+                    if (total < 21)
                     {
+                        //the idea here is that it will loop until the user total goes over 21 or stands (ends turn)
+
+                        while (turn != "s" && turn != "S" && total! <= 21)
+                        {
+                            Console.Clear();
+                            Console.WriteLine();
+                            Console.WriteLine($"Your bid amount: {chip}");
+                            Console.WriteLine($"Current card total: {total}");
+                            if (total >= 21)
+                            {
+                                //hopefully this aborts the while loop immediately!
+                                break;
+                            }
+
+                            //because this hand for the dealer is specical i gotta do it here i know its redundant but i just gotta. im sorry. jk. deal with it.
+                            dCard = dHand[0].ToString();
+                            switch (dCard)
+                            {
+                                case "14":
+                                case "1":
+                                    dCard = "A";
+                                    break;
+                                case "11":
+                                    dCard = "J";
+                                    break;
+                                case "12":
+                                    dCard = "Q";
+                                    break;
+                                case "13":
+                                    dCard = "K";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            //visuals go here!
+                            //this is the only special hand visual: one card must be face down! (being second card)
+                            Console.WriteLine("\n\tDealer hand:");
+                            Console.WriteLine($" _______    _______ ");
+                            Console.WriteLine($"|       |  |       |");
+                            Console.WriteLine($"|       |  |       |");
+                            Console.WriteLine($"| {dCard}" + "|".PadLeft(7 - dCard.Length) + "  |       |");
+                            Console.WriteLine($"|       |  |       |");
+                            Console.WriteLine($"|_______|  |_______|");
+                            Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
+
+                            Console.WriteLine("\n\tYour hand:");
+
+                            BJVisuals(hand, loc);
+
+                            Console.WriteLine("\nS for Stand\nH for Hit");
+                            turn = Console.ReadLine();
+
+                            if (turn == "H" || turn == "h")
+                            {
+                                card = randCard.Next(1, 14);
+                                Console.WriteLine(card);
+                                hand[loc] = card;
+
+                                total = GetCard(total, card, hand, loc, false);
+
+                                loc++;
+                            }
+                        }
+
+                        //now it is the delears turn, they just flip until soft 17 (ace being an 11 if possible) or they go over 21
+
+                        dTotal = GetCard(dTotal, dHand[0], dHand, dLoc, true);
+                        dLoc++;
+                        dTotal = GetCard(dTotal, dHand[1], dHand, dLoc, true);
+                        dLoc++;
+
+                        //we do not want this to run at 17!
+                        while (dTotal < 17)
+                        {
+                            //these are the visuals
+                            Console.Clear();
+                            Console.WriteLine($"current card total: {total}");
+                            Console.WriteLine($"current dealer card total: {dTotal}");
+                            //dealer hand
+                            Console.WriteLine("\n\tDealer hand:");
+                            BJVisuals(dHand, dLoc);
+
+                            Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
+
+                            //user hand
+                            Console.WriteLine("\n\tYour hand:");
+                            BJVisuals(hand, loc);
+
+                            Console.WriteLine();
+                            //visual end
+
+
+                            //get card
+                            card = randCard.Next(1, 14);
+                            //Console.WriteLine(card);
+                            dHand[dLoc] = card;
+                            dTotal = GetCard(dTotal, card, dHand, dLoc, true);
+
+                            dLoc++;
+                            Thread.Sleep(1000);
+
+                        }
+
+                        //we need a last visual show BECAUSE the DEALER while loop won't do its thang that one last time unfortunately
+
                         //these are the visuals
                         Console.Clear();
                         Console.WriteLine($"current card total: {total}");
@@ -202,79 +254,61 @@ namespace Game_Title
                         //visual end
 
 
-                        //get card
-                        card = rand.Next(1, 14);
-                        //Console.WriteLine(card);
-                        dHand[dLoc] = card;
-                        dTotal = GetCard(dTotal, card, dHand, dLoc, true);
 
-                        dLoc++;
-                        Thread.Sleep(1000);
-
-                    }
-
-                    //we need a last visual show BECAUSE the DEALER while loop won't do its thang that one last time unfortunately
-
-                    //these are the visuals
-                    Console.Clear();
-                    Console.WriteLine($"current card total: {total}");
-                    Console.WriteLine($"current dealer card total: {dTotal}");
-                    //dealer hand
-                    Console.WriteLine("\n\tDealer hand:");
-                    BJVisuals(dHand, dLoc);
-
-                    Console.WriteLine("Dealer must stand on soft 17 * Blackjack payout 3:2");
-
-                    //user hand
-                    Console.WriteLine("\n\tYour hand:");
-                    BJVisuals(hand, loc);
-
-                    Console.WriteLine();
-                    //visual end
-
-                    //win = get money, lose = lose money, tie = you get that money back
-                    Console.WriteLine();
-                    if (total <= 21)
-                    {
-                        if (dTotal > 21)
+                        //win = get money, lose = lose money, tie = you get that money back
+                        Console.WriteLine();
+                        if (total <= 21)
                         {
-                            Console.WriteLine("dealer went over 21!");
-                            Console.WriteLine("win :)");
-                            wallet += chip;
+                            if (dTotal > 21)
+                            {
+                                Console.WriteLine("dealer went over 21!");
+                                Console.WriteLine("win :)");
+                                wallet += chip;
 
-                        }
-                        else if (total > dTotal)
-                        {
-                            Console.WriteLine("you are higher than dealer!");
-                            Console.WriteLine("win :)");
-                            wallet += chip;
-                        }
-                        else if (total < dTotal)
-                        {
-                            Console.WriteLine("dealer is higher than you...");
-                            Console.WriteLine("lose :(");
-                            wallet -= chip;
+                            }
+                            else if (total > dTotal)
+                            {
+                                Console.WriteLine("you are higher than dealer!");
+                                Console.WriteLine("win :)");
+                                wallet += chip;
+                            }
+                            else if (total < dTotal)
+                            {
+                                Console.WriteLine("dealer is higher than you...");
+                                Console.WriteLine("lose :(");
+                                wallet -= chip;
+                            }
+                            else
+                            {
+                                Console.WriteLine("same score.");
+                                Console.WriteLine("tie :|");
+                                //no change to wallet
+                            }
+
                         }
                         else
                         {
-                            Console.WriteLine("same score.");
-                            Console.WriteLine("tie :|");
-                            //no change to wallet
+                            Console.WriteLine("you went over 21...");
+                            Console.WriteLine("lose :(");
+                            wallet -= chip;
                         }
-
                     }
                     else
                     {
-                        Console.WriteLine("you went over 21...");
-                        Console.WriteLine("lose :(");
-                        wallet -= chip;
+                        Console.WriteLine("You got BlackJack!");
+                        //this is for getting 21 straight away
+                        Console.WriteLine("Win!");
+                        //it's 3:2, so half of the betting value back
+                        wallet += (chip / 2);
                     }
 
-                    do
-                    {
-                        Console.WriteLine("Do you want to play again? (yes/no)");
-                        input = Console.ReadLine();
-                    } while (input != "yes" && input != "no" && input != "YES" && input != "NO");
+
+
+                        do
+                        {
+                            Console.WriteLine("Do you want to play again? (yes/no)");
+                            input = Console.ReadLine();
+                        } while (input != "yes" && input != "no" && input != "YES" && input != "NO");
                 } while (input != "no" && input != "NO");
 
             }
@@ -300,7 +334,7 @@ namespace Game_Title
 
             for (int i = 0; i < loc; i++)
             {
-                String card = hand[i].ToString();
+                string card = hand[i].ToString();
                 switch (card)
                 {
                     case "14":
