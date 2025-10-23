@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace Maze
@@ -7,16 +8,26 @@ namespace Maze
     {
         static int size = 40;
         public static void MazingMain()
-        { 
+        {
+            Console.WriteLine($"How large do you want the maze? (between '0' and '{Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2)}')");
+            String input = Console.ReadLine();
+            int parsedInt;
+            while (!int.TryParse(input, out parsedInt) || parsedInt > Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2))
+            {
+                Console.WriteLine($"please input a valid integer between '0' and '{Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2)}'");
+                input = Console.ReadLine();
+            }
+            size = parsedInt;
+
             // Make sure it fits (with some padding)
-            int consoleWidth = Math.Min(size*2 + 2, Console.LargestWindowWidth);
-            int consoleHeight = Math.Min(size + 2, Console.LargestWindowHeight);
+            //int consoleWidth = Math.Min(size * 2 + 2, Console.LargestWindowWidth);
+            //int consoleHeight = Math.Min(size + 2, Console.LargestWindowHeight);
 
             //Console.SetWindowSize(consoleWidth, consoleHeight);
             //Console.SetBufferSize(consoleWidth, consoleHeight);
             Console.CursorVisible = false;
-            Console.WindowWidth = consoleWidth;
-            Console.WindowHeight = consoleHeight;
+           // Console.WindowWidth = consoleWidth;
+            //Console.WindowHeight = consoleHeight;
 
             //Console.SetWindowSize(size, size);
             MazeGame game = new MazeGame(size);
@@ -76,10 +87,18 @@ namespace Maze
             
 
             DrawMaze();
+            /**
+            foreach (var item in eventLocations)
+            {
+                String coordsVal;
+                Console.WriteLine($"{item.Key[0]} , {item.Key[1]}, {item.Value}");
+            }
 
             // Find a starting point (any open space)
-            Console.SetCursorPosition(user.x*2, (user.y));
+            Console.SetCursorPosition(user.x*2, (user.y + 2));
             Console.Write("@@");
+            */
+            
 
             do
             {
@@ -105,13 +124,13 @@ namespace Maze
                     if (mazeGrid[newY, newX] == 0)
                     {
                         // Erase old position
-                        Console.SetCursorPosition((user.x * 2), user.y);
+                        Console.SetCursorPosition((user.x * 2), user.y+2);
                         Console.Write("  ");
 
                         // Draw new position
                         user.x = newX;
                         user.y = newY;
-                        Console.SetCursorPosition((user.x * 2), user.y);
+                        Console.SetCursorPosition((user.x * 2), user.y+2);
                         Console.Write("@@");
                     }
                 }
@@ -245,9 +264,10 @@ namespace Maze
                             maze[ny, nx] = 0;
                             CarvePath(nx, ny, maze);
                         }
-                        if (j == 2)
+                        if (j > 6 && j < 20)
                         {
-                            eventLocations.Add(new int[] {x, y}, "clown");
+                            int[] coords = { x, y };
+                            eventLocations.Add(coords, "clown");
                         }
                     }
                 }
