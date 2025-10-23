@@ -9,12 +9,12 @@ namespace Maze
         static int size = 40;
         public static void MazingMain()
         {
-            Console.WriteLine($"How large do you want the maze? (between '0' and '{Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2)}')");
+            Console.WriteLine($"How large do you want the maze? (between '10' and '{Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2)}')");
             String input = Console.ReadLine();
             int parsedInt;
-            while (!int.TryParse(input, out parsedInt) || parsedInt > Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2))
+            while (!int.TryParse(input, out parsedInt) || (parsedInt > Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2) || parsedInt < 10))
             {
-                Console.WriteLine($"please input a valid integer between '0' and '{Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2)}'");
+                Console.WriteLine($"please input a valid integer between '10' and '{Math.Min(Console.LargestWindowHeight - 2, Console.LargestWindowWidth - 2)}'");
                 input = Console.ReadLine();
             }
             size = parsedInt;
@@ -87,7 +87,7 @@ namespace Maze
             
 
             DrawMaze();
-            /**
+            /*
             foreach (var item in eventLocations)
             {
                 String coordsVal;
