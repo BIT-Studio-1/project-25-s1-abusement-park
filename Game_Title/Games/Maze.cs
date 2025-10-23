@@ -30,6 +30,7 @@ namespace Maze
             //Console.WindowHeight = consoleHeight;
 
             //Console.SetWindowSize(size, size);
+            Console.Clear();
             MazeGame game = new MazeGame(size);
             game.SetupMaze();
             // later you can call game.Navigate();
