@@ -124,13 +124,13 @@ namespace Maze
                     if (mazeGrid[newY, newX] == 0)
                     {
                         // Erase old position
-                        Console.SetCursorPosition((user.x * 2), user.y+2);
+                        Console.SetCursorPosition((user.x * 2), user.y);
                         Console.Write("  ");
 
                         // Draw new position
                         user.x = newX;
                         user.y = newY;
-                        Console.SetCursorPosition((user.x * 2), user.y+2);
+                        Console.SetCursorPosition((user.x * 2), user.y);
                         Console.Write("@@");
                     }
                 }
