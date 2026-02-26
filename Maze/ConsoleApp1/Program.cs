@@ -23,7 +23,6 @@ namespace Maze
             //Console.SetWindowSize(size, size);
             MazeGame game = new MazeGame(size);
             game.SetupMaze();
-            // later you can call game.Navigate();
         }
     }
 
