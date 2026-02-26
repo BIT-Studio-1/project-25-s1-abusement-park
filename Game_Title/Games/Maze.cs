@@ -72,7 +72,7 @@ namespace Maze
 
         (int x, int y)? startPoint = (1,0);
         (int x, int y)? endPoint = (size-1,size);
-        private static Dictionary<int[], String> eventLocations = new Dictionary<int[], string>();
+        private static Dictionary<int[], String> eventLocations = new Dictionary<int[], string>(); //implementation is not working
         private Player user;
 
         public void SetupMaze()

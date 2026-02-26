@@ -189,7 +189,7 @@ namespace Game_Title
             int krakenNum, krakenNum2;          
             krakenNum = rand.Next(0, 8);
             krakenNum2 = rand.Next(0, 4);
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 krakenNum2 = krakenNum2 + 1;
 

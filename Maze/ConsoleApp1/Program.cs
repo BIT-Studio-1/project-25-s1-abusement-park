@@ -23,7 +23,6 @@ namespace Maze
             //Console.SetWindowSize(size, size);
             MazeGame game = new MazeGame(size);
             game.SetupMaze();
-            // later you can call game.Navigate();
         }
     }
 
@@ -129,104 +128,6 @@ namespace Maze
             }
             
         }
-
-        /**
-        public void Navigate(char input)
-        {
-            switch (input)
-            {
-                case 'w':    //Up
-
-                    int upSquare;
-                    try{
-                        upSquare = mazeGrid[user.y - 1, user.x];
-                    }
-                    catch(Exception e){
-                        upSquare = 1;
-                    }
-
-                    if (upSquare == 0)
-                    {
-                        user.y--;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-                case 's':   //Down
-                    int downSquare;
-                    try
-                    {
-                        downSquare = mazeGrid[user.y + 1, user.x];
-                    }
-                    catch (Exception e)
-                    {
-                        downSquare = 1;
-                    }
-
-                    if (downSquare == 0)
-                    {
-                        user.y++;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-                case 'a':   //Left
-                    int leftSquare;
-                    try
-                    {
-                        leftSquare = mazeGrid[user.y, user.x - 1];
-                    }
-                    catch (Exception e)
-                    {
-                        leftSquare = 1;
-                    }
-
-                    if (leftSquare == 0)
-                    {
-                        user.x--;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-                case 'd':
-                    //right
-                    int rightSquare;
-                    try
-                    {
-                        rightSquare = mazeGrid[user.y, user.x + 1];
-                    }
-                    catch (Exception e)
-                    {
-                        rightSquare = 1;
-                    }
-
-                    if (rightSquare == 0)
-                    {
-                        user.x++;
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("that way is blocked");
-                        Console.WriteLine();
-                    }
-                    break;
-            }
-            Console.WriteLine();
-        }
-        */
 
         public static char MazeGetInput(char[] usableChars)
         {
