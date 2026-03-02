@@ -297,17 +297,17 @@ namespace Game_Title
                     {
                         Console.WriteLine("You lost all your money pal... scram!\nPress [Enter] to scram");
                         Console.ReadLine();
-                        input = "no";
+                        input = "n";
                     }
                     else
                     {
                         do
                         {
-                            Console.WriteLine("Do you want to play again? (yes/no)");
-                            input = Console.ReadLine();
-                        } while (input != "yes" && input != "no" && input != "YES" && input != "NO");
+                            Console.WriteLine("Do you want to play again?\n[Y]es\n[N]o");
+                            input = Console.ReadLine().ToLower();
+                        } while (input != "y" && input != "n");
                     }
-                    } while (input != "no" && input != "NO") ;
+                    } while (input != "n") ;
                 
             }
         }
