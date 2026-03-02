@@ -19,6 +19,9 @@ namespace Maze
             }
             size = parsedInt;
 
+            Console.WriteLine("To move around the maze you can use the 'WASD' keys. \n" +
+                "You start in the top left corner of the maze and you're trying to reach the bottom right.");
+
             // Make sure it fits (with some padding)
             //int consoleWidth = Math.Min(size * 2 + 2, Console.LargestWindowWidth);
             //int consoleHeight = Math.Min(size + 2, Console.LargestWindowHeight);
