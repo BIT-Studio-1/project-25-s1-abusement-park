@@ -98,9 +98,9 @@ namespace Game_Title
                 Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");
                 Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
                 Console.WriteLine($"Coordinate {i + 1}");
-                Console.Write("X: ");
-                string shipTempX = Console.ReadLine().ToUpper();
                 Console.Write("Y: ");
+                string shipTempX = Console.ReadLine().ToUpper();
+                Console.Write("X: ");
                 string shipTempY = Console.ReadLine();
                                
                 if (shipTempX.Length != 1 || shipTempX[0] < 'A' || shipTempX[0] > 'G')
@@ -187,8 +187,8 @@ namespace Game_Title
 
             Random rand = new Random();          
             int krakenNum, krakenNum2;          
-            krakenNum = rand.Next(0, 8);
-            krakenNum2 = rand.Next(0, 4);
+            krakenNum = rand.Next(0, 8);   //randomly select a starting position for kraken ship
+            krakenNum2 = rand.Next(0, 3);
             for (int i = 0; i < 5; i++)
             {
                 krakenNum2 = krakenNum2 + 1;
@@ -241,10 +241,10 @@ namespace Game_Title
                 Console.WriteLine();
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
+                Console.Write("Y: ");  
+                string tempX = Console.ReadLine().ToUpper();         //get user input for y axis, a-g
                 Console.Write("X: ");
-                string tempX = Console.ReadLine().ToUpper();
-                Console.Write("Y: ");
-                string tempY = Console.ReadLine();               
+                string tempY = Console.ReadLine();               //get user input for x axis, 0-7
                 int BSuserX = ' ';
                 switch (tempX)
                 {
