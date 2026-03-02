@@ -11,7 +11,7 @@ namespace Game_Title
             Random rand = new Random();
             //this is the play again input
             String input = "";
-            //temporary money holder - not linked up to global ticket count so for now this is just playing money given by your grandma
+            //temporary money holder - not linked up to global ticket count so for now this will just be 'chips'
             double wallet = 100;
 
             string start = "";
@@ -54,7 +54,7 @@ namespace Game_Title
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine($"How many chips are you betting? You have {wallet} tickets. Lowest bid is one ticket.");
+                        Console.WriteLine($"How many chips are you betting? You have {wallet} chips. Lowest bid is one chip.");
                         chip = Convert.ToDouble(Console.ReadLine());
                         if (chip > wallet)
                         {
