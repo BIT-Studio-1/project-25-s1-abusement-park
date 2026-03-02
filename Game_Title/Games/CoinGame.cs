@@ -79,32 +79,31 @@ namespace Game_Title
                 string playAgain = Console.ReadLine().Trim().ToLower();
 
                 // Keep asking until valid input is entered
-                while (playAgain != "yes" && playAgain != "no")
+                while (playAgain[0] != 'y' && playAgain[0] != 'n')
                 {
                     Console.Write("Invalid input. Please type 'yes' or 'no': ");
                     playAgain = Console.ReadLine().Trim().ToLower();
+                    if (playAgain == "")
+                    {
+                        playAgain = " ";
+                    }
                 }
 
-                if (playAgain != "yes")
+                if (playAgain[0] == 'n')
                 {
                     keepPlaying = false;
+                    Console.WriteLine("\nThanks for playing! Goodbye!");
+                    Console.WriteLine(@"
+  _____          __  __ ______    ______      ________ _____  
+ / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
+| |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) |
+| | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  / 
+| |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \ 
+ \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_\
+                    ");
 
-                    if (playAgain == "no")
-                    {
-                        Console.WriteLine("\nThanks for playing! Goodbye!");
-
-                        Console.WriteLine(@"
-                       _____          __  __ ______    ______      ________ _____  
-                      / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
-                     | |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) |
-                     | | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  / 
-                     | |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \ 
-                      \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_\
-                     ");
-
-                        Console.WriteLine($"\nGames played: {gamesPlayed}, Wins: {wins}");
-                        Console.ReadLine(); // Pause before closing
-                    }
+                    Console.WriteLine($"\nGames played: {gamesPlayed}, Wins: {wins}");
+                    Console.ReadLine(); // Pause before closing
                 }
             }
         }
