@@ -56,7 +56,15 @@ namespace Game_Title
                     {
                         Console.Clear();
                         Console.WriteLine($"How many chips are you betting? You have {wallet} chips. Lowest bid is one chip.");
-                        chip = Convert.ToDouble(Console.ReadLine());
+                        try
+                        {
+                            chip = Convert.ToDouble(Console.ReadLine());
+                        }catch(FormatException ex)
+                        {
+                            Console.WriteLine("Please enter a number!\nPress [Enter] if you understand.");
+                            Console.ReadLine();
+                        }
+
                         if (chip > wallet)
                         {
                             Console.WriteLine("You're not that rich, buddy.");
