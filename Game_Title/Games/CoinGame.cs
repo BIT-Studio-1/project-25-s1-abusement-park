@@ -30,14 +30,21 @@ namespace Game_Title
             while (keepPlaying)
             {
                 gamesPlayed++;  // increment games played every round
+                string userGuess = " ";
 
-                Console.Write("Enter your guess (Heads/Tails): ");
-                string userGuess = Console.ReadLine().Trim().ToLower();
-
-                if (userGuess[0] != 'h' && userGuess[0] != 't')
+                while (userGuess[0] != 'h' && userGuess[0] != 't')
                 {
-                    Console.WriteLine("\n!!! Invalid input. Please type 'Heads' or 'Tails'.\n");      //Add input validation to only accept 'Heads' or 'Tails
-                    continue;
+                    Console.Write("Enter your guess (Heads/Tails): ");
+                    userGuess = Console.ReadLine().Trim().ToLower();
+                    if (userGuess == "")
+                    {
+                        Console.WriteLine("\n!!! Invalid input. Please type 'Heads' or 'Tails'.\n");
+                        userGuess = " ";
+                    }
+                    else if (userGuess[0] != 'h' && userGuess[0] != 't')
+                    {
+                        Console.WriteLine("\n!!! Invalid input. Please type 'Heads' or 'Tails'.\n");      //Add input validation to only accept 'Heads' or 'Tails
+                    }
                 }
 
                 string coinFlip = rand.Next(0, 2) == 0 ? "heads" : "tails";
