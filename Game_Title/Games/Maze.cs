@@ -21,6 +21,7 @@ namespace Maze
 
             Console.WriteLine("To move around the maze you can use the 'WASD' keys. \n" +
                 "You start in the top left corner of the maze and you're trying to reach the bottom right.");
+            Console.ReadKey();
 
             // Make sure it fits (with some padding)
             //int consoleWidth = Math.Min(size * 2 + 2, Console.LargestWindowWidth);
@@ -102,9 +103,9 @@ namespace Maze
             Console.SetCursorPosition(user.x*2, (user.y + 2));
             Console.Write("@@");
             */
-            
 
-            do
+
+            while (!(user.y == endPoint.Value.y))
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
                 int newX = user.x, newY = user.y;
@@ -120,7 +121,7 @@ namespace Maze
                 }
 
                 if (exit) {
-                break;
+                    break;
                 }
 
                 // Only move if next spot is a path (0)
@@ -151,7 +152,7 @@ namespace Maze
                     }
                 }
             }
-            while (!(user.y == endPoint.Value.y));
+            
         }
 
         public void MakeMaze(){
