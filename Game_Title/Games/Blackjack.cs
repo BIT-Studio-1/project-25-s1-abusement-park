@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Net.Security;
+using System.Xml.Linq;
 
 namespace Game_Title
 {
@@ -363,16 +364,16 @@ namespace Game_Title
         }
 
 
-        /*
-         * we get a card and add it onto the total depending on various cases
-         * named this because i thought it would be different but its actually just calculating the total!
-         * @param total - what we add to
-         * @param card - switch case, ie the card with the conditions
-         * @param hand - we need this for the ace conditions, changing the ace to allows for some stuff
-         * @param loc - the location, helps find where the ace we are changing is
-         * @param dealer - we do not want the dealer to change their total if they have an ace
-         * @return
-         */
+        
+        /// <summary>
+        /// we get a card and add it onto the total depending on various cases. It is named this because i thought it would be different but its actually just calculating the total!
+        /// </summary>
+        /// <param name="total">value of the card, what we add to</param>
+        /// <param name="card">this is the card conditions, for the switch case</param>
+        /// <param name="hand">this is for ace conditions, how it acts in your hand</param>
+        /// <param name="loc">the location of the ace in the hand</param>
+        /// <param name="dealer">if its a player or a dealer the code acts differently</param>
+        /// <returns></returns>
         public static int GetCard(int total, int card, int[] hand, int loc, bool dealer)
         {
 
