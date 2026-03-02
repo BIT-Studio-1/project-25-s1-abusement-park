@@ -34,7 +34,7 @@ namespace Game_Title
                 Console.Write("Enter your guess (Heads/Tails): ");
                 string userGuess = Console.ReadLine().Trim().ToLower();
 
-                if (userGuess != "heads" && userGuess != "tails")
+                if (userGuess[0] != 'h' && userGuess[0] != 't')
                 {
                     Console.WriteLine("\n!!! Invalid input. Please type 'Heads' or 'Tails'.\n");      //Add input validation to only accept 'Heads' or 'Tails
                     continue;
