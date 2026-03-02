@@ -291,12 +291,21 @@ namespace Game_Title
                         wallet += (chip / 2);
                     }
 
-
+                    //if there is no money left the user is booted from the game
+                    if (wallet == 0)
+                    {
+                        Console.WriteLine("You lost all your money pal... scram!\nPress [Enter] to scram");
+                        Console.ReadLine();
+                        input = "no";
+                    }
+                    else
+                    {
                         do
                         {
                             Console.WriteLine("Do you want to play again? (yes/no)");
                             input = Console.ReadLine();
                         } while (input != "yes" && input != "no" && input != "YES" && input != "NO");
+                    }
                     } while (input != "no" && input != "NO") ;
                 
             }
