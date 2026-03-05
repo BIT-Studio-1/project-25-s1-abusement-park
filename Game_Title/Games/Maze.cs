@@ -75,7 +75,6 @@ namespace Maze
         */
 
         (int x, int y)? startPoint = (1,0);
-        (int x, int y)? endPoint = (size-1,size);
         private static Dictionary<int[], String> eventLocations = new Dictionary<int[], string>(); //implementation is not working
         private Player user;
 
@@ -105,7 +104,7 @@ namespace Maze
             */
 
 
-            while (!(user.y == endPoint.Value.y))
+            while (!(user.y == mazeGrid[mazeGrid.Length - 1, mazeGrid.Length-1]))
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
                 int newX = user.x, newY = user.y;
@@ -123,7 +122,7 @@ namespace Maze
                 if (exit) {
                     break;
                 }
-
+                //
                 // Only move if next spot is a path (0)
                 if ((newY > 0 && newY <= size) && (newX > 0 && newX <= size)) { 
                     if (mazeGrid[newY, newX] == 0)
@@ -203,7 +202,10 @@ namespace Maze
         {
             // Ensure odd dimensions
             if (width % 2 == 0) width++;
-            if (height % 2 == 0) height++;
+            if (height % 2 == 0) {
+                height++;
+                
+            }
 
             int[,] maze = new int[height, width];
 
