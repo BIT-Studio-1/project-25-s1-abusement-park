@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Maze
@@ -50,29 +51,6 @@ namespace Maze
         private int size = size;
         private int[,] mazeGrid;
 
-        /*{
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1},
-            {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1},
-            {1,0,1,1,1,1,1,0,1,1,0,1,1,0,1,0,1,0,1,1},
-            {1,0,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,1,1},
-            {1,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,0,1,1},
-            {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,1,1},
-            {1,0,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1,0,1,1},
-            {1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0,1,1},
-            {1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1},
-            {1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1},
-            {1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1},
-            {1,0,1,1,0,0,1,1,1,0,1,0,0,0,0,0,0,0,1,1},
-            {1,0,1,1,0,0,0,0,1,0,1,1,0,1,0,0,1,0,1,1},
-            {1,0,1,0,0,1,1,0,1,1,1,1,0,1,0,0,0,0,1,1},
-            {1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,0,1,1},
-            {1,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,1,1},
-            {1,0,1,1,1,0,1,0,1,0,0,1,0,0,0,1,0,0,1,1},
-            {1,0,0,0,1,0,1,0,1,1,0,1,0,1,0,1,0,1,1,1},
-            {1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,1,1},
-            {1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-        };
-        */
 
         (int x, int y)? startPoint = (1,0);
         private static Dictionary<int[], String> eventLocations = new Dictionary<int[], string>(); //implementation is not working
@@ -80,7 +58,10 @@ namespace Maze
 
         public void SetupMaze()
         {
+            // Ensure odd dimensions
+            if (size % 2 == 0) size++;
             
+
             mazeGrid = GenerateMaze(size,size);
 
             if (startPoint != null)
@@ -104,7 +85,7 @@ namespace Maze
             */
 
 
-            while (!(user.y == mazeGrid[mazeGrid.Length - 1, mazeGrid.Length-1]))
+            while (!(user.y == size-1))
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
                 int newX = user.x, newY = user.y;
@@ -154,6 +135,7 @@ namespace Maze
             
         }
 
+        /**
         public void MakeMaze(){
             mazeGrid = new int[size,size];
             for (int x = 0; x < size; x++)
@@ -165,11 +147,10 @@ namespace Maze
             }
             
         }
+        
 
         public static char MazeGetInput(char[] usableChars)
         {
-
-
             Char input = Console.ReadKey().KeyChar;
             if (!usableChars.Contains(input))
             {
@@ -179,6 +160,8 @@ namespace Maze
 
             return input;
         }
+        */
+
 
         public void DrawMaze(){
             for (int y = 0; y < mazeGrid.GetLength(0); y++)
@@ -200,12 +183,7 @@ namespace Maze
 
         public static int[,] GenerateMaze(int width, int height)
         {
-            // Ensure odd dimensions
-            if (width % 2 == 0) width++;
-            if (height % 2 == 0) {
-                height++;
-                
-            }
+            
 
             int[,] maze = new int[height, width];
 
