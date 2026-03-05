@@ -99,40 +99,40 @@ namespace Game_Title
                 Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
                 Console.WriteLine($"Coordinate {i + 1}");
                 Console.Write("Y: ");
-                string shipTempX = Console.ReadLine().ToUpper();
+                string shipTempY = Console.ReadLine().ToUpper();
                 Console.Write("X: ");
-                string shipTempY = Console.ReadLine();
+                string shipTempX = Console.ReadLine();
                                
-                if (shipTempX.Length != 1 || shipTempX[0] < 'A' || shipTempX[0] > 'G')
+                if (shipTempY.Length != 1 || shipTempY[0] < 'A' || shipTempY[0] > 'G')
                 {
                     Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
                     Console.ReadLine();
                     i = i - 1;
                     continue;
                 }                                  
-                int BSshipY = ' ';
-                switch (shipTempY)
+                int BSshipX = ' ';
+                switch (shipTempX)
                 {
                     case "0":
-                        BSshipY = 0;
+                        BSshipX = 0;
                         break;
                     case "1":
-                        BSshipY = 1;
+                        BSshipX = 1;
                         break;
                     case "2":
-                        BSshipY = 2;
+                        BSshipX = 2;
                         break;
                     case "3":
-                        BSshipY = 3;
+                        BSshipX = 3;
                         break;
                     case "4":
-                        BSshipY = 4;
+                        BSshipX = 4;
                         break;
                     case "5":
-                        BSshipY = 5;
+                        BSshipX = 5;
                         break;
                     case "6":
-                        BSshipY = 6;
+                        BSshipX = 6;
                         break;
                     default:
                         Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
@@ -140,7 +140,7 @@ namespace Game_Title
                         i = i - 1;
                         continue;
                 }
-                shipCords = string.Join("", shipTempX, BSshipY);
+                shipCords = string.Join("", shipTempY, BSshipX);
 
                 if (battleshipPos.Contains(shipCords))
                 {
@@ -242,32 +242,32 @@ namespace Game_Title
                 Console.WriteLine("Enter coordinates to strike:");
                 Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
                 Console.Write("Y: ");  
-                string tempX = Console.ReadLine().ToUpper();         //get user input for y axis, a-g
+                string tempY = Console.ReadLine().ToUpper();         //get user input for y axis, a-g
                 Console.Write("X: ");
-                string tempY = Console.ReadLine();               //get user input for x axis, 0-7
-                int BSuserX = ' ';
-                switch (tempX)
+                string tempX = Console.ReadLine();               //get user input for x axis, 0-7
+                int BSuserY = ' ';
+                switch (tempY)
                 {
                     case "A":
-                        BSuserX = 0;
+                        BSuserY = 0;
                         break;
                     case "B":
-                        BSuserX = 1;
+                        BSuserY = 1;
                         break;
                     case "C":
-                        BSuserX = 2;
+                        BSuserY = 2;
                         break;
                     case "D":
-                        BSuserX = 3;
+                        BSuserY = 3;
                         break;
                     case "E":
-                        BSuserX = 4;
+                        BSuserY = 4;
                         break;
                     case "F":
-                        BSuserX = 5;
+                        BSuserY = 5;
                         break;
                     case "G":
-                        BSuserX = 6;
+                        BSuserY = 6;
                         break;
                     default:
                         Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
@@ -275,29 +275,29 @@ namespace Game_Title
                         continue;
 
                 }               
-                int BSuserY = ' ';
-                switch (tempY)
+                int BSuserX = ' ';
+                switch (tempX)
                 {
                     case "0":
-                        BSuserY = 0;
+                        BSuserX = 0;
                         break;
                     case "1":
-                        BSuserY = 1;
+                        BSuserX = 1;
                         break;
                     case "2":
-                        BSuserY = 2;
+                        BSuserX = 2;
                         break;
                     case "3":
-                        BSuserY = 3;
+                        BSuserX = 3;
                         break;
                     case "4":
-                        BSuserY = 4;
+                        BSuserX = 4;
                         break;
                     case "5":
-                        BSuserY = 5;
+                        BSuserX = 5;
                         break;
                     case "6":
-                        BSuserY = 6;
+                        BSuserX = 6;
                         break;
                     default:
                         Console.WriteLine("Invalid Coordinates. Press ENTER to try again.");
@@ -305,7 +305,7 @@ namespace Game_Title
                         continue;
                 }
 
-                if (BSplayerGrid[BSuserX, BSuserY] == '0' || BSplayerGrid[BSuserX, BSuserY] == 'X')
+                if (BSplayerGrid[BSuserY, BSuserX] == '0' || BSplayerGrid[BSuserY, BSuserX] == 'X')
                 {
                     Console.WriteLine("Coordinates already hit. Press ENTER to try again.");
                     Console.ReadLine();
@@ -321,17 +321,17 @@ namespace Game_Title
                 Console.Write(".");
                 Thread.Sleep(300);
                 Console.WriteLine();
-                if (BSkrakenGrid[BSuserX, BSuserY] == '#')
+                if (BSkrakenGrid[BSuserY, BSuserX] == '#')
                 {
                     Console.WriteLine("You've hit the kraken!");
-                    BSplayerGrid[BSuserX, BSuserY] = 'X';
-                    BSkrakenGrid[BSuserX, BSuserY] = 'X';
+                    BSplayerGrid[BSuserY, BSuserX] = 'X';
+                    BSkrakenGrid[BSuserY, BSuserX] = 'X';
                     krakenHits = krakenHits + 1;
                 }
                 else
                 {
                     Console.WriteLine("You missed!");
-                    BSplayerGrid[BSuserX, BSuserY] = '0';
+                    BSplayerGrid[BSuserY, BSuserX] = '0';
                 }
                 Console.WriteLine("Press ENTER to continue");
                 Console.ReadLine();
