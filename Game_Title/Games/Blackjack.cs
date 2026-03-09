@@ -12,6 +12,8 @@ namespace Game_Title
             Random rand = new Random();
             //this is the play again input
             String input = "";
+            //temporary money holder - not linked up to global ticket count so for now this is just playing money given by your grandma
+
 
             string start = "";
             do
@@ -298,7 +300,6 @@ namespace Game_Title
                         wallet += ((int)chip / 2);
                     }
 
-
                     //if there is no money left the user is booted from the game
                     if (wallet == 0)
                     {
@@ -317,6 +318,7 @@ namespace Game_Title
                 }
                 while (input != "n") ;
 
+                
             }
             return wallet;
                 
