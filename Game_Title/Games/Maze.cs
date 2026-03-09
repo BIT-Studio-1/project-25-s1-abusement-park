@@ -72,13 +72,14 @@ namespace Maze
             
 
             DrawMaze();
-            /*
+            
             foreach (var item in eventLocations)
             {
                 String coordsVal;
                 Console.WriteLine($"{item.Key[0]} , {item.Key[1]}, {item.Value}");
             }
 
+            /*
             // Find a starting point (any open space)
             Console.SetCursorPosition(user.x*2, (user.y + 2));
             Console.Write("@@");
@@ -120,7 +121,7 @@ namespace Maze
                     }
                 }
                 String locationName;
-                if (eventLocations.TryGetValue(new int[] { user.x, user.y }, out locationName))
+                if (eventLocations.TryGetValue( [user.x, user.y], out locationName))
                 { 
                     if (locationName.Equals("clown"))
                     {
@@ -172,6 +173,10 @@ namespace Maze
                     {
                         Console.Write("##");
                     }
+                    else if (eventLocations.ContainsKey([y,x]))
+                    {
+                        Console.Write("??");
+                    }
                     else
                     {
                         Console.Write(mazeGrid[y, x] == 1 ? "██" : "  ");
@@ -192,11 +197,6 @@ namespace Maze
                 for (int x = 0; x < width; x++)
                     maze[y, x] = 1;
 
-            // Starting point
-
-            Dictionary<int[,], int> specials = new Dictionary<int[,], int>();
-
-            specials.Add(new int[5, 10], 2);
 
             int startX = 1;
             int startY = 1;
