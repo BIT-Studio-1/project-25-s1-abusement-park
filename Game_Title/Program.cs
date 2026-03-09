@@ -23,6 +23,7 @@ namespace Game_Title
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         private const int SW_MAXIMIZE = 3;
+        private static int tickets = 100;
 
         static void CreepyClown()
         {
@@ -155,7 +156,7 @@ namespace Game_Title
                 Console.WriteLine(@"   :' :'.:::. `:: :: ::. .::`::.   .     . .:;':' ::'`:: :::'                                                                             ");
                 Console.WriteLine(@"   : ::.:. `:  `::'  `:: ::'::`::::::::::::;' :: .:' .::: ;:'                                                                             ");
                 Console.WriteLine(@"   ::.::.:::: .:: :.  `:':'  ::.:'`::. .::':.::' :: .::''::'                                                                              ");
-                Console.WriteLine(@"   `:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;                                                                                ");
+                Console.WriteLine($@"   `:::`::.`:.::' ::  .: ::  `::'  `:: :' .::' ::.:.::' :;                                  Ticket count : {tickets}                     ");
                 Console.WriteLine(@"      `::::::.`:. .:. :: `::.:: ::  `::. .:: ::.`:::':.:;'                                                                                ");
                 Console.WriteLine(@"            `::::::::::...:::'  `::.:'`:.::'.:.:;' .:;'                                                                                   ");
                 Console.WriteLine(@"                       `::::::::::::::::::::'.::;:;'                                                                                      ");
@@ -183,7 +184,7 @@ namespace Game_Title
                         CreepyClown();
                         break;
                     case 3:
-                        Blackjack.BlackJackMain();
+                        tickets = Blackjack.BlackJackMain(tickets);
                         CreepyClown();
                         break;
                     case 4:
@@ -205,5 +206,7 @@ namespace Game_Title
                 }
             }
         }
+
+       
     }
 }
