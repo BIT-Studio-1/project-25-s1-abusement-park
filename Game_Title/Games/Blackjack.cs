@@ -7,13 +7,11 @@ namespace Game_Title
 {
     public class Blackjack
     {
-        public static void BlackJackMain()
+        public static int BlackJackMain(int wallet)
         {
             Random rand = new Random();
             //this is the play again input
             String input = "";
-            //temporary money holder - not linked up to global ticket count so for now this will just be 'chips'
-            double wallet = 100;
 
             string start = "";
             do
@@ -262,20 +260,20 @@ namespace Game_Title
                             {
                                 Console.WriteLine("dealer went over 21!");
                                 Console.WriteLine("win :)");
-                                wallet += chip;
+                                wallet += (int)chip;
 
                             }
                             else if (total > dTotal)
                             {
                                 Console.WriteLine("you are higher than dealer!");
                                 Console.WriteLine("win :)");
-                                wallet += chip;
+                                wallet += (int)chip;
                             }
                             else if (total < dTotal)
                             {
                                 Console.WriteLine("dealer is higher than you...");
                                 Console.WriteLine("lose :(");
-                                wallet -= chip;
+                                wallet -= (int)chip;
                             }
                             else
                             {
@@ -289,7 +287,7 @@ namespace Game_Title
                         {
                             Console.WriteLine("you went over 21...");
                             Console.WriteLine("lose :(");
-                            wallet -= chip;
+                            wallet -= (int)chip;
                         }
                     }
                     else
@@ -297,8 +295,9 @@ namespace Game_Title
                         Console.WriteLine("You got blackjack!");
                         Console.WriteLine("You win!");
                         //the payout is 3:2
-                        wallet += (chip / 2);
+                        wallet += ((int)chip / 2);
                     }
+
 
                     //if there is no money left the user is booted from the game
                     if (wallet == 0)
@@ -315,10 +314,14 @@ namespace Game_Title
                             input = Console.ReadLine().ToLower();
                         } while (input != "y" && input != "n");
                     }
-                    } while (input != "n") ;
-                
+                }
+                while (input != "n") ;
+
             }
+            return wallet;
+                
         }
+        
 
         /*
          * these are the visuals, moved to a method to clear space. the visual of a suit depends on 
