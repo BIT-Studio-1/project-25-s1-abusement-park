@@ -23,7 +23,7 @@ namespace Game_Title
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         private const int SW_MAXIMIZE = 3;
-
+        private static int tickets = 100;
         static void CreepyClown()
         {
             Random rand = new Random();
@@ -187,7 +187,7 @@ namespace Game_Title
                         CreepyClown();
                         break;
                     case 4:
-                        CoinGame.CoinGameMain();
+                        tickets = CoinGame.CoinGameMain(tickets);
                         CreepyClown();
                         break;
                     case 5:
