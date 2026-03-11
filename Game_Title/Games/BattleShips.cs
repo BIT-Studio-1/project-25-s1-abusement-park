@@ -188,11 +188,11 @@ namespace Game_Title
             Random rand = new Random();          
             int krakenNum, krakenNum2;          
             krakenNum = rand.Next(0, 8);   //randomly select a starting position for kraken ship
-            krakenNum2 = rand.Next(0, 3);
-            for (int i = 0; i < 5; i++)
+            krakenNum2 = rand.Next(0, 4);
+            for (int i = 0; i < 4; i++)
             {
-                krakenNum2 = krakenNum2 + 1;
                 BSkrakenGrid[krakenNum, krakenNum2] = '#';
+                krakenNum2 = krakenNum2 + 1;
             }           
 
 
