@@ -26,26 +26,29 @@ namespace Game_Title
             int wins = 0; // counts total wins
 
             bool keepPlaying = true; // tracks if the player wants to play again or not
-            Random rand = new Random();
+            Random rand = new Random();            
 
-            
             // game loops while the user wants to play
             while (keepPlaying)
             {
-                //ticket betting system
-                Console.WriteLine();
-                Console.WriteLine("Current tickets: " + wallet);
-                Console.WriteLine("How many tickets would you like to bet? ");
-                try
-                {
-                    bet = Convert.ToInt32(Console.ReadLine());
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid! Please enter a number");
-                }
-                Console.WriteLine();
 
+                //ticket betting system
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Current tickets: " + wallet);
+                    Console.WriteLine("How many tickets would you like to bet? ");
+                    try
+                    {
+                        bet = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid! Please enter a number");
+                    }
+                    Console.WriteLine();
+                } while (bet == 0);
+                Console.Clear();
 
                 string userGuess = " "; // default user input
 
@@ -129,6 +132,7 @@ namespace Game_Title
 
                     Console.WriteLine($"\nGames played: {gamesPlayed}, Wins: {wins}");
                     Console.ReadLine(); // Pause before closing
+                    Console.Clear();
                 }
                
 
