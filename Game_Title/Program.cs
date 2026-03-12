@@ -180,7 +180,7 @@ namespace Game_Title
                         CreepyClown();
                         break;
                     case 2:
-                        BattleShip.BattleShipMain();
+                        tickets = BattleShip.BattleShipMain(tickets);
                         CreepyClown();
                         break;
                     case 3:
