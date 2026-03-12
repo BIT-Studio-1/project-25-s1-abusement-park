@@ -76,6 +76,7 @@ namespace Game_Title
 
             for (int i = 0; i < 4; i++)
             {
+
                 Console.Clear();
                 Console.WriteLine(@"                                                  0   1   2   3   4   5   6        ");
                 Console.WriteLine(@"                                                +---+---+---+---+---+---+---+      ");
@@ -98,6 +99,15 @@ namespace Game_Title
                 Console.WriteLine("(Battleship is 4-Squares Long e.g A0 - A3)");
                 Console.WriteLine("(Remember to enter coordinates one digit at a time!)");
                 Console.WriteLine($"Coordinate {i + 1}");
+                if (battleshipPos.Count > 0)
+                {
+                    Console.WriteLine($"Current ship coordinates:");
+                    for (int j = 0; j < battleshipPos.Count; j++)
+                    {
+                        Console.Write(battleshipPos[j] + " ");
+                    }
+                    Console.WriteLine();
+                }
                 Console.Write("Y: ");
                 string shipTempY = Console.ReadLine().ToUpper();
                 Console.Write("X: ");
@@ -188,12 +198,11 @@ namespace Game_Title
             Random rand = new Random();          
             int krakenNum, krakenNum2;          
             krakenNum = rand.Next(0, 8);   //randomly select a starting position for kraken ship
-            krakenNum2 = rand.Next(0, 3);
-            for (int i = 0; i < 5; i++)
+            krakenNum2 = rand.Next(0, 4);
+            for (int i = 0; i < 4; i++)
             {
-                krakenNum2 = krakenNum2 + 1;
-
                 BSkrakenGrid[krakenNum, krakenNum2] = '#';
+                krakenNum2 = krakenNum2 + 1;
             }           
 
 
