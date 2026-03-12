@@ -192,6 +192,7 @@ namespace Game_Title
             for (int i = 0; i < 5; i++)
             {
                 krakenNum2 = krakenNum2 + 1;
+
                 BSkrakenGrid[krakenNum, krakenNum2] = '#';
             }           
 

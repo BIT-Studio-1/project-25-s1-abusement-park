@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Maze
@@ -18,6 +19,10 @@ namespace Maze
                 input = Console.ReadLine();
             }
             size = parsedInt;
+
+            Console.WriteLine("To move around the maze you can use the 'WASD' keys. \n" +
+                "You start in the top left corner of the maze and you're trying to reach the bottom right.");
+            Console.ReadKey();
 
             // Make sure it fits (with some padding)
             //int consoleWidth = Math.Min(size * 2 + 2, Console.LargestWindowWidth);
@@ -46,38 +51,17 @@ namespace Maze
         private int size = size;
         private int[,] mazeGrid;
 
-        /*{
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1},
-            {1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1},
-            {1,0,1,1,1,1,1,0,1,1,0,1,1,0,1,0,1,0,1,1},
-            {1,0,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,1,1},
-            {1,0,1,1,1,1,1,0,1,1,0,0,1,1,1,1,1,0,1,1},
-            {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,1,1},
-            {1,0,1,1,0,0,0,0,0,0,1,0,1,1,1,1,1,0,1,1},
-            {1,0,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0,1,1},
-            {1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1,1,1,1,1},
-            {1,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1},
-            {1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1},
-            {1,0,1,1,0,0,1,1,1,0,1,0,0,0,0,0,0,0,1,1},
-            {1,0,1,1,0,0,0,0,1,0,1,1,0,1,0,0,1,0,1,1},
-            {1,0,1,0,0,1,1,0,1,1,1,1,0,1,0,0,0,0,1,1},
-            {1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,0,1,1},
-            {1,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,1,1},
-            {1,0,1,1,1,0,1,0,1,0,0,1,0,0,0,1,0,0,1,1},
-            {1,0,0,0,1,0,1,0,1,1,0,1,0,1,0,1,0,1,1,1},
-            {1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,1,1},
-            {1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-        };
-        */
 
         (int x, int y)? startPoint = (1,0);
-        (int x, int y)? endPoint = (size-1,size);
         private static Dictionary<int[], String> eventLocations = new Dictionary<int[], string>(); //implementation is not working
         private Player user;
 
         public void SetupMaze()
         {
+            // Ensure odd dimensions
+            if (size % 2 == 0) size++;
             
+
             mazeGrid = GenerateMaze(size,size);
 
             if (startPoint != null)
@@ -99,9 +83,9 @@ namespace Maze
             Console.SetCursorPosition(user.x*2, (user.y + 2));
             Console.Write("@@");
             */
-            
 
-            do
+
+            while (!(user.y == size-1))
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
                 int newX = user.x, newY = user.y;
@@ -117,9 +101,9 @@ namespace Maze
                 }
 
                 if (exit) {
-                break;
+                    break;
                 }
-
+                //
                 // Only move if next spot is a path (0)
                 if ((newY > 0 && newY <= size) && (newX > 0 && newX <= size)) { 
                     if (mazeGrid[newY, newX] == 0)
@@ -148,9 +132,10 @@ namespace Maze
                     }
                 }
             }
-            while (!(user.y == endPoint.Value.y));
+            
         }
 
+        /**
         public void MakeMaze(){
             mazeGrid = new int[size,size];
             for (int x = 0; x < size; x++)
@@ -162,11 +147,10 @@ namespace Maze
             }
             
         }
+        
 
         public static char MazeGetInput(char[] usableChars)
         {
-
-
             Char input = Console.ReadKey().KeyChar;
             if (!usableChars.Contains(input))
             {
@@ -176,6 +160,8 @@ namespace Maze
 
             return input;
         }
+        */
+
 
         public void DrawMaze(){
             for (int y = 0; y < mazeGrid.GetLength(0); y++)
@@ -197,9 +183,7 @@ namespace Maze
 
         public static int[,] GenerateMaze(int width, int height)
         {
-            // Ensure odd dimensions
-            if (width % 2 == 0) width++;
-            if (height % 2 == 0) height++;
+            
 
             int[,] maze = new int[height, width];
 
