@@ -71,6 +71,13 @@ namespace Game_Title
                 Console.ReadLine();
                 Console.Clear();
 
+                int bet = 0;
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("Matey! The Kraken demands some dubloons to be at stake! Aye!?\nMatey yer tickets look like they'll be worthy enough!\nHow many tickets will you bet!?");
+
+                } while (bet <= 0);
 
 
                 //Place Ships                              
@@ -447,6 +454,7 @@ namespace Game_Title
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Ye have no dubloons matey! Get a landlubber to loan ye some before ye enter!");
                 return wallet;
             }
