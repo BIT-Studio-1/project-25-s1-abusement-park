@@ -37,7 +37,8 @@ namespace Game_Title
             if (start == "P" || start == "p")
             {
                 //this is the game!
-                do
+                input = "";
+                while (input != "n" && wallet > 0)
                 {
                     input = "";
 
@@ -303,8 +304,6 @@ namespace Game_Title
                     //if there is no money left the user is booted from the game
                     if (wallet == 0)
                     {
-                        Console.WriteLine("You lost all your money pal... scram!\nPress [Enter] to scram");
-                        Console.ReadLine();
                         input = "n";
                     }
                     else
@@ -316,9 +315,12 @@ namespace Game_Title
                         } while (input != "y" && input != "n");
                     }
                 }
-                while (input != "n") ;
-
                 
+            }
+            if (wallet == 0)
+            {
+                Console.WriteLine("You lost all your money pal... scram!\nPress [Enter] to scram");
+                Console.ReadLine();
             }
             return wallet;
                 
