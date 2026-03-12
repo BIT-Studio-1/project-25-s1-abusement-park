@@ -47,7 +47,7 @@ namespace Game_Title
                         Console.WriteLine("Invalid! Please enter a number");
                     }
                     Console.WriteLine();
-                } while (bet == 0);
+                } while (bet == ' ');
                 Console.Clear();
 
                 string userGuess = " "; // default user input
