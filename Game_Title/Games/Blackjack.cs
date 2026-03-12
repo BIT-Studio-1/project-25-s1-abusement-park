@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Globalization;
 using System.Net.Security;
+using System.Xml.Linq;
 
 namespace Game_Title
 {
     public class Blackjack
     {
-        public static void BlackJackMain()
+        public static int BlackJackMain(int wallet)
         {
             Random rand = new Random();
             //this is the play again input
             String input = "";
             //temporary money holder - not linked up to global ticket count so for now this is just playing money given by your grandma
-            double wallet = 100;
+
 
             string start = "";
             do
@@ -54,8 +55,16 @@ namespace Game_Title
                     do
                     {
                         Console.Clear();
-                        Console.WriteLine($"How many chips are you betting? You have {wallet} tickets. Lowest bid is one ticket.");
-                        chip = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine($"How many chips are you betting? You have {wallet} chips. Lowest bid is one chip.");
+                        try
+                        {
+                            chip = Convert.ToDouble(Console.ReadLine());
+                        }catch(FormatException ex)
+                        {
+                            Console.WriteLine("Please enter a number!\nPress [Enter] if you understand.");
+                            Console.ReadLine();
+                        }
+
                         if (chip > wallet)
                         {
                             Console.WriteLine("You're not that rich, buddy.");
@@ -253,20 +262,20 @@ namespace Game_Title
                             {
                                 Console.WriteLine("dealer went over 21!");
                                 Console.WriteLine("win :)");
-                                wallet += chip;
+                                wallet += (int)chip;
 
                             }
                             else if (total > dTotal)
                             {
                                 Console.WriteLine("you are higher than dealer!");
                                 Console.WriteLine("win :)");
-                                wallet += chip;
+                                wallet += (int)chip;
                             }
                             else if (total < dTotal)
                             {
                                 Console.WriteLine("dealer is higher than you...");
                                 Console.WriteLine("lose :(");
-                                wallet -= chip;
+                                wallet -= (int)chip;
                             }
                             else
                             {
@@ -280,7 +289,7 @@ namespace Game_Title
                         {
                             Console.WriteLine("you went over 21...");
                             Console.WriteLine("lose :(");
-                            wallet -= chip;
+                            wallet -= (int)chip;
                         }
                     }
                     else
@@ -288,19 +297,33 @@ namespace Game_Title
                         Console.WriteLine("You got blackjack!");
                         Console.WriteLine("You win!");
                         //the payout is 3:2
-                        wallet += (chip / 2);
+                        wallet += ((int)chip / 2);
                     }
 
-
+                    //if there is no money left the user is booted from the game
+                    if (wallet == 0)
+                    {
+                        Console.WriteLine("You lost all your money pal... scram!\nPress [Enter] to scram");
+                        Console.ReadLine();
+                        input = "n";
+                    }
+                    else
+                    {
                         do
                         {
-                            Console.WriteLine("Do you want to play again? (yes/no)");
-                            input = Console.ReadLine();
-                        } while (input != "yes" && input != "no" && input != "YES" && input != "NO");
-                    } while (input != "no" && input != "NO") ;
+                            Console.WriteLine("Do you want to play again?\n[Y]es\n[N]o");
+                            input = Console.ReadLine().ToLower();
+                        } while (input != "y" && input != "n");
+                    }
+                }
+                while (input != "n") ;
+
                 
             }
+            return wallet;
+                
         }
+        
 
         /*
          * these are the visuals, moved to a method to clear space. the visual of a suit depends on 
@@ -354,16 +377,16 @@ namespace Game_Title
         }
 
 
-        /*
-         * we get a card and add it onto the total depending on various cases
-         * named this because i thought it would be different but its actually just calculating the total!
-         * @param total - what we add to
-         * @param card - switch case, ie the card with the conditions
-         * @param hand - we need this for the ace conditions, changing the ace to allows for some stuff
-         * @param loc - the location, helps find where the ace we are changing is
-         * @param dealer - we do not want the dealer to change their total if they have an ace
-         * @return
-         */
+        
+        /// <summary>
+        /// we get a card and add it onto the total depending on various cases. It is named this because i thought it would be different but its actually just calculating the total!
+        /// </summary>
+        /// <param name="total">value of the card, what we add to</param>
+        /// <param name="card">this is the card conditions, for the switch case</param>
+        /// <param name="hand">this is for ace conditions, how it acts in your hand</param>
+        /// <param name="loc">the location of the ace in the hand</param>
+        /// <param name="dealer">if its a player or a dealer the code acts differently</param>
+        /// <returns></returns>
         public static int GetCard(int total, int card, int[] hand, int loc, bool dealer)
         {
 
