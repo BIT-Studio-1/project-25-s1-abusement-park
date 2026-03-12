@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Data.SqlTypes;
 
 namespace Game_Title
 {
     public class CoinGame
     {
-        public static void CoinGameMain()
+        public static int CoinGameMain(int tickets)
         {
+            int wallet = tickets;
+            int bet = 0;                  
             // Shows ASCII banner and welcome text
             Console.WriteLine(
 @"   _____      _          _____                      
@@ -23,11 +26,30 @@ namespace Game_Title
             int wins = 0; // counts total wins
 
             bool keepPlaying = true; // tracks if the player wants to play again or not
-            Random rand = new Random();
+            Random rand = new Random();            
 
             // game loops while the user wants to play
             while (keepPlaying)
             {
+
+                //ticket betting system
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Current tickets: " + wallet);
+                    Console.WriteLine("How many tickets would you like to bet? ");
+                    try
+                    {
+                        bet = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid! Please enter a number");
+                    }
+                    Console.WriteLine();
+                } while (bet == 0);
+                Console.Clear();
+
                 string userGuess = " "; // default user input
 
                 // loops while the user hasn't input a valid 'h' or 't'
@@ -67,10 +89,17 @@ namespace Game_Title
                 {
                     wins++; // Increment wins counter on correct guess
                     Console.WriteLine("Congrats! You guessed correctly. You win!\n");
+
+                    wallet += bet; //add to wallet for win
+                    Console.WriteLine($"You won {bet} tickets!");
+
                 }
                 else
                 {
                     Console.WriteLine("Sorry, you guessed wrong. Try again!\n");
+
+                    wallet -= bet;  //remove from wallet if you loose
+                    Console.WriteLine($"You lost {bet} tickets");
                 }
 
                 gamesPlayed++;  // increment games played
@@ -103,8 +132,12 @@ namespace Game_Title
 
                     Console.WriteLine($"\nGames played: {gamesPlayed}, Wins: {wins}");
                     Console.ReadLine(); // Pause before closing
+                    Console.Clear();
                 }
+               
+
             }
+            return wallet;
         }
     }
 }

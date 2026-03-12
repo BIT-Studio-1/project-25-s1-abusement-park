@@ -188,7 +188,7 @@ namespace Game_Title
                         CreepyClown();
                         break;
                     case 4:
-                        CoinGame.CoinGameMain();
+                        tickets = CoinGame.CoinGameMain(tickets);
                         CreepyClown();
                         break;
                     case 5:
