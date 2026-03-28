@@ -176,7 +176,7 @@ namespace Game_Title
                 switch (mainMenuChoice)
                 {
                     case 1:
-                        LiarsDiceGame.LiarsDiceMain();
+                        tickets = LiarsDiceGame.LiarsDiceMain(tickets);
                         CreepyClown();
                         break;
                     case 2:
